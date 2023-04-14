@@ -1,0 +1,29 @@
+header {
+    background-color: rgb(134, 0, 255, .05);
+    padding: 1%;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+header>h1 {
+    font-size: min(3rem, 6vw);
+    font-weight: bolder;
+    -webkit-text-stroke: min(4px, .5vw);
+}
+
+#container-globe-ani>img {
+    width: min(150px, 20vw);
+    /* height: 150px; */
+}
+
+
+/* ****************************** @media **************************** */
+
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+}
