@@ -10,7 +10,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* width: 100%; */
 }
 
 #container-icons-media {
@@ -41,4 +40,21 @@
     text-align: center;
     color: white;
     background-color: #8600FF;
+}
+
+/* ************************* @media ************************* */
+/* ************************* @media ************************* */
+
+@media screen and (max-width: 768px) {
+    #container-footer-text-icons {
+        flex-direction: column;
+    }
+
+    #container-company-info {
+        margin-bottom: 5%;
+    }
+
+    #container-icons-media {
+        justify-content: center;
+    }
 }
