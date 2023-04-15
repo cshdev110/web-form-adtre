@@ -27,15 +27,14 @@
 }
 
 .step-to-form:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
     box-shadow: 0px 0px 5px #000000;
     cursor: pointer;
-    transition: transform .3s;
+    transition: transform .2s;
 }
 
 .step-to-form:active {
-    transform: scale(1.1);
-    transition: transform 0s;
+    transform: scale(1.2);
 }
 
 .step-to-form>img {
@@ -77,7 +76,7 @@
 
 .step-up-down:active {
     background-color: #00f8ff80;
-    font-size: min(4.5em, 6vw);
+    font-size: min(5.5em, 9vw);
 }
 
 /* ************************* form-section > form ************************* */
@@ -112,11 +111,12 @@
 .btn-continue:hover {
     background-color: #6800c2FF;
     font-size: min(1.1em, 4.3vw);
+    box-shadow: 2px 2px 5px #000000;
 }
 
 .btn-continue:active {
     background-color: #6800c2DF;
-    font-size: min(1em, 3.5vw);
+    font-size: min(1.2em, 4.5vw);
 }
 
 /* ************************* form-section > form > start ************************* */
@@ -238,11 +238,11 @@ input[name="radio-form-info-traveling-3-processes"]:checked {
 }
 
 /* ************************* form-section > form > info > details ************************* */
-#container-form-info-details {
+.container-form-info-details {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     text-align: justify;
     font-size: min(1.5em, 4vw);
     width: 100%;
@@ -250,6 +250,39 @@ input[name="radio-form-info-traveling-3-processes"]:checked {
     padding: 2% 4%;
 }
 
+.container-form-info-details-fields {
+    display: grid;
+    grid-template-columns: auto auto;
+    row-gap: 10px;
+    column-gap: 20px;
+}
+
+.container-form-info-details-traveller {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.container-form-info-details-traveller * {
+    width: 100%;
+    text-align: center;
+    font-size: min(1em, 4vw);
+}
+
+.container-form-info-details-traveller button {
+    background-color: #8600FF;
+    border: none;
+    cursor: pointer;
+}
+
+.container-form-info-details-traveller button:hover {
+    box-shadow: 2px 2px 5px #000000;
+    transition: all .1s;
+}
+
+.container-form-info-details-traveller button:active {
+    transform: scale(1.1);
+}
 
 
 /* ************************* summary-section ************************* */
