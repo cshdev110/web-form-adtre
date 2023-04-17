@@ -36,7 +36,7 @@
                 <button class="step-up-down" id="step-up-down-normal-screen">&#9204;</button>
                 <div id="container-form">
                     <form action="">
-                        <!-- <div id="container-form-start">
+                        <div id="container-form-start">
                             <h2>Start</h2>
                             <p>To offer you the best personal adventure experience, our agency requires you to 
                                 fill up the following information. There is some optional and required info. 
@@ -44,8 +44,9 @@
                                 better the adventure.
                             </p>
                             <button type="button" class="btn-continue">Continue</button>
-                        </div> -->
-                        <div id="container-form-info">
+                        </div>
+                        
+                        <!-- <div id="container-form-info"> -->
                             <!-- <div id="container-form-info-travellers">
                                 <h2>Traverllers</h2>
                                 <div id="container-form-info-traveling-inputs">
@@ -66,7 +67,8 @@
                                 </div>
                                 <button type="button" class="btn-continue">Continue</button>
                             </div> -->
-                            <div class="container-form-info-details">
+
+                            <!-- <div class="container-form-info-details">
                                 <h2>Personal Information</h2>
                                 <div class="container-form-info-details-fields">
                                     <label for="">Traveling Form</label>
@@ -78,12 +80,12 @@
                                     <label for="name">Name</label><input type="text" name="name" placeholder="Name">
                                     <label for="birthdate">Birth Date</label><input type="date" name="birthdate">
                                     <label for="occupation">Occupation</label><input type="text" name="occupation" placeholder="Business...">
-                                    <label for="gender">Gender</label><select name="gender" name="gender" id="">
+                                    <label for="gender">Gender</label><select name="gender" id="">
                                         <option value="female">Female</option>
                                         <option value="male">Male</option>
                                     </select>
                                     <label for="dietary">Dietary Requirements</label><input list="form-datalist-dietary" name="dietary" placeholder="double clic to see more">
-                                    <datalist class="form-datalist-dietary">
+                                    <datalist id="form-datalist-dietary">
                                         <option value="Vegetarian">Vegetarian</option>
                                         <option value="Vegan">Vegan</option>
                                         <option value="Halal">Halal</option>
@@ -93,15 +95,114 @@
                                     <label for="specialneeds">Special Needs</label><input type="text" name="specialneeds" placeholder="">
                                 </div>
                                 <button type="button" class="btn-continue">Continue</button>
-                            </div>
+                            </div> -->
 
-                            <div id="container-form-info-traveling-3-processes">
+                            <!-- <div id="container-form-info-travel-preference">
+                                <h2>Travel Information</h2>
+                                <label for="preference-date">Preference date</label>
+                                <input name="preference-date" type="date" required>
+
+                                <label for="budget">Budget ranges</label>
+                                <input name="budget" type="number" min="0.0" step="0.01" placeholder="$ 1'000.000.00">
+
+                                <label for="active">How active</label>
+                                <select name="active">
+                                    <option value="How active" selected>how active</option>
+                                    <option value="Highly active">Highly active</option>
+                                    <option value="Meddle active">Meddle active</option>
+                                    <option value="Low active">Low active</option>
+                                </select>
+
+                                <label class="travel-info-dynamic-label" for="">
+                                    Want to be travelling all the time?
+                                    <input type="checkbox" name="" id="">
+                                </label>
+
+                                <label class="travel-info-dynamic-label" for="">
+                                    Need rest days?
+                                    <input type="checkbox" name="" id="">
+                                </label>
+
+                                <label class="travel-info-dynamic-label" for="">
+                                    Enjoy strenuous activities?
+                                    <input type="checkbox" name="" id="">
+                                </label>
+
+                                <label class="travel-info-dynamic-label" for="">
+                                    Sedentary
+                                    <input type="checkbox" name="" id="">
+                                </label>
+
+                                <button type="button" class="btn-continue">Continue</button>
+                            </div> -->
+
+                            <!-- <div id="container-form-info-traveling-3-processes">
                                 <input type="radio" name="radio-form-info-traveling-3-processes" id="" checked>
                                 <input type="radio" name="radio-form-info-traveling-3-processes" id="">
                                 <input type="radio" name="radio-form-info-traveling-3-processes" id="">
-                            </div>
-                            
-                        </div>
+                            </div> -->
+                        <!-- </div> -->
+
+                        <!-- <div id="container-form-info-accommodation">
+                            <h2>Preferred Accommodation</h2>
+                            <label for="accommodation">What is your preference?
+                                <select name="accommodation" id="">
+                                    <option value="select" selected>Select</option>
+                                    <option value="accommodation">Hotel</option>
+                                    <option value="accommodation">Motel</option>
+                                    <option value="accommodation">Airbnb</option>
+                                    <option value="accommodation">Student Accommodation</option>
+                                    <option value="accommodation">Backpacker's Accommodation</option>
+                                    <option value="accommodation">Camping</option>
+                                    <option value="accommodation">Other</option>
+                                </select>
+                            </label>
+                            <button type="button" class="btn-continue">Continue</button>
+                        </div> -->
+
+                        <!-- <div id="container-form-info-travel-environment">
+                            <h2>Preferred Environment</h2>
+                            <label for="travel-env-city">City
+                                <input type="checkbox" name="travel-env-city" id=""></label>
+                            <label for="travel-env-Country">Country
+                                <input type="checkbox" name="" id="travel-env-Country"></label>
+                            <label for="travel-env-Natural">Natural
+                                <input type="checkbox" name="" id="travel-env-Natural"></label>
+                            <label for="travel-env-Mountains">Mountains
+                                <input type="checkbox" name="" id="travel-env-Mountains"></label>
+                            <label for="travel-env-Deserts">Deserts
+                                <input type="checkbox" name="" id="travel-env-Deserts"></label>
+                            <label for="travel-env-Rain Forests">Rain Forests
+                                <input type="checkbox" name="" id="travel-env-Rain"></label>
+                            <label for="travel-env-Sea">Sea
+                                <input type="checkbox" name="" id="travel-env-Sea"></label>
+                            <label for="travel-env-Coastal">Coastal
+                                <input type="checkbox" name="" id="travel-env-Coastal"></label>
+                            <label for="travel-env-Inland">Inland
+                                <input type="checkbox" name="" id="travel-env-Inland"></label>
+                            <label for="travel-env-other">Other
+                                <input type="text" name="travel-env-other" id=""></label>
+                            <button type="button" class="btn-continue">Continue</button>
+                        </div> -->
+
+                        <!-- <div id="container-form-info-destination">
+                            <h2>Preferred Destination</h2>
+                            <label for="destination">Destination
+                                <select name="destination" id="">
+                                    <option value="Africa">Africa</option>
+                                    <option value="Asia">Asia</option>
+                                    <option value="Central">Central</option>
+                                    <option value="America">America</option>
+                                    <option value="Europe">Europe</option>
+                                    <option value="European Union">European Union</option>
+                                    <option value="Middle East">Middle East</option>
+                                    <option value="North America">North America</option>
+                                    <option value="Oceania South America">Oceania South America</option>
+                                    <option value="The Caribbean">The Caribbean</option>
+                                </select>
+                            </label>
+                            <button type="button" class="btn-continue">Continue</button>
+                        </div> -->
                     </form>
                 </div>
                 <button class="step-up-down" id="step-up-down-media-screen">&#9204;</button>
@@ -148,6 +249,6 @@
         </div>
     </footer>
     <!--script for js-->
-    <script src="js/script.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>

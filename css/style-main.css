@@ -143,7 +143,7 @@
 #container-form-info {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     width: 100%;
     height: 100%;
 }
@@ -175,8 +175,8 @@
 }
 
 #container-form-info-traveling-inputs input[type="checkbox"] {
-    width: 30px;
-    height: 30px;
+    width: min(30px, 5vw);
+    height: min(30px, 5vw);
     margin-right: 1%;
     background-color: #8600FF;
 }
@@ -190,9 +190,9 @@
 
 /* removing the arrows for firefox */
 #container-form-info-traveling-inputs input[type=number] {
+    appearance: textfield;
     -moz-appearance: textfield;
     width: 30px;
-    /* height: 30px; */
     text-align: center;
     background-color: transparent;
     border-style: solid;
@@ -210,30 +210,6 @@
     transform: scale(1.2);
     text-shadow: 0px 0px 5px #000000;
     cursor: pointer;
-    transition: transform .1s;
-}
-
-#container-form-info-traveling-3-processes {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 5%;
-    height: min(23px, 4vw);
-}
-
-input[name="radio-form-info-traveling-3-processes"] {
-    width: 10%;
-    cursor: pointer;
-}
-
-input[name="radio-form-info-traveling-3-processes"]:hover {
-    transform: scale(1.1);
-    transition: transform .1s;
-}
-
-input[name="radio-form-info-traveling-3-processes"]:checked {
-    transform: scale(1.2);
     transition: transform .1s;
 }
 
@@ -284,6 +260,121 @@ input[name="radio-form-info-traveling-3-processes"]:checked {
     transform: scale(1.1);
 }
 
+/* ************************* form-section > form > info > travel preference ************************* */
+#container-form-info-travel-preference {
+    display: grid;
+    grid-template-columns: auto auto;
+    row-gap: 10px;
+    font-size: min(1.5em, 4vw);
+    align-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 2% 4%;
+}
+
+#container-form-info-travel-preference>h2 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.travel-info-dynamic-label {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: flex;
+    justify-content: space-between;
+}
+
+.travel-info-dynamic-label input {
+    width: min(30px, 5vw);
+    height: min(30px, 5vw);
+    margin-right: 1%;
+    background-color: #8600FF;
+}
+
+#container-form-info-travel-preference>button {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin: 4% 0%;
+}
+
+/* ************************* form-section > form > info > accommodation ************************* */
+#container-form-info-accommodation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: min(1.5em, 4vw);
+    width: 100%;
+    height: 100%;
+    padding: 2% 4%;
+}
+
+#container-form-info-accommodation>h2 {
+    margin-bottom: 2%;
+}
+
+/* ************************* form-section > form > info > travel environment ************************* */
+#container-form-info-travel-environment {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    row-gap: 5px;
+    font-size: min(1.5em, 4vw);
+    width: 100%;
+    height: 100%;
+    padding: 2% 4%;
+    text-align: center;
+}
+#container-form-info-travel-environment>label {
+    display: flex;
+    justify-content: space-between;
+    padding: 0% min(20%, 0.4vw);
+}
+
+#container-form-info-travel-environment>label>input[type="checkbox"] {
+    width: min(30px, 5vw);
+    height: min(30px, 5vw);
+}
+
+/* ************************* form-section > form > info > destination ************************* */
+#container-form-info-destination {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: min(1.5em, 4vw);
+    width: 100%;
+    height: 100%;
+    padding: 2% 4%;
+}
+
+
+/* ************************* form-section > form > info > 3 processes ************************* */
+#container-form-info-traveling-3-processes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: min(23px, 4vw);
+}
+
+input[name="radio-form-info-traveling-3-processes"] {
+    width: 10%;
+    cursor: pointer;
+}
+
+input[name="radio-form-info-traveling-3-processes"]:hover {
+    transform: scale(1.1);
+    transition: transform .1s;
+}
+
+input[name="radio-form-info-traveling-3-processes"]:checked {
+    transform: scale(1.2);
+    transition: transform .1s;
+}
+
 
 /* ************************* summary-section ************************* */
 #summary-section {
@@ -322,8 +413,6 @@ input[name="radio-form-info-traveling-3-processes"]:checked {
     height: 50px;
 }
 
-
-
 /* ************************* @media ************************* */
 /* ************************* @media ************************* */
 
@@ -355,11 +444,11 @@ input[name="radio-form-info-traveling-3-processes"]:checked {
 
     /* ************************* form-section > buttons left and rigth ************************* */
     #step-up-down-normal-screen {
-        display: none;
+        display: none !important;
     }
 
     #step-up-down-media-screen {
-        display: block;
+        display: block !important;
     }
 
     .step-up-down {
