@@ -1,31 +1,50 @@
-const steps_arr = ['start', 'info', 'accommodation', 'travel_mode', 'environment', 'location', 'tickets'];
+// cnt_steps_icons contains the icons which are the steps that are on the left side of the screen
+const cnt_steps_icons = document.querySelectorAll('.step-to-form');
+// const steps_arr = ['start', 'info', 'accommodation', 'travel_mode', 'environment', 'location', 'tickets'];
 var steps_arr_index = 0;
 
+// cnt_containers_form contains the containers from the form
+const cnt_containers_form = document.querySelector('#main-form');
+
+// people_info_arr is a dynamic that increases when the user adds more people such as family members and friends
 var people_info_arr = new Array('You');
 var people_info_arr_index = 0;
 
-document.querySelector('#step-up-normal-screen').addEventListener('click', () => {
-    if (steps_arr_index < steps_arr.length - 1) {
-        steps_arr_index++;
-        fn_step_up_down(steps_arr_index);
-    }
-});
-document.querySelector('#step-down-normal-screen').addEventListener('click', () => {
-    if (steps_arr_index > 0) {  
-        steps_arr_index--;
-        fn_step_up_down(steps_arr_index);
-    }
-});
+// define styles for the step icons when they are active or inactive
+var steps_icons_style = {
+    transition: 'all 0.5s',
+    transform: 'scale(1.1)',
+    boxShadow: '0px 0px 10px #000000',
+    border: '1px solid #000000'
+}
+var steps_icons_style_reset = {
+    transition: 'transform 0.2s',
+    transform: 'scale(1)',
+    boxShadow: 'none'
+}
 
+var div_container_form = document.querySelector('#container-form');
+var btn_step_up_normal = document.querySelector('#step-up-normal-screen');
+var btn_step_down_normal = document.querySelector('#step-down-normal-screen');
 
-
+// -------------------------------------- functions --------------------------------------
 
 function fn_start() {
-        
+
+    // Deactivating step icons until the start button is clicked
+    cnt_steps_icons.forEach(el => {
+        el.style.pointerEvents = 'none';
+        el.style.filter = 'opacity(10%)';
+        // el.disabled = true;
+    });
+
     // Hidding the container-form and the step up/down buttons after button start is clicked
-    document.querySelectorAll('.step-up-down').forEach( el => el.style.display = 'none' );
-    document.querySelector('#container-form').style.display = 'none';
-    document.querySelector('#form-section').style.flexDirection = 'column';
+    let btn_step_up_down = document.querySelectorAll('.step-up-down');
+    let section_form_seciton = document.querySelector('#form-section');
+
+    btn_step_up_down.forEach(el => el.style.display = 'none');
+    div_container_form.style.display = 'none';
+    section_form_seciton.style.flexDirection = 'column';
 
 
     // Creating and styling the container for the start button
@@ -68,6 +87,7 @@ function fn_start() {
     }
     Object.assign(cnt_btn_start.querySelector('button').style, cnt_btn_start_child_button);
 
+    // Actions for the start button
     cnt_btn_start.querySelector('#button-start__button').addEventListener('mouseover', () => {
         cnt_btn_start.querySelector('#button-start__button').style.transform = 'scale(1.1)';
     });
@@ -77,20 +97,100 @@ function fn_start() {
     cnt_btn_start.querySelector('#button-start__button').addEventListener('mousedown', () => {
         cnt_btn_start.querySelector('#button-start__button').style.transform = 'scale(1.2)';
     });
-    cnt_btn_start.querySelector('#button-start__button').addEventListener('mouseup', () => {
+
+////// for the sake of the demo ///////////////////////////////////////////////////////
+    // cnt_btn_start.querySelector('#button-start__button').addEventListener('mouseup', () => {
+    cnt_btn_start.querySelector('#button-start__button').addEventListener('click', () => {
         cnt_btn_start.style.display = 'none';
-        document.querySelector('#container-form').style.display = 'flex';
-        document.querySelector('#form-section').style.flexDirection = 'row';
-        document.querySelectorAll('.step-up-down').forEach( el => el.style.display = 'block' );
-        document.querySelector('#step-up-down-media-screen').style.display = 'none';
+
+        btn_step_up_down.forEach((el) => el.style.display = 'block');
+        div_container_form.style.display = 'block';
+        section_form_seciton.style.flexDirection = 'row';
+
+        // Activating step icons after the start button is clicked
+        cnt_steps_icons.forEach(el => {
+            el.style.pointerEvents = 'auto';
+            el.style.filter = 'opacity(100%)';
+        });
+
+        // Stalying the first step icon
+        fn_steps_state_active(steps_arr_index);
+
+        // Displaying the first container-form
+        fn_container_manager(steps_arr_index);
     });
-    
-    return true;
+
+////// for the sake of the demo ///////////////////////////////////////////////////////
+    cnt_btn_start.querySelector('#button-start__button').click();
 }
 
+// to style the step icons when they are active or inactive
+function fn_steps_state_active(step_index) {
+    Object.assign(cnt_steps_icons[step_index].style, steps_icons_style);
+}
+
+function fn_steps_state_deactive(step_index) {
+    Object.assign(cnt_steps_icons[step_index].style, steps_icons_style_reset);
+}
+
+// To move the left button to the bottom next to the right button
+function fn_check_screen_size() {
+    if (window.innerWidth < 768) {
+        btn_step_down_normal.before(btn_step_up_normal);
+    }
+    else {
+        div_container_form.before(btn_step_up_normal);
+    }
+}
+
+// to display the container-forms dynamically
+function fn_container_manager(step_index) {
+    cnt_containers_form.children[step_index].style.top = '0%';
+    
+}
+// reset
+function fn_container_manager_hide_up(step_index) {
+    cnt_containers_form.children[step_index].style.top = '-100%';
+}
+// hide down
+function fn_container_manager_hide_down(step_index) {
+    cnt_containers_form.children[step_index].style.top = '100%';
+}
+
+// ************************************** start **************************************
+
+window.addEventListener('resize', () => {
+    fn_check_screen_size();
+});
+
+btn_step_up_normal.addEventListener('click', () => {
+    if (steps_arr_index > 0) {
+        steps_arr_index--;
+
+        console.log(steps_arr_index);
+
+        fn_steps_state_active(steps_arr_index);
+        fn_steps_state_deactive(steps_arr_index + 1);
+
+        fn_container_manager_hide_down(steps_arr_index + 1);
+        fn_container_manager(steps_arr_index);
+    }
+});
+btn_step_down_normal.addEventListener('click', () => {
+    if (steps_arr_index < cnt_steps_icons.length - 1) {
+        steps_arr_index++;
+
+        console.log(steps_arr_index);
+
+        fn_steps_state_active(steps_arr_index);
+        fn_steps_state_deactive(steps_arr_index - 1);
+
+        fn_container_manager_hide_up(steps_arr_index - 1);
+        fn_container_manager(steps_arr_index);
+    }
+});
+
+console.log(cnt_steps_icons.length);
+
 fn_start();
-
-
-
-
-
+fn_check_screen_size();
