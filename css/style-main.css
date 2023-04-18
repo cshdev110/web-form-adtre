@@ -90,6 +90,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
     height: 100%;
     padding: 2% 4%;
 }
@@ -443,11 +444,11 @@ input[name="radio-form-info-traveling-3-processes"]:checked {
     }
 
     /* ************************* form-section > buttons left and rigth ************************* */
-    #step-up-down-normal-screen {
+    #step-up-normal-screen {
         display: none !important;
     }
 
-    #step-up-down-media-screen {
+    #step-down-media-screen {
         display: block !important;
     }
 
