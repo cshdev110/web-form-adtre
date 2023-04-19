@@ -1,10 +1,12 @@
 // cnt_steps_icons contains the icons which are the steps that are on the left side of the screen
 const cnt_steps_icons = document.querySelectorAll('.step-to-form');
-// const steps_arr = ['start', 'info', 'accommodation', 'travel_mode', 'environment', 'location', 'tickets'];
 var steps_arr_index = 0;
 
-// cnt_containers_form contains the containers from the form
+// cnt_containers_form contains the containers of every form step
 const cnt_containers_form = document.querySelector('#main-form');
+
+// cnt_container-form-info are the elements which contain the field about the customer's details
+const cnt_container_form_info = document.querySelectorAll('.container-form-info');
 
 // people_info_arr is a dynamic that increases when the user adds more people such as family members and friends
 var people_info_arr = new Array('You');
@@ -23,19 +25,17 @@ var steps_icons_style_reset = {
     boxShadow: 'none'
 }
 
-var div_container_form = document.querySelector('#container-form');
+// Buttons for the step up/down or left and right when screen less than 768px
 var btn_step_up_normal = document.querySelector('#step-up-normal-screen');
 var btn_step_down_normal = document.querySelector('#step-down-normal-screen');
 
-// -------------------------------------- functions --------------------------------------
-
+// -------------------------------------- functions to initialise --------------------------------------
 function fn_start() {
 
     // Deactivating step icons until the start button is clicked
     cnt_steps_icons.forEach(el => {
         el.style.pointerEvents = 'none';
         el.style.filter = 'opacity(10%)';
-        // el.disabled = true;
     });
 
     // Hidding the container-form and the step up/down buttons after button start is clicked
@@ -43,7 +43,8 @@ function fn_start() {
     let section_form_seciton = document.querySelector('#form-section');
 
     btn_step_up_down.forEach(el => el.style.display = 'none');
-    div_container_form.style.display = 'none';
+    cnt_containers_form.style.display = 'none';
+
     section_form_seciton.style.flexDirection = 'column';
 
 
@@ -98,13 +99,13 @@ function fn_start() {
         cnt_btn_start.querySelector('#button-start__button').style.transform = 'scale(1.2)';
     });
 
-////// for the sake of the demo ///////////////////////////////////////////////////////
+////// for the sake of the test ///////////////////////////////////////////////////////
     // cnt_btn_start.querySelector('#button-start__button').addEventListener('mouseup', () => {
     cnt_btn_start.querySelector('#button-start__button').addEventListener('click', () => {
         cnt_btn_start.style.display = 'none';
 
         btn_step_up_down.forEach((el) => el.style.display = 'block');
-        div_container_form.style.display = 'block';
+        cnt_containers_form.style.display = 'flex';
         section_form_seciton.style.flexDirection = 'row';
 
         // Activating step icons after the start button is clicked
@@ -114,15 +115,19 @@ function fn_start() {
         });
 
         // Stalying the first step icon
+/////// for the sake of the test ///////////////////////////////////////////////////////
+        steps_arr_index = 1;
         fn_steps_state_active(steps_arr_index);
 
-        // Displaying the first container-form
+        // Displaying at first container-form children 1
         fn_container_manager(steps_arr_index);
     });
 
-////// for the sake of the demo ///////////////////////////////////////////////////////
+////// for the sake of the test ///////////////////////////////////////////////////////
     cnt_btn_start.querySelector('#button-start__button').click();
 }
+
+// ************************************** main functions **************************************
 
 // to style the step icons when they are active or inactive
 function fn_steps_state_active(step_index) {
@@ -135,32 +140,63 @@ function fn_steps_state_deactive(step_index) {
 
 // To move the left button to the bottom next to the right button
 function fn_check_screen_size() {
-    if (window.innerWidth < 768) {
+    if (window.innerWidth <= 768) {
         btn_step_down_normal.before(btn_step_up_normal);
     }
     else {
-        div_container_form.before(btn_step_up_normal);
+        cnt_containers_form.before(btn_step_up_normal);
     }
 }
 
 // to display the container-forms dynamically
 function fn_container_manager(step_index) {
-    cnt_containers_form.children[step_index].style.top = '0%';
-    
+    cnt_containers_form.children[step_index].style.visibility = 'visible';
+    cnt_containers_form.children[step_index].style.left = '0%';
 }
 // reset
 function fn_container_manager_hide_up(step_index) {
-    cnt_containers_form.children[step_index].style.top = '-100%';
+    cnt_containers_form.children[step_index].style.visibility = 'hidden';
+    cnt_containers_form.children[step_index].style.left = '-100%';
 }
 // hide down
 function fn_container_manager_hide_down(step_index) {
-    cnt_containers_form.children[step_index].style.top = '100%';
+    cnt_containers_form.children[step_index].style.visibility = 'hidden';
+    cnt_containers_form.children[step_index].style.left = '100%';
 }
 
 // ************************************** start **************************************
 
 window.addEventListener('resize', () => {
     fn_check_screen_size();
+});
+
+cnt_steps_icons.forEach((elm, idx) => {
+    elm.addEventListener('click', () => {
+        if (idx > steps_arr_index) {
+            fn_steps_state_active(idx);
+            fn_steps_state_deactive(steps_arr_index);
+
+            fn_container_manager_hide_up(steps_arr_index);
+            fn_container_manager_hide_up(idx - 1);
+            if (idx < cnt_steps_icons.length - 1){
+                fn_container_manager_hide_down(idx + 1);}
+            fn_container_manager(idx);
+
+            steps_arr_index = idx;
+        }
+        else if (idx < steps_arr_index) {
+            fn_steps_state_active(idx);
+            fn_steps_state_deactive(steps_arr_index);
+
+            fn_container_manager_hide_down(steps_arr_index);
+            fn_container_manager_hide_down(idx + 1);
+            if (idx > 0){
+                fn_container_manager_hide_up(idx - 1);}
+            fn_container_manager(idx);
+
+            steps_arr_index = idx;
+        }
+    });
 });
 
 btn_step_up_normal.addEventListener('click', () => {
@@ -173,6 +209,8 @@ btn_step_up_normal.addEventListener('click', () => {
         fn_steps_state_deactive(steps_arr_index + 1);
 
         fn_container_manager_hide_down(steps_arr_index + 1);
+        if (steps_arr_index > 0){
+            fn_container_manager_hide_up(steps_arr_index - 1);}
         fn_container_manager(steps_arr_index);
     }
 });
@@ -186,6 +224,8 @@ btn_step_down_normal.addEventListener('click', () => {
         fn_steps_state_deactive(steps_arr_index - 1);
 
         fn_container_manager_hide_up(steps_arr_index - 1);
+        if (steps_arr_index < cnt_steps_icons.length - 1){
+            fn_container_manager_hide_down(steps_arr_index + 1);}
         fn_container_manager(steps_arr_index);
     }
 });
