@@ -138,23 +138,6 @@
 }
 
 /* ************************* form-section > form > start ************************* */
-/* #container-form-start {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    text-align: justify;
-    font-size: min(1.2em, 4vw);
-    height: 100%;
-    width: 100%;
-    padding: 2% 4%;
-    margin-bottom: 2%;
-    position: absolute;
-    top: -100%;
-    left: 0%;
-    transition: all .2s;
-} */
-
 #container-form-start>h2{
     margin-bottom: 1%;
 }
@@ -164,19 +147,6 @@
 }
 
 /* ************************* form-section > form > info ************************* */
-/* #container-form-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-    padding: 2% 4%;
-    overflow: hidden;
-    position: absolute;
-    top: -100%;
-    left: 0%;
-    transition: all .2s;
-} */
 #container-form-info {
     overflow: hidden;
 }
@@ -192,32 +162,17 @@
     height: 80%;
     padding: 2% 4%;
     position: absolute;
-    left: 100%;
     transition: all .2s;
 }
 
 /* ************************* form-section > form > info > travellers ************************* */
-/* #container-form-info-travellers {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    text-align: justify;
-    font-size: min(1.2em, 4vw);
-    width: 100%;
-    height: 100%;
-    padding: 2% 4%;
-    position: absolute;
-    right: 100%;
-    transition: all .2s;
-} */
-
 #container-form-info-traveling-inputs {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     row-gap: 10px;
     width: 100%;
     margin-bottom: 5%;
+    left: 0%;
 }
 
 #container-form-info-traveling-inputs>label:nth-child(2) {
@@ -265,20 +220,9 @@
 }
 
 /* ************************* form-section > form > info > details ************************* */
-/* .container-form-info-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    text-align: justify;
-    font-size: min(1.2em, 4vw);
-    width: 100%;
-    height: 100%;
-    padding: 2% 4%;
-    position: absolute;
-    right: 100%;
-    transition: all .2s;
-} */
+#container-form-info-details {
+    left: 100%;
+}
 
 .container-form-info-details-fields {
     display: grid;
@@ -315,19 +259,9 @@
 }
 
 /* ************************* form-section > form > info > travel preference ************************* */
-/* #container-form-info-travel-preference {
-    display: grid;
-    grid-template-columns: auto auto;
-    row-gap: 10px;
-    font-size: min(1.2em, 4vw);
-    align-content: space-between;
-    width: 100%;
-    height: 100%;
-    padding: 2% 4%;
-    position: absolute;
-    right: 100%;
-    transition: all .2s;
-} */
+#container-form-info-travel-preference {
+    left: 200%;
+}
 
 #container-form-info-travel-preference>h2 {
     grid-column-start: 1;

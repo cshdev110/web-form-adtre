@@ -7,14 +7,17 @@ let steps_arr_index = 0;
 // cnt_containers_form contains the containers of every form step
 const cnt_containers_form = document.querySelector('#main-form');
 
-// cnt_container-form-info are the elements which contain the field about the customer's details
-const cnt_container_form_info = document.querySelectorAll('.container-form-info');
+// cnt_container-form-info is where there are the elements that contain the field about the customer's details
+const cnt_container_form_info = document.querySelector('#container-form-info');
 
 // cnt_btns_continue are to continue to the next step
-const cnt_btns_continue = document.querySelectorAll('.global-steps');
+const cnt_btns_continue = document.querySelectorAll('.btn-continue');
 
 // cnt_btns_continue_sub_steps are to continue to the next sub step at container-form-info
-const cnt_btns_continue_sub_steps = document.querySelectorAll('.sub-steps');
+// const cnt_btns_continue_sub_steps = document.querySelectorAll('.sub-steps');
+
+// to go through the sub forms at container-form-info
+let sub_form_idx = 0;
 
 // people_info_arr is a dynamic that increases when the user adds more people such as family members and friends
 let people_info_arr = new Array('You');
@@ -226,6 +229,19 @@ function fn_container_steps_manager_control(step_selected) {
     } 
 }
 
+// to display the sub form dynamically
+function fn_sub_container_manager(form_idx) {
+    console.log(form_idx);
+    cnt_container_form_info.children[0].style.left = (form_idx * -100) + '%';
+    console.log(cnt_container_form_info.children[0].style.left);
+    cnt_container_form_info.children[1].style.left = (form_idx * -100 + 100) + '%';
+    console.log(cnt_container_form_info.children[1].style.left);
+    cnt_container_form_info.children[2].style.left = (form_idx * -100 + 200) + '%';
+    console.log(cnt_container_form_info.children[2].style.left);
+}
+
+// ************************************** end main functions **************************************
+
 // ************************************** start **************************************
 
 // event listeners
@@ -258,9 +274,19 @@ btn_step_down_normal.addEventListener('click', () => {
     }
 });
 
-// cnt_btns_continue.addEventListner('click', () => {
-    
-// });
+cnt_btns_continue.forEach(elem => {
+    elem.addEventListener('click', () => {
+        if (steps_arr_index !== 1) {
+            fn_container_steps_manager_control(steps_arr_index + 1);
+        }
+        else if (steps_arr_index === 1 && sub_form_idx < 2) {
+            fn_sub_container_manager(++sub_form_idx);
+        }
+        else {
+            fn_container_steps_manager_control(steps_arr_index + 1);
+        }
+    });
+});
 
 
 
