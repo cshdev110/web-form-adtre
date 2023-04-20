@@ -107,9 +107,9 @@
     padding: 2% 4%;
     margin-bottom: 2%;
     position: absolute;
-    top: 0px;
-    left: 100%;
-    transition: left .2s;
+    top: 100%;
+    left: 0px;
+    transition: left .3s, top .3s;
 }
 
 .btn-continue {
@@ -560,6 +560,12 @@ input[name="radio-form-info-traveling-3-processes"]:checked {
     /* ************************* @media form-section > form ************************* */
     #main-form {
         height: min(450px, 90vw);
+    }
+
+    /* All its childrens */
+    #main-form>div {
+        top: 0px;
+        left: 100%;
     }
 
     /* ************************* @media summary section ************************* */

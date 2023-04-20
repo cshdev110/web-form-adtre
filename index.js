@@ -1,6 +1,8 @@
+// -------------------------------------- variables --------------------------------------
+
 // cnt_steps_icons contains the icons which are the steps that are on the left side of the screen
 const cnt_steps_icons = document.querySelectorAll('.step-to-form');
-var steps_arr_index = 0;
+let steps_arr_index = 0;
 
 // cnt_containers_form contains the containers of every form step
 const cnt_containers_form = document.querySelector('#main-form');
@@ -8,26 +10,36 @@ const cnt_containers_form = document.querySelector('#main-form');
 // cnt_container-form-info are the elements which contain the field about the customer's details
 const cnt_container_form_info = document.querySelectorAll('.container-form-info');
 
+// cnt_btns_continue are to continue to the next step
+const cnt_btns_continue = document.querySelectorAll('.global-steps');
+
+// cnt_btns_continue_sub_steps are to continue to the next sub step at container-form-info
+const cnt_btns_continue_sub_steps = document.querySelectorAll('.sub-steps');
+
 // people_info_arr is a dynamic that increases when the user adds more people such as family members and friends
-var people_info_arr = new Array('You');
-var people_info_arr_index = 0;
+let people_info_arr = new Array('You');
+let people_info_arr_index = 0;
 
 // define styles for the step icons when they are active or inactive
-var steps_icons_style = {
+let steps_icons_style = {
     transition: 'all 0.5s',
     transform: 'scale(1.1)',
     boxShadow: '0px 0px 10px #000000',
     border: '1px solid #000000'
 }
-var steps_icons_style_reset = {
+let steps_icons_style_reset = {
     transition: 'transform 0.2s',
     transform: 'scale(1)',
     boxShadow: 'none'
 }
 
 // Buttons for the step up/down or left and right when screen less than 768px
-var btn_step_up_normal = document.querySelector('#step-up-normal-screen');
-var btn_step_down_normal = document.querySelector('#step-down-normal-screen');
+let btn_step_up_normal = document.querySelector('#step-up-normal-screen');
+let btn_step_down_normal = document.querySelector('#step-down-normal-screen');
+
+// Flag to make the change of when the screen size is less than 768px or more than 768px only once
+// when it crosses the 768px
+let flag_screen_event_size = false;
 
 // -------------------------------------- functions to initialise --------------------------------------
 function fn_start() {
@@ -121,6 +133,9 @@ function fn_start() {
 
         // Displaying at first container-form children 1
         fn_container_manager(steps_arr_index);
+
+        fn_check_screen_event_size();
+
     });
 
 ////// for the sake of the test ///////////////////////////////////////////////////////
@@ -128,6 +143,42 @@ function fn_start() {
 }
 
 // ************************************** main functions **************************************
+
+// To move the left button to the bottom next to the right button
+// Also, arrange the container's children to slide from left to right or from up  to down
+// when the screen size is less than 768px or more than 768px respectively
+function fn_check_screen_event_size() {
+    if (window.innerWidth <= 768 && !flag_screen_event_size) {
+        flag_screen_event_size = true;
+        btn_step_down_normal.before(btn_step_up_normal);
+        Array.from(cnt_containers_form.children).forEach((el, idx) => {
+            if (idx !== steps_arr_index){
+                el.style.removeProperty('top');
+                el.style.left = '0%';
+            }
+        });
+        let aux_step_selected = steps_arr_index;
+        steps_arr_index = 0;
+        fn_container_steps_manager_control(aux_step_selected);
+        steps_arr_index = cnt_containers_form.children.length - 1;
+        fn_container_steps_manager_control(aux_step_selected);
+    }
+    else if (window.innerWidth > 768 && flag_screen_event_size) {
+        flag_screen_event_size = false;
+        cnt_containers_form.before(btn_step_up_normal);
+        Array.from(cnt_containers_form.children).forEach((el, idx) => {
+            if (idx !== steps_arr_index){
+                el.style.removeProperty('left');
+                el.style.top = '0%';
+            }
+        });
+        let aux_step_selected = steps_arr_index;
+        steps_arr_index = 0;
+        fn_container_steps_manager_control(aux_step_selected);
+        steps_arr_index = cnt_containers_form.children.length - 1;
+        fn_container_steps_manager_control(aux_step_selected);
+    }
+}
 
 // to style the step icons when they are active or inactive
 function fn_steps_state_active(step_index) {
@@ -138,99 +189,81 @@ function fn_steps_state_deactive(step_index) {
     Object.assign(cnt_steps_icons[step_index].style, steps_icons_style_reset);
 }
 
-// To move the left button to the bottom next to the right button
-function fn_check_screen_size() {
-    if (window.innerWidth <= 768) {
-        btn_step_down_normal.before(btn_step_up_normal);
-    }
-    else {
-        cnt_containers_form.before(btn_step_up_normal);
-    }
-}
-
-// to display the container-forms dynamically
+// to display the form dynamically
 function fn_container_manager(step_index) {
     cnt_containers_form.children[step_index].style.visibility = 'visible';
-    cnt_containers_form.children[step_index].style.left = '0%';
+    (window.innerWidth <= 768) ?
+        cnt_containers_form.children[step_index].style.left = '0%' :
+        cnt_containers_form.children[step_index].style.top = '0%';
 }
-// reset
-function fn_container_manager_hide_up(step_index) {
+function fn_container_manager_hide_up_or_left(step_index) {
     cnt_containers_form.children[step_index].style.visibility = 'hidden';
-    cnt_containers_form.children[step_index].style.left = '-100%';
+    (window.innerWidth <= 768) ?
+        cnt_containers_form.children[step_index].style.left = '-100%' :
+        cnt_containers_form.children[step_index].style.top = '-100%';
 }
-// hide down
-function fn_container_manager_hide_down(step_index) {
+function fn_container_manager_hide_down_or_right(step_index) {
     cnt_containers_form.children[step_index].style.visibility = 'hidden';
-    cnt_containers_form.children[step_index].style.left = '100%';
+    (window.innerWidth <= 768) ?
+        cnt_containers_form.children[step_index].style.left = '100%' :
+        cnt_containers_form.children[step_index].style.top = '100%';
+}
+
+// to control the step icons and the form's childrens
+function fn_container_steps_manager_control(step_selected) {
+    let steps_crossed = step_selected - steps_arr_index;
+
+    fn_steps_state_active(step_selected);
+    fn_steps_state_deactive(steps_arr_index);
+    fn_container_manager(step_selected);
+    for (let i = 0; i < Math.abs(steps_crossed); i++) {
+        if (steps_crossed > 0) {
+            fn_container_manager_hide_up_or_left(steps_arr_index++);
+        }
+        else {
+            fn_container_manager_hide_down_or_right(steps_arr_index--);
+        }   
+    } 
 }
 
 // ************************************** start **************************************
 
+// event listeners
+
 window.addEventListener('resize', () => {
-    fn_check_screen_size();
+    fn_check_screen_event_size();
 });
 
 cnt_steps_icons.forEach((elm, idx) => {
     elm.addEventListener('click', () => {
         if (idx > steps_arr_index) {
-            fn_steps_state_active(idx);
-            fn_steps_state_deactive(steps_arr_index);
-
-            fn_container_manager_hide_up(steps_arr_index);
-            fn_container_manager_hide_up(idx - 1);
-            if (idx < cnt_steps_icons.length - 1){
-                fn_container_manager_hide_down(idx + 1);}
-            fn_container_manager(idx);
-
-            steps_arr_index = idx;
+            fn_container_steps_manager_control(idx);
         }
         else if (idx < steps_arr_index) {
-            fn_steps_state_active(idx);
-            fn_steps_state_deactive(steps_arr_index);
-
-            fn_container_manager_hide_down(steps_arr_index);
-            fn_container_manager_hide_down(idx + 1);
-            if (idx > 0){
-                fn_container_manager_hide_up(idx - 1);}
-            fn_container_manager(idx);
-
-            steps_arr_index = idx;
+            fn_container_steps_manager_control(idx);
         }
     });
 });
 
+
 btn_step_up_normal.addEventListener('click', () => {
     if (steps_arr_index > 0) {
-        steps_arr_index--;
-
-        console.log(steps_arr_index);
-
-        fn_steps_state_active(steps_arr_index);
-        fn_steps_state_deactive(steps_arr_index + 1);
-
-        fn_container_manager_hide_down(steps_arr_index + 1);
-        if (steps_arr_index > 0){
-            fn_container_manager_hide_up(steps_arr_index - 1);}
-        fn_container_manager(steps_arr_index);
+        fn_container_steps_manager_control(steps_arr_index - 1);
     }
 });
+
 btn_step_down_normal.addEventListener('click', () => {
     if (steps_arr_index < cnt_steps_icons.length - 1) {
-        steps_arr_index++;
-
-        console.log(steps_arr_index);
-
-        fn_steps_state_active(steps_arr_index);
-        fn_steps_state_deactive(steps_arr_index - 1);
-
-        fn_container_manager_hide_up(steps_arr_index - 1);
-        if (steps_arr_index < cnt_steps_icons.length - 1){
-            fn_container_manager_hide_down(steps_arr_index + 1);}
-        fn_container_manager(steps_arr_index);
+        fn_container_steps_manager_control(steps_arr_index + 1);
     }
 });
+
+// cnt_btns_continue.addEventListner('click', () => {
+    
+// });
+
+
 
 console.log(cnt_steps_icons.length);
 
 fn_start();
-fn_check_screen_size();
