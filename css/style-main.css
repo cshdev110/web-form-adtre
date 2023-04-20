@@ -260,7 +260,14 @@
 
 /* ************************* form-section > form > info > travel preference ************************* */
 #container-form-info-travel-preference {
+    display: grid;
+    grid-template-columns: auto;
     left: 200%;
+}
+#container-form-info-travel-preference>*:not(:last-child) {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 #container-form-info-travel-preference>h2 {

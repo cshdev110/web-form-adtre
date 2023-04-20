@@ -13,8 +13,8 @@ const cnt_container_form_info = document.querySelector('#container-form-info');
 // cnt_btns_continue are to continue to the next step
 const cnt_btns_continue = document.querySelectorAll('.btn-continue');
 
-// cnt_btns_continue_sub_steps are to continue to the next sub step at container-form-info
-// const cnt_btns_continue_sub_steps = document.querySelectorAll('.sub-steps');
+// cnt_radio_btns_sub_form is the container of the radio buttons at container-form-info-traveling-3-processes
+const cnt_radio_btns_sub_form = document.querySelector('#container-form-info-traveling-3-processes');
 
 // to go through the sub forms at container-form-info
 let sub_form_idx = 0;
@@ -23,7 +23,7 @@ let sub_form_idx = 0;
 let people_info_arr = new Array('You');
 let people_info_arr_index = 0;
 
-// define styles for the step icons when they are active or inactive
+// Objects define styles for the step icons when they are active or inactive
 let steps_icons_style = {
     transition: 'all 0.5s',
     transform: 'scale(1.1)',
@@ -44,7 +44,7 @@ let btn_step_down_normal = document.querySelector('#step-down-normal-screen');
 // when it crosses the 768px
 let flag_screen_event_size = false;
 
-// -------------------------------------- functions to initialise --------------------------------------
+// -------------------------------------- function to initialise --------------------------------------
 function fn_start() {
 
     // Deactivating step icons until the start button is clicked
@@ -115,8 +115,8 @@ function fn_start() {
     });
 
 ////// for the sake of the test ///////////////////////////////////////////////////////
-    // cnt_btn_start.querySelector('#button-start__button').addEventListener('mouseup', () => {
-    cnt_btn_start.querySelector('#button-start__button').addEventListener('click', () => {
+    cnt_btn_start.querySelector('#button-start__button').addEventListener('mouseup', () => {
+    // cnt_btn_start.querySelector('#button-start__button').addEventListener('click', () => {
         cnt_btn_start.style.display = 'none';
 
         btn_step_up_down.forEach((el) => el.style.display = 'block');
@@ -131,7 +131,7 @@ function fn_start() {
 
         // Stalying the first step icon
 /////// for the sake of the test ///////////////////////////////////////////////////////
-        steps_arr_index = 1;
+        // steps_arr_index = 1;
         fn_steps_state_active(steps_arr_index);
 
         // Displaying at first container-form children 1
@@ -142,13 +142,13 @@ function fn_start() {
     });
 
 ////// for the sake of the test ///////////////////////////////////////////////////////
-    cnt_btn_start.querySelector('#button-start__button').click();
+    // cnt_btn_start.querySelector('#button-start__button').click();
 }
 
 // ************************************** main functions **************************************
 
 // To move the left button to the bottom next to the right button
-// Also, arrange the container's children to slide from left to right or from up  to down
+// Also, arrange the container-form-info's children to slide from left to right or from up  to down
 // when the screen size is less than 768px or more than 768px respectively
 function fn_check_screen_event_size() {
     if (window.innerWidth <= 768 && !flag_screen_event_size) {
@@ -231,13 +231,10 @@ function fn_container_steps_manager_control(step_selected) {
 
 // to display the sub form dynamically
 function fn_sub_container_manager(form_idx) {
-    console.log(form_idx);
     cnt_container_form_info.children[0].style.left = (form_idx * -100) + '%';
-    console.log(cnt_container_form_info.children[0].style.left);
     cnt_container_form_info.children[1].style.left = (form_idx * -100 + 100) + '%';
-    console.log(cnt_container_form_info.children[1].style.left);
     cnt_container_form_info.children[2].style.left = (form_idx * -100 + 200) + '%';
-    console.log(cnt_container_form_info.children[2].style.left);
+    cnt_radio_btns_sub_form.children[form_idx].checked = true;
 }
 
 // ************************************** end main functions **************************************
@@ -245,11 +242,13 @@ function fn_sub_container_manager(form_idx) {
 // ************************************** start **************************************
 
 // event listeners
-
+// screen event size. It is used to move the left button to the bottom next to the right button
+// and to arrange the container-form-info's children to slide from left to right or from up  to down
 window.addEventListener('resize', () => {
     fn_check_screen_event_size();
 });
 
+// The steps on the top of the form. They are used to navigate between the steps
 cnt_steps_icons.forEach((elm, idx) => {
     elm.addEventListener('click', () => {
         if (idx > steps_arr_index) {
@@ -261,19 +260,37 @@ cnt_steps_icons.forEach((elm, idx) => {
     });
 });
 
-
+// Buttons on left and right of the form. They are used to navigate between the steps
 btn_step_up_normal.addEventListener('click', () => {
     if (steps_arr_index > 0) {
-        fn_container_steps_manager_control(steps_arr_index - 1);
+        if (steps_arr_index !== 1) {
+            fn_container_steps_manager_control(steps_arr_index - 1);
+        }
+        else if (steps_arr_index === 1 && sub_form_idx > 0) {
+            fn_sub_container_manager(--sub_form_idx);
+        }
+        else {
+            fn_container_steps_manager_control(steps_arr_index - 1);
+        }
     }
 });
+
 
 btn_step_down_normal.addEventListener('click', () => {
     if (steps_arr_index < cnt_steps_icons.length - 1) {
-        fn_container_steps_manager_control(steps_arr_index + 1);
+        if (steps_arr_index !== 1) {
+            fn_container_steps_manager_control(steps_arr_index + 1);
+        }
+        else if (steps_arr_index === 1 && sub_form_idx < 2) {
+            fn_sub_container_manager(++sub_form_idx);
+        }
+        else {
+            fn_container_steps_manager_control(steps_arr_index + 1);
+        }
     }
 });
 
+// The blue buttons Continue. When pressed, form steps are shifted to the right
 cnt_btns_continue.forEach(elem => {
     elem.addEventListener('click', () => {
         if (steps_arr_index !== 1) {
@@ -288,7 +305,12 @@ cnt_btns_continue.forEach(elem => {
     });
 });
 
-
+// radio buttons to change the sub form dynamically from lelt to right
+Array.from(cnt_radio_btns_sub_form.children).forEach(radio_btn => {
+    radio_btn.addEventListener('click', () => {
+        fn_sub_container_manager(sub_form_idx = radio_btn.value);
+    });
+});
 
 console.log(cnt_steps_icons.length);
 
