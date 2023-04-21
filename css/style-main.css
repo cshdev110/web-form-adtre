@@ -52,10 +52,6 @@
 }
 
 /* ************************* form-section > buttons left and rigth ************************* */
-/* #step-up-media-screen {
-    display: none;
-} */
-
 .step-up-down {
     width: min(100px, 10vw);
     background-color: #00f8ff26;
@@ -110,6 +106,14 @@
     top: 100%;
     left: 0px;
     transition: left .3s, top .3s;
+}
+
+/* Global style for checkbox */
+#main-form input[type="checkbox"] {
+    width: min(30px, 5vw);
+    height: min(30px, 5vw);
+    margin: 1%;
+    background-color: #8600FF;
 }
 
 .btn-continue {
@@ -178,13 +182,6 @@
 #container-form-info-traveling-inputs>label:nth-child(2) {
     grid-column-start: 2;
     grid-column-end: 6;
-}
-
-#container-form-info-traveling-inputs input[type="checkbox"] {
-    width: min(30px, 5vw);
-    height: min(30px, 5vw);
-    margin-right: 1%;
-    background-color: #8600FF;
 }
 
 /* removing the arrows for chrome and others */
@@ -284,13 +281,6 @@
     justify-content: space-between;
 }
 
-.travel-info-dynamic-label input {
-    width: min(30px, 5vw);
-    height: min(30px, 5vw);
-    margin-right: 1%;
-    background-color: #8600FF;
-}
-
 #container-form-info-travel-preference>button {
     grid-column-start: 1;
     grid-column-end: 3;
@@ -311,71 +301,42 @@
 input[name="radio-form-info-traveling-3-processes"] {
     width: 10%;
     cursor: pointer;
+    accent-color: #8600FF;
 }
 
 input[name="radio-form-info-traveling-3-processes"]:hover {
     transform: scale(1.1);
     transition: transform .1s;
+
 }
 
 input[name="radio-form-info-traveling-3-processes"]:checked {
-    transform: scale(1.2);
+    transform: scale(1.4);
     transition: transform .1s;
 }
 
 /* ************************* form-section > form > info > accommodation ************************* */
-/* #container-form-info-accommodation {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    font-size: min(1.2em, 4vw);
-    width: 100%;
-    height: 100%;
-    padding: 2% 4%;
-    position: absolute;
-    top: -100%;
-    left: 0%;
-    transition: all .2s;
-} */
-
 #container-form-info-accommodation>h2 {
     margin-bottom: 2%;
 }
 
 /* ************************* form-section > form > info > travel mode ************************* */
-/* #container-form-info-travel-mode {
+#container-air-mode {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    font-size: min(1.2em, 4vw);
     width: 100%;
-    height: 100%;
-    padding: 2% 4%;
-    position: absolute;
-    top: -100%;
-    left: 0%;
-    transition: all .2s;
-} */
+}
 
+#container-form-info-travel-mode>div {
+    width: 100%;
+}
+
+#container-form-info-travel-mode label {
+    display: flex;
+    justify-content: space-between;
+}
 
 /* ************************* form-section > form > info > travel environment ************************* */
-/* #container-form-info-travel-environment {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    row-gap: 2px;
-    font-size: min(1.2em, 4vw);
-    width: 100%;
-    height: 100%;
-    padding: 2% 4%;
-    text-align: center;
-    position: absolute;
-    top: -100%;
-    left: 0%;
-    transition: all .2s;
-} */
 #container-form-info-travel-environment>label {
     display: flex;
     justify-content: space-between;
@@ -383,47 +344,9 @@ input[name="radio-form-info-traveling-3-processes"]:checked {
     width: 100%;
 }
 
-#container-form-info-travel-environment>label>input[type="checkbox"] {
-    width: min(30px, 5vw);
-    height: min(30px, 5vw);
-}
-
 /* ************************* form-section > form > info > destination ************************* */
-/* #container-form-info-destination {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    font-size: min(1.2em, 4vw);
-    width: 100%;
-    height: 100%;
-    padding: 2% 4%;
-    position: absolute;
-    top: -100%;
-    left: 0%;
-    transition: all .2s;
-} */
 
 /* ************************* form-section > form > info > tickets ************************* */
-/* #container-form-info-tickets {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    font-size: min(1.2em, 4vw);
-    text-align: justify;
-    width: 100%;
-    height: 100%;
-    padding: 2% 4%;
-    position: absolute;
-    top: -100%;
-    left: 0%;
-    transition: all .2s;
-} */
-
-
-
-
 
 /* ************************* summary-section ************************* */
 #summary-section {

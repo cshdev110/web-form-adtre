@@ -62,6 +62,7 @@ function fn_start() {
 
     section_form_seciton.style.flexDirection = 'column';
 
+    cnt_radio_btns_sub_form.children[0].checked = true;
 
     // Creating and styling the container for the start button
     // After clicking on the button, the container-form and the step up/down buttons will be displayed
@@ -115,23 +116,24 @@ function fn_start() {
     });
 
 ////// for the sake of the test ///////////////////////////////////////////////////////
-    cnt_btn_start.querySelector('#button-start__button').addEventListener('mouseup', () => {
-    // cnt_btn_start.querySelector('#button-start__button').addEventListener('click', () => {
+    // cnt_btn_start.querySelector('#button-start__button').addEventListener('mouseup', () => {
+    cnt_btn_start.querySelector('#button-start__button').addEventListener('click', () => {
         cnt_btn_start.style.display = 'none';
 
         btn_step_up_down.forEach((el) => el.style.display = 'block');
         cnt_containers_form.style.display = 'flex';
         section_form_seciton.style.flexDirection = 'row';
 
-        // Activating step icons after the start button is clicked
-        cnt_steps_icons.forEach(el => {
-            el.style.pointerEvents = 'auto';
+        // Activating the first step icon after the start button is clicked
+        cnt_steps_icons.forEach((el, idx) => {
+            if (idx === 0)
+                el.style.pointerEvents = 'auto';
             el.style.filter = 'opacity(100%)';
         });
 
         // Stalying the first step icon
 /////// for the sake of the test ///////////////////////////////////////////////////////
-        // steps_arr_index = 1;
+        steps_arr_index = 1;
         fn_steps_state_active(steps_arr_index);
 
         // Displaying at first container-form children 1
@@ -142,7 +144,7 @@ function fn_start() {
     });
 
 ////// for the sake of the test ///////////////////////////////////////////////////////
-    // cnt_btn_start.querySelector('#button-start__button').click();
+    cnt_btn_start.querySelector('#button-start__button').click();
 }
 
 // ************************************** main functions **************************************
@@ -160,11 +162,10 @@ function fn_check_screen_event_size() {
                 el.style.left = '0%';
             }
         });
-        let aux_step_selected = steps_arr_index;
-        steps_arr_index = 0;
-        fn_container_steps_manager_control(aux_step_selected);
-        steps_arr_index = cnt_containers_form.children.length - 1;
-        fn_container_steps_manager_control(aux_step_selected);
+        // It arranges from the beginning step to the current step
+        steps_arr_index = fn_container_steps_manager_control(steps_arr_index, 0);
+        // It arranges from the last step to the current step
+        steps_arr_index = fn_container_steps_manager_control(steps_arr_index, cnt_containers_form.children.length - 1);
     }
     else if (window.innerWidth > 768 && flag_screen_event_size) {
         flag_screen_event_size = false;
@@ -175,11 +176,10 @@ function fn_check_screen_event_size() {
                 el.style.top = '0%';
             }
         });
-        let aux_step_selected = steps_arr_index;
-        steps_arr_index = 0;
-        fn_container_steps_manager_control(aux_step_selected);
-        steps_arr_index = cnt_containers_form.children.length - 1;
-        fn_container_steps_manager_control(aux_step_selected);
+        // It arranges from the beginning step to the current step
+        steps_arr_index = fn_container_steps_manager_control(steps_arr_index, 0);
+        // It arranges from the last step to the current step
+        steps_arr_index = fn_container_steps_manager_control(steps_arr_index, cnt_containers_form.children.length - 1);
     }
 }
 
@@ -213,21 +213,44 @@ function fn_container_manager_hide_down_or_right(step_index) {
 }
 
 // to control the step icons and the form's childrens
-function fn_container_steps_manager_control(step_selected) {
-    let steps_crossed = step_selected - steps_arr_index;
+// This rearrange the steps form at every click on steps to keep on sliding in a consistent direction: 
+// up or down, down or up, left or right, right or left
+function fn_container_steps_manager_control(step_selected, step_index) {
+    let steps_crossed = step_selected - step_index;
 
     fn_steps_state_active(step_selected);
-    fn_steps_state_deactive(steps_arr_index);
+    fn_steps_state_deactive(step_index);
     fn_container_manager(step_selected);
     for (let i = 0; i < Math.abs(steps_crossed); i++) {
         if (steps_crossed > 0) {
-            fn_container_manager_hide_up_or_left(steps_arr_index++);
+            fn_container_manager_hide_up_or_left(step_index++);
         }
         else {
-            fn_container_manager_hide_down_or_right(steps_arr_index--);
+            fn_container_manager_hide_down_or_right(step_index--);
         }   
-    } 
+    }
+    // enable next step
+    if (cnt_steps_icons[step_selected].style.pointerEvents === 'none') {
+        cnt_steps_icons[step_selected].style.pointerEvents = 'auto';
+    }
+    
+    return step_index;
 }
+
+// Shift steps forward while checking the form's inputs
+function fn_shift_steps_forward(steps_index, sub_steps_index) {
+    if (steps_index !== 1) {
+        steps_index = fn_container_steps_manager_control(steps_index + 1, steps_index);
+    }
+    else if (steps_index === 1 && sub_steps_index < 2) {
+        fn_sub_container_manager(++sub_steps_index);
+    }
+    else {
+        steps_index = fn_container_steps_manager_control(steps_index + 1, steps_index);
+    }
+    return [steps_index, sub_steps_index];
+}
+
 
 // to display the sub form dynamically
 function fn_sub_container_manager(form_idx) {
@@ -237,11 +260,25 @@ function fn_sub_container_manager(form_idx) {
     cnt_radio_btns_sub_form.children[form_idx].checked = true;
 }
 
+// to disable or enable buttons
+function fn_check_inputs(steps_index, sub_steps_index) {
+    if (steps_index === 1 && sub_steps_index === 0) {
+    }
+    else if (steps_index === 1 && sub_steps_index === 1) {
+    }
+    else if (steps_index === 1 && sub_steps_index === 2) {
+    }
+    else if (steps_index === 2) {
+    }
+    else if (steps_index === 3) {
+    }
+    else if (steps_index === 5) {
+    }
+}
+
 // ************************************** end main functions **************************************
 
-// ************************************** start **************************************
-
-// event listeners
+// ************************************** events **************************************
 // screen event size. It is used to move the left button to the bottom next to the right button
 // and to arrange the container-form-info's children to slide from left to right or from up  to down
 window.addEventListener('resize', () => {
@@ -252,10 +289,10 @@ window.addEventListener('resize', () => {
 cnt_steps_icons.forEach((elm, idx) => {
     elm.addEventListener('click', () => {
         if (idx > steps_arr_index) {
-            fn_container_steps_manager_control(idx);
+            steps_arr_index = fn_container_steps_manager_control(idx, steps_arr_index);
         }
         else if (idx < steps_arr_index) {
-            fn_container_steps_manager_control(idx);
+            steps_arr_index = fn_container_steps_manager_control(idx, steps_arr_index);
         }
     });
 });
@@ -264,44 +301,27 @@ cnt_steps_icons.forEach((elm, idx) => {
 btn_step_up_normal.addEventListener('click', () => {
     if (steps_arr_index > 0) {
         if (steps_arr_index !== 1) {
-            fn_container_steps_manager_control(steps_arr_index - 1);
+            steps_arr_index = fn_container_steps_manager_control(steps_arr_index - 1, steps_arr_index);
         }
         else if (steps_arr_index === 1 && sub_form_idx > 0) {
             fn_sub_container_manager(--sub_form_idx);
         }
         else {
-            fn_container_steps_manager_control(steps_arr_index - 1);
+            steps_arr_index = fn_container_steps_manager_control(steps_arr_index - 1, steps_arr_index);
         }
     }
 });
 
-
 btn_step_down_normal.addEventListener('click', () => {
     if (steps_arr_index < cnt_steps_icons.length - 1) {
-        if (steps_arr_index !== 1) {
-            fn_container_steps_manager_control(steps_arr_index + 1);
-        }
-        else if (steps_arr_index === 1 && sub_form_idx < 2) {
-            fn_sub_container_manager(++sub_form_idx);
-        }
-        else {
-            fn_container_steps_manager_control(steps_arr_index + 1);
-        }
+        [steps_arr_index, sub_form_idx] = fn_shift_steps_forward(steps_arr_index, sub_form_idx);
     }
 });
 
 // The blue buttons Continue. When pressed, form steps are shifted to the right
 cnt_btns_continue.forEach(elem => {
     elem.addEventListener('click', () => {
-        if (steps_arr_index !== 1) {
-            fn_container_steps_manager_control(steps_arr_index + 1);
-        }
-        else if (steps_arr_index === 1 && sub_form_idx < 2) {
-            fn_sub_container_manager(++sub_form_idx);
-        }
-        else {
-            fn_container_steps_manager_control(steps_arr_index + 1);
-        }
+        [steps_arr_index, sub_form_idx] = fn_shift_steps_forward(steps_arr_index, sub_form_idx);
     });
 });
 
@@ -311,7 +331,9 @@ Array.from(cnt_radio_btns_sub_form.children).forEach(radio_btn => {
         fn_sub_container_manager(sub_form_idx = radio_btn.value);
     });
 });
+// ************************************** end events **************************************
 
-console.log(cnt_steps_icons.length);
+// ************************************** main **************************************
 
 fn_start();
+// ************************************** end main **************************************
