@@ -47,52 +47,54 @@
                     
                     <div id="container-form-info">
                         <div id="container-form-info-travellers">
-                            <h2>Traverllers</h2>
+                            <h2>Travellers</h2>
                             <div id="container-form-info-traveling-inputs">
-                                <input type="checkbox" name="inp-traveling-partner" id="">
+                                <input type="checkbox" name="inp-traveling-partner">
                                 <label for="inp-traveling-partner">Traveling partner</label>
                                 
-                                <input type="checkbox" name="inp-traveling-child" id="">
+                                <input type="checkbox" name="inp-traveling-child">
                                 <label for="inp-traveling-child">Traveling child</label>
-                                <button type="button">+</button>
-                                <input type="number" name="" id="" max="50" value="0">
-                                <button type="button">-</button>
+                                <button type="button" class="number-of-childs">+</button>
+                                <input type="text" name="number-of-childs" value="0">
+                                <button type="button" class="number-of-childs">-</button>
                                 
                                 <input type="checkbox" name="inp-traveling-friend" id="">
                                 <label for="inp-traveling-friend">Traveling friend</label>
-                                <button type="button">+</button>
-                                <input type="number" name="" id="" max="10" value="0">
-                                <button type="button" >-</button>
+                                <button type="button" class="number-of-friends">+</button>
+                                <input type="text" name="number-of-friends" value="0">
+                                <button type="button" class="number-of-friends">-</button>
                             </div>
                             <button type="button" class="btn-continue">Continue</button>
                         </div>
 
                         <div id="container-form-info-details">
                             <h2>Personal Information</h2>
-                            <div class="container-form-info-details-fields">
-                                <label for="">Traveling Form</label>
-                                <div class="container-form-info-details-traveller">
+                            <div id="container-form-info-details-fields">
+                                <div id="container-form-info-details-traveller">
                                     <button type="button">&#9204;</button>
                                     <p>you</p>
                                     <button type="button">&#9205;</button>
                                 </div>
-                                <label for="name">Name</label><input type="text" name="name" placeholder="Name">
-                                <label for="birthdate">Birth Date</label><input type="date" name="birthdate">
-                                <label for="occupation">Occupation</label><input type="text" name="occupation" placeholder="Business...">
-                                <label for="gender">Gender</label><select name="gender" id="">
-                                    <option value="Select" selected>Select</option>
-                                    <option value="female">Female</option>
-                                    <option value="male">Male</option>
-                                </select>
-                                <label for="dietary">Dietary Requirements</label><input list="form-datalist-dietary" name="dietary" placeholder="double clic to see more">
-                                <datalist id="form-datalist-dietary">
-                                    <option value="Vegetarian">Vegetarian</option>
-                                    <option value="Vegan">Vegan</option>
-                                    <option value="Halal">Halal</option>
-                                    <option value="Kosher">Kosher</option>
-                                    <option value="Allergies">Allergies</option>
-                                </datalist>
-                                <label for="specialneeds">Special Needs</label><input type="text" name="specialneeds" placeholder="">
+                                <div class="container-form-perperson-dynamically" id="container-form-perperson">
+                                    <label for="name">Name</label><input type="text" name="name" placeholder="Name">
+                                    <label for="birthdate">Birth Date</label><input type="date" name="birthdate">
+                                    <label for="occupation">Occupation</label><input type="text" name="occupation" placeholder="Business...">
+                                    <label for="gender">Gender</label><select name="gender" id="">
+                                        <option value="Select" selected>Select</option>
+                                        <option value="female">Female</option>
+                                        <option value="male">Male</option>
+                                    </select>
+                                    <label for="dietary">Dietary Requirements</label><input list="form-datalist-dietary" name="dietary" placeholder="double clic to see more">
+                                    <datalist id="form-datalist-dietary">
+                                        <option value="Vegetarian">Vegetarian</option>
+                                        <option value="Vegan">Vegan</option>
+                                        <option value="Halal">Halal</option>
+                                        <option value="Kosher">Kosher</option>
+                                        <option value="Allergies">Allergies</option>
+                                    </datalist>
+                                    <label for="specialneeds">Special Needs</label><input type="text" name="specialneeds" placeholder="">                                     
+                                </div>
+                                
                             </div>
                             <button type="button" class="btn-continue">Continue</button>
                         </div>
@@ -259,15 +261,15 @@
             <!---------------------- summary section ---------------------->
             <section id="summary-section">
                 <h2>Summary</h2>
-                <div id="container-travellers-info">
+                <div id="container-travellers-info-summary">
                     <img src="icons/parents.png" alt="icon-parents">
                     <img src="icons/child-icon.png" alt="icon-child">
                     <img src="icons/friends.png" alt="icon-friends">
-                    <h3>&heartsuit;</h3>
-                    <h3>1</h3>
-                    <h3>1</h3>
+                    <h3 id="summary-partner">0</h3>
+                    <h3 id="summary-childs">0</h3>
+                    <h3 id="summary-friends">0</h3>
                 </div>
-                <div id="container-travel-options">
+                <div id="container-travel-options-summary">
                     <img src="icons/calender-event.png" alt=""><p></p>
                     <img src="icons/budget.png" alt=""><p></p>
                     <img src="icons/active-bike.png" alt=""><p></p>

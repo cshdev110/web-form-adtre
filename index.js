@@ -16,6 +16,10 @@ const cnt_btns_continue = document.querySelectorAll('.btn-continue');
 // cnt_radio_btns_sub_form is the container of the radio buttons at container-form-info-traveling-3-processes
 const cnt_radio_btns_sub_form = document.querySelector('#container-form-info-traveling-3-processes');
 
+// cnt_container_form_info_details_fields is where the form to fill in per person will added dynamically
+// when a person is added
+const cnt_container_form_info_details_fields = document.querySelector('#container-form-info-details-fields');
+
 // to go through the sub forms at container-form-info
 let sub_form_idx = 0;
 
@@ -43,6 +47,22 @@ let btn_step_down_normal = document.querySelector('#step-down-normal-screen');
 // Flag to make the change of when the screen size is less than 768px or more than 768px only once
 // when it crosses the 768px
 let flag_screen_event_size = false;
+
+// buttons + and - from container-form-info-traveling-inputs that are to add or subtract the number of people
+const cnt_number_of_childs = document.querySelector('input[name="number-of-childs"]');
+const cnt_number_of_friends = document.querySelector('input[name="number-of-friends"]');
+
+// traveller_obj contains the number of people that are going to travel
+let traveller_obj_old = {
+    partner: 0,
+    child: 0,
+    friend: 0
+}
+let  traveller_obj_new = {
+    partner: 0,
+    child: 0,
+    friend: 0
+}
 
 // -------------------------------------- function to initialise --------------------------------------
 function fn_start() {
@@ -134,6 +154,10 @@ function fn_start() {
         // Stalying the first step icon
 /////// for the sake of the test ///////////////////////////////////////////////////////
         steps_arr_index = 1;
+        sub_form_idx = 1;
+        fn_sub_container_manager(sub_form_idx)
+
+
         fn_steps_state_active(steps_arr_index);
 
         // Displaying at first container-form children 1
@@ -251,7 +275,6 @@ function fn_shift_steps_forward(steps_index, sub_steps_index) {
     return [steps_index, sub_steps_index];
 }
 
-
 // to display the sub form dynamically
 function fn_sub_container_manager(form_idx) {
     cnt_container_form_info.children[0].style.left = (form_idx * -100) + '%';
@@ -260,19 +283,119 @@ function fn_sub_container_manager(form_idx) {
     cnt_radio_btns_sub_form.children[form_idx].checked = true;
 }
 
+// Obejct comparation
+function fn_compare_obj(obj1, obj2) {
+    return JSON.stringify(obj1) === JSON.stringify(obj2);
+}
+
+// create new traveller function
+function fn_create_new_traveller(person) {
+    const traveller = 
+    `<div class="container-form-perperson-dynamically" id="container-form-perperson-${person}">
+        <label for="name-${person}">Name</label><input type="text" name="name-${person}" placeholder="-${person}">
+        <label for="birthdate-${person}">Birth Date</label><input type="date" name="birthdate-${person}">
+        <label for="occupation-${person}">Occupation</label><input type="text" name="occupation-${person}" placeholder="-${person}...">
+        <label for="gender-${person}">Gender</label><select name="gender-${person}" id="">
+            <option value="Select" selected>Select</option>
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+        </select>
+        <label for="dietary-${person}">Dietary Requirements</label><input list="form-datalist-dietary-${person}" name="dietary-${person}" placeholder="double clic to see more">
+        <datalist id="form-datalist-dietary-${person}">
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Halal">Halal</option>
+            <option value="Kosher">Kosher</option>
+            <option value="Allergies">Allergies</option>
+        </datalist>
+        <label for="specialneeds-${person}">Special Needs</label><input type="text" name="specialneeds-${person}" placeholder="${person} requires">                                     
+    </div>`
+    ;
+
+    return traveller;
+}
+
+// add new travellers form to the DOM
+function fn_add_new_traveller_form(list_travellers) {
+    Object.keys(list_travellers).forEach(key => {
+        for (let i = 0; i < list_travellers[key]; i++) {
+            cnt_container_form_info_details_fields.insertAdjacentHTML('beforeend', fn_create_new_traveller(key));
+        }
+    });
+}
+
+// Add or remove travellers form from the DOM
+function fn_add_or_remove_traveller_form(list_old, list_new) {
+    Object.keys(list_old).forEach(key => {
+        if (list_old[key] > list_new[key]) {
+            for (let i = 0; i < list_old[key] - list_new[key]; i++) {
+                Array.from(cnt_container_form_info_details_fields.children).forEach(child => {
+                    // (list_old[key]-i) to remove starting from the last one
+                    if (child.id === `container-form-perperson-${key+'-'+(list_old[key]-i)}`) {
+                        child.remove();
+                    }
+                });
+            }
+        }
+        else if (list_old[key] < list_new[key]) {
+            for (let i = 0; i < list_new[key] - list_old[key]; i++) {
+                // i+1 because the index starts at 0 and the first traveller is 1.
+                // When creating a new form for a new person, the form will have the id container-form-perperson-(partner-1 or child-1 or friend-1)
+                cnt_container_form_info_details_fields.insertAdjacentHTML('beforeend', fn_create_new_traveller(key+'-'+(list_old[key]+i+1)));
+            }
+        }
+    });
+}
 // to disable or enable buttons
 function fn_check_inputs(steps_index, sub_steps_index) {
-    if (steps_index === 1 && sub_steps_index === 0) {
+    if (steps_index === 0) {
+        return true;
+    }
+    else if (steps_index === 1 && sub_steps_index === 0) {        
+        traveller_obj_new.partner = (document.querySelector('input[name="inp-traveling-partner"]:checked')) ? 1 : 0;
+        traveller_obj_new.child = (document.querySelector('input[name="inp-traveling-child"]:checked')) ? Number(cnt_number_of_childs.value) : 0;
+        traveller_obj_new.friend = (document.querySelector('input[name="inp-traveling-friend"]:checked')) ? Number(cnt_number_of_friends.value) : 0;
+
+        if (!fn_compare_obj(traveller_obj_old, traveller_obj_new)) {
+            fn_add_or_remove_traveller_form(traveller_obj_old, traveller_obj_new);
+        }
+
+        Object.keys(traveller_obj_new).forEach(key => traveller_obj_old[key] = traveller_obj_new[key]);
+        console.log(traveller_obj_new);
+        console.log(traveller_obj_old);
+
+        document.querySelector('#summary-partner').innerHTML = (traveller_obj_new.partner === 1) ? '&heartsuit;' : 0;
+        document.querySelector('#summary-childs').textContent = traveller_obj_new.child;
+        document.querySelector('#summary-friends').textContent = traveller_obj_new.friend;
+
+        return true;
     }
     else if (steps_index === 1 && sub_steps_index === 1) {
+        return true;
     }
     else if (steps_index === 1 && sub_steps_index === 2) {
+        return true;
     }
     else if (steps_index === 2) {
+        return true;
     }
     else if (steps_index === 3) {
+        return true;
+    }
+    else if (steps_index === 4) {
+        return true;
     }
     else if (steps_index === 5) {
+        return true;
+    }
+}
+
+// function to filter number in the fields Traveling childs and Traveling Friends. Second step
+// allowing only two digits number
+function fn_filter_number_travellers(elm) {
+    if (!(/^[0-9]{1,2}$/.test(elm.target.value) && (elm.target.value >= '0') && (elm.target.value <= '50'))) {
+        elm.target.value = /(?:[0-9]{1,2})/.exec(elm.target.value);
+        elm.target.value = (elm.target.value > 50) ? 50 : (elm.target.value === '') ? 0 : elm.target.value;
     }
 }
 
@@ -314,23 +437,73 @@ btn_step_up_normal.addEventListener('click', () => {
 
 btn_step_down_normal.addEventListener('click', () => {
     if (steps_arr_index < cnt_steps_icons.length - 1) {
-        [steps_arr_index, sub_form_idx] = fn_shift_steps_forward(steps_arr_index, sub_form_idx);
+        if (fn_check_inputs(steps_arr_index, sub_form_idx)) {
+            [steps_arr_index, sub_form_idx] = fn_shift_steps_forward(steps_arr_index, sub_form_idx);
+        }
     }
 });
 
 // The blue buttons Continue. When pressed, form steps are shifted to the right
 cnt_btns_continue.forEach(elem => {
     elem.addEventListener('click', () => {
-        [steps_arr_index, sub_form_idx] = fn_shift_steps_forward(steps_arr_index, sub_form_idx);
+        if (fn_check_inputs(steps_arr_index, sub_form_idx)) {
+            [steps_arr_index, sub_form_idx] = fn_shift_steps_forward(steps_arr_index, sub_form_idx);
+        }
     });
 });
 
 // radio buttons to change the sub form dynamically from lelt to right
 Array.from(cnt_radio_btns_sub_form.children).forEach(radio_btn => {
     radio_btn.addEventListener('click', () => {
-        fn_sub_container_manager(sub_form_idx = radio_btn.value);
+        fn_sub_container_manager(sub_form_idx = Number(radio_btn.value));
     });
 });
+
+// form events: Travellers
+// Increase or decrease the number of childs
+document.querySelectorAll('.number-of-childs').forEach((elm, idx) => {
+    if (idx === 0) {
+        elm.addEventListener('click', () => {
+            if (cnt_number_of_childs.value < 50) {
+                cnt_number_of_childs.value++;
+            }
+        });
+    }
+    else {
+        elm.addEventListener('click', () => {
+            if (cnt_number_of_childs.value > 0) {
+                cnt_number_of_childs.value--;
+            }
+        });
+    }
+});
+// Increae or decrease the number of friends
+document.querySelectorAll('.number-of-friends').forEach((elm, idx) => {
+    if (idx === 0) {
+        elm.addEventListener('click', () => {
+            if (cnt_number_of_friends.value < 50) {
+                cnt_number_of_friends.value++;
+            }
+        });
+    }
+    else {
+        elm.addEventListener('click', () => {
+            if (cnt_number_of_friends.value > 0) {
+                cnt_number_of_friends.value--;
+            }
+        });
+    }
+});
+
+// Directly enter the number of childs or friends
+cnt_number_of_childs.addEventListener('keyup', (evt) => {
+    fn_filter_number_travellers(evt);
+});
+
+cnt_number_of_friends.addEventListener('keyup', (evt) => {
+    fn_filter_number_travellers(evt);
+});
+
 // ************************************** end events **************************************
 
 // ************************************** main **************************************
