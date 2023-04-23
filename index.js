@@ -23,6 +23,9 @@ const cnt_container_form_info_details_fields = document.querySelector('#containe
 // to go through the sub forms at container-form-info
 let sub_form_idx = 0;
 
+// to go through the forms per person at container-form-info-details-fields. There ara the details about name, birth date, etc.
+let form_per_person_idx = 0;
+
 // people_info_arr is a dynamic that increases when the user adds more people such as family members and friends
 let people_info_arr = new Array('You');
 let people_info_arr_index = 0;
@@ -54,14 +57,14 @@ const cnt_number_of_friends = document.querySelector('input[name="number-of-frie
 
 // traveller_obj contains the number of people that are going to travel
 let traveller_obj_old = {
-    partner: 0,
-    child: 0,
-    friend: 0
+    Partner: 0,
+    Child: 0,
+    Friend: 0
 }
-let  traveller_obj_new = {
-    partner: 0,
-    child: 0,
-    friend: 0
+let traveller_obj_new = {
+    Partner: 0,
+    Child: 0,
+    Friend: 0
 }
 
 // -------------------------------------- function to initialise --------------------------------------
@@ -153,8 +156,8 @@ function fn_start() {
 
         // Stalying the first step icon
 /////// for the sake of the test ///////////////////////////////////////////////////////
-        steps_arr_index = 1;
-        sub_form_idx = 1;
+        // steps_arr_index = 1;
+        // sub_form_idx = 1;
         fn_sub_container_manager(sub_form_idx)
 
 
@@ -291,16 +294,16 @@ function fn_compare_obj(obj1, obj2) {
 // create new traveller function
 function fn_create_new_traveller(person) {
     const traveller = 
-    `<div class="container-form-perperson-dynamically" id="container-form-perperson-${person}">
-        <label for="name-${person}">Name</label><input type="text" name="name-${person}" placeholder="-${person}">
-        <label for="birthdate-${person}">Birth Date</label><input type="date" name="birthdate-${person}">
-        <label for="occupation-${person}">Occupation</label><input type="text" name="occupation-${person}" placeholder="-${person}...">
-        <label for="gender-${person}">Gender</label><select name="gender-${person}" id="">
-            <option value="Select" selected>Select</option>
+    `<div class="container-form-perperson-dynamically" id="${person}">
+        <label for="name-${person}">Name *</label><input type="text" name="name-${person}" class="required-info" maxlength="50" onfocusin="fn_add_required_attribute(event)" placeholder="${person}">
+        <label for="birthdate-${person}">Birth Date *</label><input type="date" name="birthdate-${person}"class="required-info" onfocusin="fn_add_required_attribute(event)">
+        <label for="occupation-${person}">Occupation</label><input type="text" name="occupation-${person}" placeholder="${person}...">
+        <label for="gender-${person}">Gender *</label><select name="gender-${person}" class="required-info" onfocusin="fn_add_required_attribute(event)">
+            <option value="" selected>Select</option>
             <option value="female">Female</option>
             <option value="male">Male</option>
         </select>
-        <label for="dietary-${person}">Dietary Requirements</label><input list="form-datalist-dietary-${person}" name="dietary-${person}" placeholder="double clic to see more">
+        <label for="dietary-${person}">Dietary Requirements *</label><input list="form-datalist-dietary-${person}" name="dietary-${person}" class="required-info" onfocusin="fn_add_required_attribute(event)" placeholder="double clic to see more">
         <datalist id="form-datalist-dietary-${person}">
             <option value="Vegetarian">Vegetarian</option>
             <option value="Vegan">Vegan</option>
@@ -308,7 +311,7 @@ function fn_create_new_traveller(person) {
             <option value="Kosher">Kosher</option>
             <option value="Allergies">Allergies</option>
         </datalist>
-        <label for="specialneeds-${person}">Special Needs</label><input type="text" name="specialneeds-${person}" placeholder="${person} requires">                                     
+        <label for="specialneeds-${person}">Special Needs</label><input type="text" name="specialneeds-${person}">                                     
     </div>`
     ;
 
@@ -331,7 +334,7 @@ function fn_add_or_remove_traveller_form(list_old, list_new) {
             for (let i = 0; i < list_old[key] - list_new[key]; i++) {
                 Array.from(cnt_container_form_info_details_fields.children).forEach(child => {
                     // (list_old[key]-i) to remove starting from the last one
-                    if (child.id === `container-form-perperson-${key+'-'+(list_old[key]-i)}`) {
+                    if (child.id === `${key+'-'+(list_old[key]-i)}`) {
                         child.remove();
                     }
                 });
@@ -340,38 +343,50 @@ function fn_add_or_remove_traveller_form(list_old, list_new) {
         else if (list_old[key] < list_new[key]) {
             for (let i = 0; i < list_new[key] - list_old[key]; i++) {
                 // i+1 because the index starts at 0 and the first traveller is 1.
-                // When creating a new form for a new person, the form will have the id container-form-perperson-(partner-1 or child-1 or friend-1)
+                // When creating a new form for a new person, the form will have the id (partner-1 or child-1 or friend-1)
                 cnt_container_form_info_details_fields.insertAdjacentHTML('beforeend', fn_create_new_traveller(key+'-'+(list_old[key]+i+1)));
             }
         }
     });
 }
+
 // to disable or enable buttons
 function fn_check_inputs(steps_index, sub_steps_index) {
     if (steps_index === 0) {
         return true;
     }
     else if (steps_index === 1 && sub_steps_index === 0) {        
-        traveller_obj_new.partner = (document.querySelector('input[name="inp-traveling-partner"]:checked')) ? 1 : 0;
-        traveller_obj_new.child = (document.querySelector('input[name="inp-traveling-child"]:checked')) ? Number(cnt_number_of_childs.value) : 0;
-        traveller_obj_new.friend = (document.querySelector('input[name="inp-traveling-friend"]:checked')) ? Number(cnt_number_of_friends.value) : 0;
+        traveller_obj_new.Partner = (document.querySelector('input[name="inp-traveling-partner"]:checked')) ? 1 : 0;
+        traveller_obj_new.Child = (document.querySelector('input[name="inp-traveling-child"]:checked')) ? Number(cnt_number_of_childs.value) : 0;
+        traveller_obj_new.Friend = (document.querySelector('input[name="inp-traveling-friend"]:checked')) ? Number(cnt_number_of_friends.value) : 0;
 
         if (!fn_compare_obj(traveller_obj_old, traveller_obj_new)) {
             fn_add_or_remove_traveller_form(traveller_obj_old, traveller_obj_new);
         }
 
         Object.keys(traveller_obj_new).forEach(key => traveller_obj_old[key] = traveller_obj_new[key]);
-        console.log(traveller_obj_new);
-        console.log(traveller_obj_old);
 
-        document.querySelector('#summary-partner').innerHTML = (traveller_obj_new.partner === 1) ? '&heartsuit;' : 0;
-        document.querySelector('#summary-childs').textContent = traveller_obj_new.child;
-        document.querySelector('#summary-friends').textContent = traveller_obj_new.friend;
+        document.querySelector('#summary-partner').innerHTML = (traveller_obj_new.Partner === 1) ? '&heartsuit;' : 0;
+        document.querySelector('#summary-childs').textContent = traveller_obj_new.Child;
+        document.querySelector('#summary-friends').textContent = traveller_obj_new.Friend;
 
         return true;
     }
     else if (steps_index === 1 && sub_steps_index === 1) {
-        return true;
+        let value_return = true;
+        let temp_container_form_perperson_dynamically = document.querySelectorAll('.container-form-perperson-dynamically');
+        temp_container_form_perperson_dynamically.forEach((parent, idx) => {
+            parent.querySelectorAll('.required-info').forEach(elem => {
+                if (elem.value === '' && value_return === true) {
+                    form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, idx);
+                    elem.focus();
+                    value_return = false;
+                }
+            });
+            if (!value_return){return}
+        });
+
+        return value_return;
     }
     else if (steps_index === 1 && sub_steps_index === 2) {
         return true;
@@ -390,6 +405,11 @@ function fn_check_inputs(steps_index, sub_steps_index) {
     }
 }
 
+// Add required attribute to the inputs
+function fn_add_required_attribute(elem) {
+    elem.target.setAttribute('required', '');
+}
+
 // function to filter number in the fields Traveling childs and Traveling Friends. Second step
 // allowing only two digits number
 function fn_filter_number_travellers(elm) {
@@ -397,6 +417,18 @@ function fn_filter_number_travellers(elm) {
         elm.target.value = /(?:[0-9]{1,2})/.exec(elm.target.value);
         elm.target.value = (elm.target.value > 50) ? 50 : (elm.target.value === '') ? 0 : elm.target.value;
     }
+}
+
+// Navigate between the dynamic forms per person such as partner, child and friend
+function fn_nav_dynamic_forms_pp(idx, direction) {
+    let temp_container_form_perperson = document.querySelectorAll('.container-form-perperson-dynamically');
+    if (direction > 0 && direction < temp_container_form_perperson.length - 1) {
+        temp_container_form_perperson[idx].style.display = 'none';        
+        temp_container_form_perperson[direction].style.display = 'grid';
+        document.querySelector('#title-form-per-person').textContent = temp_container_form_perperson[direction].id.replace('Partner-1', 'Partner');
+        return direction;
+    }
+    return idx;
 }
 
 // ************************************** end main functions **************************************
@@ -455,7 +487,12 @@ cnt_btns_continue.forEach(elem => {
 // radio buttons to change the sub form dynamically from lelt to right
 Array.from(cnt_radio_btns_sub_form.children).forEach(radio_btn => {
     radio_btn.addEventListener('click', () => {
-        fn_sub_container_manager(sub_form_idx = Number(radio_btn.value));
+        if (fn_check_inputs(steps_arr_index, sub_form_idx)) {
+            fn_sub_container_manager(sub_form_idx = Number(radio_btn.value));
+        }
+        else {
+            cnt_radio_btns_sub_form.children[sub_form_idx].checked = true;
+        }
     });
 });
 
@@ -503,6 +540,16 @@ cnt_number_of_childs.addEventListener('keyup', (evt) => {
 cnt_number_of_friends.addEventListener('keyup', (evt) => {
     fn_filter_number_travellers(evt);
 });
+
+// Buttons to shift the forms per person. This is the form where are the fields like name, birthdate, etc
+document.querySelector('#left-form-per-person').addEventListener('click', () => {
+    form_per_person_idx = form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, form_per_person_idx - 1);
+});
+
+document.querySelector('#right-form-per-person').addEventListener('click', () => {
+    form_per_person_idx = form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, form_per_person_idx + 1);
+});
+
 
 // ************************************** end events **************************************
 

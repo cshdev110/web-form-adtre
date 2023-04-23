@@ -248,8 +248,26 @@
     column-gap: 20px;
 }
 
-#container-form-perperson {
+#you {
     display: grid;
+}
+
+/* Validation form */
+.required-info {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    appearance: none;
+}
+.required-info:invalid {
+    background-color: rgb(255, 117, 117);
+}
+.required-info:valid:focus {
+    background-image: url("../icons/valid-icon.png");
+    background-color: rgb(117, 255, 117);
+}
+.required-info:invalid:focus {
+    background-image: url("../icons/invalid-icon.png");
 }
 
 #container-form-info-details-traveller button {
@@ -272,8 +290,6 @@
 
 /* ************************* form-section > form > info > travel preference ************************* */
 #container-form-info-travel-preference {
-    display: grid;
-    grid-template-columns: auto;
     left: 200%;
 }
 #container-form-info-travel-preference>*:not(:last-child) {
@@ -283,22 +299,17 @@
 }
 
 #container-form-info-travel-preference>h2 {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    text-align: center;
+    display: flex;
+    justify-content: center !important;
     margin-bottom: 2%;
 }
 
 .travel-info-dynamic-label {
-    grid-column-start: 1;
-    grid-column-end: 3;
     display: flex;
     justify-content: space-between;
 }
 
 #container-form-info-travel-preference>button {
-    grid-column-start: 1;
-    grid-column-end: 3;
     margin: 4% 0%;
 }
 

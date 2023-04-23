@@ -71,20 +71,20 @@
                             <h2>Personal Information</h2>
                             <div id="container-form-info-details-fields">
                                 <div id="container-form-info-details-traveller">
-                                    <button type="button">&#9204;</button>
-                                    <p>you</p>
-                                    <button type="button">&#9205;</button>
+                                    <button type="button" id="left-form-per-person">&#9204;</button>
+                                    <p id="title-form-per-person">you</p>
+                                    <button type="button" id="right-form-per-person">&#9205;</button>
                                 </div>
-                                <div class="container-form-perperson-dynamically" id="container-form-perperson">
-                                    <label for="name">Name</label><input type="text" name="name" placeholder="Name">
-                                    <label for="birthdate">Birth Date</label><input type="date" name="birthdate">
+                                <div class="container-form-perperson-dynamically" id="you">
+                                    <label for="name">Name *</label><input type="text" name="name" class="required-info" placeholder="Name" maxlength="50" onfocusin="fn_add_required_attribute(event)">
+                                    <label for="birthdate">Birth Date *</label><input type="date" name="birthdate" class="required-info" onfocusin="fn_add_required_attribute(event)">
                                     <label for="occupation">Occupation</label><input type="text" name="occupation" placeholder="Business...">
-                                    <label for="gender">Gender</label><select name="gender" id="">
-                                        <option value="Select" selected>Select</option>
+                                    <label for="gender">Gender *</label><select name="gender" class="required-info" onfocusin="fn_add_required_attribute(event)">
+                                        <option value="" selected>Select</option>
                                         <option value="female">Female</option>
                                         <option value="male">Male</option>
                                     </select>
-                                    <label for="dietary">Dietary Requirements</label><input list="form-datalist-dietary" name="dietary" placeholder="double clic to see more">
+                                    <label for="dietary">Dietary Requirements *</label><input list="form-datalist-dietary" name="dietary" class="required-info" placeholder="double clic to see more" onfocusin="fn_add_required_attribute(event)">
                                     <datalist id="form-datalist-dietary">
                                         <option value="Vegetarian">Vegetarian</option>
                                         <option value="Vegan">Vegan</option>
@@ -92,7 +92,7 @@
                                         <option value="Kosher">Kosher</option>
                                         <option value="Allergies">Allergies</option>
                                     </datalist>
-                                    <label for="specialneeds">Special Needs</label><input type="text" name="specialneeds" placeholder="">                                     
+                                    <label for="specialneeds">Special Needs</label><input type="text" name="specialneeds">                                     
                                 </div>
                                 
                             </div>
@@ -100,7 +100,7 @@
                         </div>
 
                         <div id="container-form-info-travel-preference">
-                            <h2>Travel Information</h2>
+                            <h2>Travel Preferences</h2>
                             <label for="preference-date">Preference date
                                 <input name="preference-date" type="date" required>
                             </label>
