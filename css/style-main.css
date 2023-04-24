@@ -116,6 +116,24 @@
     background-color: #8600FF;
 }
 
+/* Global Validation form */
+.required-info {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    appearance: none;
+}
+.required-info:invalid {
+    background-color: rgb(255, 117, 117);
+}
+.required-info:valid:focus {
+    background-image: url("../icons/valid-icon.png");
+    background-color: rgb(117, 255, 117);
+}
+.required-info:invalid:focus {
+    background-image: url("../icons/invalid-icon.png");
+}
+
 .btn-continue {
     width: 100%;
     height: min(50px, 8vw);
@@ -252,24 +270,6 @@
     display: grid;
 }
 
-/* Validation form */
-.required-info {
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: right;
-    appearance: none;
-}
-.required-info:invalid {
-    background-color: rgb(255, 117, 117);
-}
-.required-info:valid:focus {
-    background-image: url("../icons/valid-icon.png");
-    background-color: rgb(117, 255, 117);
-}
-.required-info:invalid:focus {
-    background-image: url("../icons/invalid-icon.png");
-}
-
 #container-form-info-details-traveller button {
     background-color: #8600FF;
     border: none;
@@ -298,15 +298,14 @@
     width: 100%;
 }
 
+#container-form-info-travel-preference>label>* {
+    width: 30%;
+}
+
 #container-form-info-travel-preference>h2 {
     display: flex;
     justify-content: center !important;
     margin-bottom: 2%;
-}
-
-.travel-info-dynamic-label {
-    display: flex;
-    justify-content: space-between;
 }
 
 #container-form-info-travel-preference>button {
@@ -342,8 +341,17 @@ input[name="radio-form-info-traveling-3-processes"]:checked {
 }
 
 /* ************************* form-section > form > info > accommodation ************************* */
-#container-form-info-accommodation>h2 {
+#container-form-info-accommodation>* {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
     margin-bottom: 2%;
+}
+
+#container-form-info-accommodation>label select {
+    width: 40%;
+    text-align:center;
+    /* background-color: white; */
 }
 
 /* ************************* form-section > form > info > travel mode ************************* */

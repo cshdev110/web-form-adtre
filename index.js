@@ -176,8 +176,8 @@ function fn_start() {
 
         // Stalying the first step icon
 /////// for the sake of the test ///////////////////////////////////////////////////////
-        steps_arr_index = 1;
-        sub_form_idx = 2;
+        steps_arr_index = 2;
+        // sub_form_idx = 2;
         fn_sub_container_manager(sub_form_idx)
 
 
@@ -332,8 +332,7 @@ function fn_create_new_traveller(person) {
             <option value="Allergies">Allergies</option>
         </datalist>
         <label for="specialneeds-${person}">Special Needs</label><input type="text" name="specialneeds-${person}">                                     
-    </div>`
-    ;
+    </div>`;
 
     return traveller;
 }
@@ -370,7 +369,7 @@ function fn_add_or_remove_traveller_form(list_old, list_new) {
     });
 }
 
-// to disable or enable buttons
+// Filter the formulary's inputs plush block the next step if the inputs are not valid
 function fn_check_inputs(steps_index, sub_steps_index) {
     if (steps_index === 0) {
         return true;
@@ -394,7 +393,7 @@ function fn_check_inputs(steps_index, sub_steps_index) {
     }
     else if (steps_index === 1 && (sub_steps_index === 1 || sub_steps_index === 2)) {
         let value_return = true;
-        let temp_container_form_perperson_dynamically = document.querySelectorAll('.container-form-perperson-dynamically');
+        const temp_container_form_perperson_dynamically = document.querySelectorAll('.container-form-perperson-dynamically');
         temp_container_form_perperson_dynamically.forEach((parent, idx) => {
             parent.querySelectorAll('.required-info').forEach(elem => {
                 if (elem.value === '' && value_return === true) {
@@ -402,16 +401,68 @@ function fn_check_inputs(steps_index, sub_steps_index) {
                         fn_sub_container_manager(sub_form_idx = --sub_steps_index);
                     }
                     form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, idx);
-                    elem.focus();
+                    if (steps_arr_index !== 1) {
+                        console.log('text_aux1');
+                    }
+                    else elem.focus();
                     value_return = false;
                 }
             });
             if (!value_return) return
         });
 
+        const temp_travel_preference_required_info = document.querySelector('#container-form-info-travel-preference').querySelectorAll('.required-info');
+        temp_travel_preference_required_info.forEach((elem, idx) => {
+            if (elem.value === '' && value_return === true && sub_steps_index === 2) {
+                if (steps_arr_index !== 1) {
+                    console.log('text_aux2');
+                }
+                else elem.focus();
+                value_return = false;
+            }
+            else {
+                switch(elem.getAttribute('name')) {
+                    case 'preference-date':
+                        document.querySelector('#summary-calender').textContent = elem.value;
+                        break;
+                    case 'budget':
+                        document.querySelector('#summary-budget').textContent = elem.value;
+                        break;
+                    case 'active':
+                        document.querySelector('#summary-active').textContent = elem.value;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            if (!value_return) return
+        });                                                       
         return value_return;
     }
     else if (steps_index === 2) {
+        const hotel = {
+            stars: `
+                    <label for="hotel-start">Stars
+                            <select name="hotel-star" class="required-info" onfocusin="fn_add_required_attribute(event)">
+                                <option value="5">5 &#x2605;</option>
+                                <option value="4">4 &#x2605;</option>
+                                <option value="3">3 &#x2605;</option>
+                                <option value="2">2 &#x2605;</option>
+                                <option value="1">1 &#x2605;</option>
+                            </select>
+                        </label>`
+        }
+        const temp_accommodation_select = document.querySelector('#accommodation-select');
+        switch (temp_accommodation_select.value) {
+            case 'Hotel':
+                document.querySelector('#summary-accommodation').innerHTML = temp_accommodation_select.value + ' ' + 
+                                                                                document.querySelector('#accommodation-hotel-stars').value +
+                                                                                '&#x2605;';
+                break;
+            default:
+                break;
+        }
+
         return true;
     }
     else if (steps_index === 3) {

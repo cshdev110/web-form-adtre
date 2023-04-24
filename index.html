@@ -126,16 +126,17 @@
                         <div id="container-form-info-travel-preference">
                             <h2>Travel Preferences</h2>
                             <label for="preference-date">Preference date
-                                <input name="preference-date" type="date" required>
+                                <input name="preference-date" type="date" class="required-info" onfocusin="fn_add_required_attribute(event)">
                             </label>
 
                             <label for="budget">Budget ranges
-                                <input name="budget" type="number" min="0.0" step="0.01" placeholder="$ 1'000.000.00">
+                                <input name="budget" type="number" min="0.0" step="0.01" placeholder="$ 1'000.000.00" 
+                                class="required-info" onfocusin="fn_add_required_attribute(event)">
                             </label>
 
                             <label for="active" id="how-actie-options">How active
-                                <select name="active" id="how-active-select">
-                                    <option value="" selected>how active</option>
+                                <select name="active" id="how-active-select" class="required-info" onfocusin="fn_add_required_attribute(event)">
+                                    <option value="" selected>Select</option>
                                     <option value="high">Highly active</option>
                                     <option value="middle">Meddle active</option>
                                     <option value="low">Low active</option>
@@ -155,17 +156,28 @@
                     <div id="container-form-info-accommodation">
                         <h2>Preferred Accommodation</h2>
                         <label for="accommodation">What is your preference?
-                            <select name="accommodation" id="">
-                                <option value="select" selected>Select</option>
-                                <option value="accommodation">Hotel</option>
-                                <option value="accommodation">Motel</option>
-                                <option value="accommodation">Airbnb</option>
-                                <option value="accommodation">Student Accommodation</option>
-                                <option value="accommodation">Backpacker's Accommodation</option>
-                                <option value="accommodation">Camping</option>
-                                <option value="accommodation">Other</option>
+                            <select name="accommodation" id="accommodation-select" class="required-info" onfocusin="fn_add_required_attribute(event)">
+                                <option value="" selected>Select</option>
+                                <option value="Hotel">Hotel</option>
+                                <option value="Motel">Motel</option>
+                                <option value="Airbnb">Airbnb</option>
+                                <option value="Student">Student Accommodation</option>
+                                <option value="Backpacker">Backpacker's Accommodation</option>
+                                <option value="Camping">Camping</option>
+                                <option value="Other">Other</option>
                             </select>
                         </label>
+
+                        <label for="hotel-start">Stars
+                            <select name="hotel-star" id="accommodation-hotel-stars" class="required-info" onfocusin="fn_add_required_attribute(event)">
+                                <option value="5">5 &#x2605;</option>
+                                <option value="4">4 &#x2605;</option>
+                                <option value="3">3 &#x2605;</option>
+                                <option value="2">2 &#x2605;</option>
+                                <option value="1">1 &#x2605;</option>
+                            </select>
+                        </label>
+
                         <button type="button" class="btn-continue">Continue</button>
                     </div>
 
@@ -294,13 +306,13 @@
                     <h3 id="summary-friends">0</h3>
                 </div>
                 <div id="container-travel-options-summary">
-                    <img src="icons/calender-event.png" alt=""><p></p>
-                    <img src="icons/budget.png" alt=""><p></p>
-                    <img src="icons/active-bike.png" alt=""><p></p>
-                    <img src="icons/accomodation-bungalow.png" alt=""><p></p>
-                    <img src="icons/transport.png" alt=""><p></p>
-                    <img src="icons/environment-beach.png" alt=""><p></p>
-                    <img src="icons/location-icon.png" alt=""><p></p>
+                    <img src="icons/calender-event.png" alt=""><p id="summary-calender"></p>
+                    <img src="icons/budget.png" alt=""><p id="summary-budget"></p>
+                    <img src="icons/active-bike.png" alt=""><p id="summary-active"></p>
+                    <img src="icons/accomodation-bungalow.png" alt=""><p id="summary-accommodation"></p>
+                    <img src="icons/transport.png" alt=""><p id="summary-transport"></p>
+                    <img src="icons/environment-beach.png" alt=""><p id="summary-environment"></p>
+                    <img src="icons/location-icon.png" alt=""><p id="summary-location"></p>
                 </div>
             </section>
         </div>
