@@ -20,6 +20,26 @@ const cnt_radio_btns_sub_form = document.querySelector('#container-form-info-tra
 // when a person is added
 const cnt_container_form_info_details_fields = document.querySelector('#container-form-info-details-fields');
 
+// Object: how active html options to bring up after changing the how active select element at Travel Preferences
+const cnt_check_how_active_options_html = {
+    travel_time: `<label class="travel-info-dynamic-label" for="how-active-travelling-all-time">
+                Want to be travelling all the time?
+                <input type="checkbox" name="how-active-travelling-all-time">
+            </label>`,
+    rest_days: `<label class="travel-info-dynamic-label" for="how-active-rest-days">
+                Need rest days?
+                <input type="checkbox" name="how-active-rest-days">
+            </label>`,
+    strenuous: `<label class="travel-info-dynamic-label" for="how-active-strenuous">
+                Enjoy strenuous activities?
+                <input type="checkbox" name="how-active-strenuous">
+            </label>`,
+    sedentary: `<label class="travel-info-dynamic-label" for="how-active-sedentary">
+                Sedentary
+                <input type="checkbox" name="how-active-sedentary">
+            </label>`
+}
+
 // to go through the sub forms at container-form-info
 let sub_form_idx = 0;
 
@@ -30,7 +50,7 @@ let form_per_person_idx = 0;
 let people_info_arr = new Array('You');
 let people_info_arr_index = 0;
 
-// Objects define styles for the step icons when they are active or inactive
+// Objects that define styles for the step icons when they are active or inactive
 let steps_icons_style = {
     transition: 'all 0.5s',
     transform: 'scale(1.1)',
@@ -55,7 +75,7 @@ let flag_screen_event_size = false;
 const cnt_number_of_childs = document.querySelector('input[name="number-of-childs"]');
 const cnt_number_of_friends = document.querySelector('input[name="number-of-friends"]');
 
-// traveller_obj contains the number of people that are going to travel
+// Objects: traveller_obj contains the number of people that are going to travel
 let traveller_obj_old = {
     Partner: 0,
     Child: 0,
@@ -156,8 +176,8 @@ function fn_start() {
 
         // Stalying the first step icon
 /////// for the sake of the test ///////////////////////////////////////////////////////
-        // steps_arr_index = 1;
-        // sub_form_idx = 1;
+        steps_arr_index = 1;
+        sub_form_idx = 2;
         fn_sub_container_manager(sub_form_idx)
 
 
@@ -372,24 +392,24 @@ function fn_check_inputs(steps_index, sub_steps_index) {
 
         return true;
     }
-    else if (steps_index === 1 && sub_steps_index === 1) {
+    else if (steps_index === 1 && (sub_steps_index === 1 || sub_steps_index === 2)) {
         let value_return = true;
         let temp_container_form_perperson_dynamically = document.querySelectorAll('.container-form-perperson-dynamically');
         temp_container_form_perperson_dynamically.forEach((parent, idx) => {
             parent.querySelectorAll('.required-info').forEach(elem => {
                 if (elem.value === '' && value_return === true) {
+                    if (sub_steps_index === 2){
+                        fn_sub_container_manager(sub_form_idx = --sub_steps_index);
+                    }
                     form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, idx);
                     elem.focus();
                     value_return = false;
                 }
             });
-            if (!value_return){return}
+            if (!value_return) return
         });
 
         return value_return;
-    }
-    else if (steps_index === 1 && sub_steps_index === 2) {
-        return true;
     }
     else if (steps_index === 2) {
         return true;
@@ -422,7 +442,7 @@ function fn_filter_number_travellers(elm) {
 // Navigate between the dynamic forms per person such as partner, child and friend
 function fn_nav_dynamic_forms_pp(idx, direction) {
     let temp_container_form_perperson = document.querySelectorAll('.container-form-perperson-dynamically');
-    if (direction > 0 && direction < temp_container_form_perperson.length - 1) {
+    if (direction >= 0 && direction <= temp_container_form_perperson.length - 1) {
         temp_container_form_perperson[idx].style.display = 'none';        
         temp_container_form_perperson[direction].style.display = 'grid';
         document.querySelector('#title-form-per-person').textContent = temp_container_form_perperson[direction].id.replace('Partner-1', 'Partner');
@@ -550,6 +570,26 @@ document.querySelector('#right-form-per-person').addEventListener('click', () =>
     form_per_person_idx = form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, form_per_person_idx + 1);
 });
 
+// 'how active' event. At travel preferences, bring up choices depending on the selected option
+document.querySelector('#how-active-select').addEventListener('change', (evtSelect) => {
+    let tem_travel_info_dynamic_label = document.querySelectorAll('.travel-info-dynamic-label');
+    tem_travel_info_dynamic_label.forEach(elm => elm.remove());
+
+    if (evtSelect.target.value === 'high') {
+        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', cnt_check_how_active_options_html.strenuous);
+        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', cnt_check_how_active_options_html.rest_days);
+        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', cnt_check_how_active_options_html.travel_time);
+    }
+    else if (evtSelect.target.value === 'middle') {
+        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', cnt_check_how_active_options_html.strenuous);
+        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', cnt_check_how_active_options_html.rest_days);
+    }
+    else if (evtSelect.target.value === 'low') {
+        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', cnt_check_how_active_options_html.sedentary);
+        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', cnt_check_how_active_options_html.strenuous);
+        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', cnt_check_how_active_options_html.rest_days);
+    }
+});
 
 // ************************************** end events **************************************
 
