@@ -92,23 +92,23 @@
 
                                 <div class="container-form-perperson-dynamically" id="you">
                                     <label for="name">Name *</label>
-                                    <input type="text" name="name" class="required-info" placeholder="Name" maxlength="50" onfocusin="fn_add_required_attribute(event)">
+                                    <input type="text" name="name" class="required-info form-perperson-inputs" placeholder="Name" maxlength="50" onfocusin="fn_add_required_attribute(event)">
                                     
                                     <label for="birthdate">Birth Date *</label>
-                                    <input type="date" name="birthdate" class="required-info" onfocusin="fn_add_required_attribute(event)">
+                                    <input type="date" name="birthdate" class="required-info form-perperson-inputs" onfocusin="fn_add_required_attribute(event)">
                                     
                                     <label for="occupation">Occupation</label>
-                                    <input type="text" name="occupation" placeholder="Business...">
+                                    <input type="text" name="occupation" class="form-perperson-inputs" placeholder="Business...">
                                     
                                     <label for="gender">Gender *</label>
-                                    <select name="gender" class="required-info" onfocusin="fn_add_required_attribute(event)">
-                                        <option value="" selected>Select</option>
+                                    <select name="gender" class="required-info form-perperson-inputs" onfocusin="fn_add_required_attribute(event)">
+                                        <option value="" selected>Select &#9822;</option>
                                         <option value="female">Female</option>
                                         <option value="male">Male</option>
                                     </select>
 
                                     <label for="dietary">Dietary Requirements *</label>
-                                    <input list="form-datalist-dietary" name="dietary" class="required-info" placeholder="double clic to see more" onfocusin="fn_add_required_attribute(event)">
+                                    <input list="form-datalist-dietary" name="dietary" class="required-info form-perperson-inputs" placeholder="double clic to see more" onfocusin="fn_add_required_attribute(event)">
                                     <datalist id="form-datalist-dietary">
                                         <option value="Vegetarian">Vegetarian</option>
                                         <option value="Vegan">Vegan</option>
@@ -117,7 +117,8 @@
                                         <option value="Allergies">Allergies</option>
                                     </datalist>
 
-                                    <label for="specialneeds">Special Needs</label><input type="text" name="specialneeds">                                     
+                                    <label for="specialneeds">Special Needs</label>
+                                    <input type="text" name="specialneeds" class="form-perperson-inputs">                                     
                                 </div>
                             </div>
                             <button type="button" class="btn-continue">Continue</button>
@@ -136,7 +137,7 @@
 
                             <label for="active" id="how-actie-options">How active
                                 <select name="active" id="how-active-select" class="required-info" onfocusin="fn_add_required_attribute(event)">
-                                    <option value="" selected>Select</option>
+                                    <option value="" selected>Select &#9822;</option>
                                     <option value="high">Highly active</option>
                                     <option value="middle">Meddle active</option>
                                     <option value="low">Low active</option>
@@ -155,9 +156,9 @@
 
                     <div id="container-form-info-accommodation">
                         <h2>Preferred Accommodation</h2>
-                        <label for="accommodation">What is your preference?
+                        <label for="accommodation" id="label-select-accommodation"><span>What is your preference?</span>
                             <select name="accommodation" id="accommodation-select" class="required-info" onfocusin="fn_add_required_attribute(event)">
-                                <option value="" selected>Select</option>
+                                <option value="" selected>Select &#9822;</option>
                                 <option value="Hotel">Hotel</option>
                                 <option value="Motel">Motel</option>
                                 <option value="Airbnb">Airbnb</option>
@@ -165,16 +166,6 @@
                                 <option value="Backpacker">Backpacker's Accommodation</option>
                                 <option value="Camping">Camping</option>
                                 <option value="Other">Other</option>
-                            </select>
-                        </label>
-
-                        <label for="hotel-start">Stars
-                            <select name="hotel-star" id="accommodation-hotel-stars" class="required-info" onfocusin="fn_add_required_attribute(event)">
-                                <option value="5">5 &#x2605;</option>
-                                <option value="4">4 &#x2605;</option>
-                                <option value="3">3 &#x2605;</option>
-                                <option value="2">2 &#x2605;</option>
-                                <option value="1">1 &#x2605;</option>
                             </select>
                         </label>
 
@@ -335,6 +326,6 @@
         </div>
     </footer>
     <!--script for js-->
-    <script src="index.js"></script>
+    <script type="module" src="index.js"></script>
 </body>
 </html>

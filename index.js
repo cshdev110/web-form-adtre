@@ -1,3 +1,6 @@
+// importing variables from vars_html_style.js that are used to create html and style depending on user's choices
+import * as html_css_vars from "./js/vars_html_style.js"; 
+
 // -------------------------------------- variables --------------------------------------
 
 // cnt_steps_icons contains the icons which are the steps that are on the left side of the screen
@@ -20,25 +23,12 @@ const cnt_radio_btns_sub_form = document.querySelector('#container-form-info-tra
 // when a person is added
 const cnt_container_form_info_details_fields = document.querySelector('#container-form-info-details-fields');
 
-// Object: how active html options to bring up after changing the how active select element at Travel Preferences
-const cnt_check_how_active_options_html = {
-    travel_time: `<label class="travel-info-dynamic-label" for="how-active-travelling-all-time">
-                Want to be travelling all the time?
-                <input type="checkbox" name="how-active-travelling-all-time">
-            </label>`,
-    rest_days: `<label class="travel-info-dynamic-label" for="how-active-rest-days">
-                Need rest days?
-                <input type="checkbox" name="how-active-rest-days">
-            </label>`,
-    strenuous: `<label class="travel-info-dynamic-label" for="how-active-strenuous">
-                Enjoy strenuous activities?
-                <input type="checkbox" name="how-active-strenuous">
-            </label>`,
-    sedentary: `<label class="travel-info-dynamic-label" for="how-active-sedentary">
-                Sedentary
-                <input type="checkbox" name="how-active-sedentary">
-            </label>`
-}
+// input fields to get the number of people that are going to travel
+const cnt_number_of_childs = document.querySelector('input[name="number-of-childs"]');
+const cnt_number_of_friends = document.querySelector('input[name="number-of-friends"]');
+
+// cnt_accommodation_select is to select the type of accommodation at Preferred Accommodation
+const cnt_accommodation_select = document.querySelector('#accommodation-select');
 
 // to go through the sub forms at container-form-info
 let sub_form_idx = 0;
@@ -50,19 +40,6 @@ let form_per_person_idx = 0;
 let people_info_arr = new Array('You');
 let people_info_arr_index = 0;
 
-// Objects that define styles for the step icons when they are active or inactive
-let steps_icons_style = {
-    transition: 'all 0.5s',
-    transform: 'scale(1.1)',
-    boxShadow: '0px 0px 10px #000000',
-    border: '1px solid #000000'
-}
-let steps_icons_style_reset = {
-    transition: 'transform 0.2s',
-    transform: 'scale(1)',
-    boxShadow: 'none'
-}
-
 // Buttons for the step up/down or left and right when screen less than 768px
 let btn_step_up_normal = document.querySelector('#step-up-normal-screen');
 let btn_step_down_normal = document.querySelector('#step-down-normal-screen');
@@ -70,10 +47,6 @@ let btn_step_down_normal = document.querySelector('#step-down-normal-screen');
 // Flag to make the change of when the screen size is less than 768px or more than 768px only once
 // when it crosses the 768px
 let flag_screen_event_size = false;
-
-// buttons + and - from container-form-info-traveling-inputs that are to add or subtract the number of people
-const cnt_number_of_childs = document.querySelector('input[name="number-of-childs"]');
-const cnt_number_of_friends = document.querySelector('input[name="number-of-friends"]');
 
 // Objects: traveller_obj contains the number of people that are going to travel
 let traveller_obj_old = {
@@ -107,45 +80,15 @@ function fn_start() {
 
     cnt_radio_btns_sub_form.children[0].checked = true;
 
-    // Creating and styling the container for the start button
-    // After clicking on the button, the container-form and the step up/down buttons will be displayed
-    const button_start = `<div id="container-button-start">
-                                <h1>START</h1>
-                                <button type="button" id="button-start__button"></button>
-                            </div>`;
-
-    document.querySelector('#form-section').insertAdjacentHTML('beforeend', button_start);
+    // Creating and styling the container for the start button at the beginnig
+    // After clicking on that button, welcome message will be displayed and the start container will be removed.
+    document.querySelector('#form-section').insertAdjacentHTML('beforeend', html_css_vars.button_start);
 
     const cnt_btn_start = document.querySelector('#container-button-start');
 
-    let cnt_btn_start_style_obj = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'space-evenly',
-        width: '100%',
-        height: '100%',
-        padding: '4%',
-        fontSize: 'min(2rem, 6vw)',
-        color: 'black'
-    }
-    Object.assign(cnt_btn_start.style, cnt_btn_start_style_obj);
+    Object.assign(cnt_btn_start.style, html_css_vars.cnt_btn_start_style_obj);
 
-    let cnt_btn_start_child_button = {
-        background: 'none',
-        backgroundImage: 'url(icons/start-flag.png)',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: '80%',
-        backgroundPosition: 'center',
-        border: 'none',
-        borderRadius: '10px',
-        boxShadow: '0 0 10px 0 rgba(0,0,0,0.5)',
-        width: 'min(200px, 20vw)',
-        height: 'min(200px, 20vw)',
-        transition: 'transform 0.1s',
-        cursor: 'pointer'
-    }
-    Object.assign(cnt_btn_start.querySelector('button').style, cnt_btn_start_child_button);
+    Object.assign(cnt_btn_start.querySelector('button').style, html_css_vars.cnt_btn_start_child_button);
 
     // Actions for the start button
     cnt_btn_start.querySelector('#button-start__button').addEventListener('mouseover', () => {
@@ -176,8 +119,8 @@ function fn_start() {
 
         // Stalying the first step icon
 /////// for the sake of the test ///////////////////////////////////////////////////////
-        steps_arr_index = 2;
-        // sub_form_idx = 2;
+        // steps_arr_index = 1;
+        // sub_form_idx = 1;
         fn_sub_container_manager(sub_form_idx)
 
 
@@ -232,11 +175,11 @@ function fn_check_screen_event_size() {
 
 // to style the step icons when they are active or inactive
 function fn_steps_state_active(step_index) {
-    Object.assign(cnt_steps_icons[step_index].style, steps_icons_style);
+    Object.assign(cnt_steps_icons[step_index].style, html_css_vars.steps_icons_style);
 }
 
 function fn_steps_state_deactive(step_index) {
-    Object.assign(cnt_steps_icons[step_index].style, steps_icons_style_reset);
+    Object.assign(cnt_steps_icons[step_index].style, html_css_vars.steps_icons_style_reset);
 }
 
 // to display the form dynamically
@@ -311,37 +254,11 @@ function fn_compare_obj(obj1, obj2) {
     return JSON.stringify(obj1) === JSON.stringify(obj2);
 }
 
-// create new traveller function
-function fn_create_new_traveller(person) {
-    const traveller = 
-    `<div class="container-form-perperson-dynamically" id="${person}">
-        <label for="name-${person}">Name *</label><input type="text" name="name-${person}" class="required-info" maxlength="50" onfocusin="fn_add_required_attribute(event)" placeholder="${person}">
-        <label for="birthdate-${person}">Birth Date *</label><input type="date" name="birthdate-${person}"class="required-info" onfocusin="fn_add_required_attribute(event)">
-        <label for="occupation-${person}">Occupation</label><input type="text" name="occupation-${person}" placeholder="${person}...">
-        <label for="gender-${person}">Gender *</label><select name="gender-${person}" class="required-info" onfocusin="fn_add_required_attribute(event)">
-            <option value="" selected>Select</option>
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-        </select>
-        <label for="dietary-${person}">Dietary Requirements *</label><input list="form-datalist-dietary-${person}" name="dietary-${person}" class="required-info" onfocusin="fn_add_required_attribute(event)" placeholder="double clic to see more">
-        <datalist id="form-datalist-dietary-${person}">
-            <option value="Vegetarian">Vegetarian</option>
-            <option value="Vegan">Vegan</option>
-            <option value="Halal">Halal</option>
-            <option value="Kosher">Kosher</option>
-            <option value="Allergies">Allergies</option>
-        </datalist>
-        <label for="specialneeds-${person}">Special Needs</label><input type="text" name="specialneeds-${person}">                                     
-    </div>`;
-
-    return traveller;
-}
-
 // add new travellers form to the DOM
 function fn_add_new_traveller_form(list_travellers) {
     Object.keys(list_travellers).forEach(key => {
         for (let i = 0; i < list_travellers[key]; i++) {
-            cnt_container_form_info_details_fields.insertAdjacentHTML('beforeend', fn_create_new_traveller(key));
+            cnt_container_form_info_details_fields.insertAdjacentHTML('beforeend', html_css_vars.fn_create_new_traveller(key));
         }
     });
 }
@@ -363,7 +280,7 @@ function fn_add_or_remove_traveller_form(list_old, list_new) {
             for (let i = 0; i < list_new[key] - list_old[key]; i++) {
                 // i+1 because the index starts at 0 and the first traveller is 1.
                 // When creating a new form for a new person, the form will have the id (partner-1 or child-1 or friend-1)
-                cnt_container_form_info_details_fields.insertAdjacentHTML('beforeend', fn_create_new_traveller(key+'-'+(list_old[key]+i+1)));
+                cnt_container_form_info_details_fields.insertAdjacentHTML('beforeend', html_css_vars.fn_create_new_traveller(key+'-'+(list_old[key]+i+1)));
             }
         }
     });
@@ -440,30 +357,14 @@ function fn_check_inputs(steps_index, sub_steps_index) {
         return value_return;
     }
     else if (steps_index === 2) {
-        const hotel = {
-            stars: `
-                    <label for="hotel-start">Stars
-                            <select name="hotel-star" class="required-info" onfocusin="fn_add_required_attribute(event)">
-                                <option value="5">5 &#x2605;</option>
-                                <option value="4">4 &#x2605;</option>
-                                <option value="3">3 &#x2605;</option>
-                                <option value="2">2 &#x2605;</option>
-                                <option value="1">1 &#x2605;</option>
-                            </select>
-                        </label>`
+        if (cnt_accommodation_select.value === '') {
+            cnt_accommodation_select.focus();
+            return false;
         }
-        const temp_accommodation_select = document.querySelector('#accommodation-select');
-        switch (temp_accommodation_select.value) {
-            case 'Hotel':
-                document.querySelector('#summary-accommodation').innerHTML = temp_accommodation_select.value + ' ' + 
-                                                                                document.querySelector('#accommodation-hotel-stars').value +
-                                                                                '&#x2605;';
-                break;
-            default:
-                break;
+        else {
+            document.querySelector('#summary-accommodation').innerHTML = cnt_accommodation_select.value;
+            return true;
         }
-
-        return true;
     }
     else if (steps_index === 3) {
         return true;
@@ -481,12 +382,14 @@ function fn_add_required_attribute(elem) {
     elem.target.setAttribute('required', '');
 }
 
+window.fn_add_required_attribute = fn_add_required_attribute;
+
 // function to filter number in the fields Traveling childs and Traveling Friends. Second step
 // allowing only two digits number
 function fn_filter_number_travellers(elm) {
-    if (!(/^[0-9]{1,2}$/.test(elm.target.value) && (elm.target.value >= '0') && (elm.target.value <= '50'))) {
+    if (!(/^[0-9]{1,2}$/.test(elm.target.value) && (elm.target.value >= '0') && (elm.target.value <= '30'))) {
         elm.target.value = /(?:[0-9]{1,2})/.exec(elm.target.value);
-        elm.target.value = (elm.target.value > 50) ? 50 : (elm.target.value === '') ? 0 : elm.target.value;
+        if (elm.target.value > 30) elm.target.value = 30;
     }
 }
 
@@ -572,7 +475,7 @@ Array.from(cnt_radio_btns_sub_form.children).forEach(radio_btn => {
 document.querySelectorAll('.number-of-childs').forEach((elm, idx) => {
     if (idx === 0) {
         elm.addEventListener('click', () => {
-            if (cnt_number_of_childs.value < 50) {
+            if (cnt_number_of_childs.value < 30) {
                 cnt_number_of_childs.value++;
             }
         });
@@ -589,7 +492,7 @@ document.querySelectorAll('.number-of-childs').forEach((elm, idx) => {
 document.querySelectorAll('.number-of-friends').forEach((elm, idx) => {
     if (idx === 0) {
         elm.addEventListener('click', () => {
-            if (cnt_number_of_friends.value < 50) {
+            if (cnt_number_of_friends.value < 30) {
                 cnt_number_of_friends.value++;
             }
         });
@@ -612,13 +515,158 @@ cnt_number_of_friends.addEventListener('keyup', (evt) => {
     fn_filter_number_travellers(evt);
 });
 
+// Dynamically bring up the options when user selects the type of accommodation
+cnt_accommodation_select.addEventListener('change', (evt) => {
+    try{
+        const temp_container_accommodation_preference = document.querySelectorAll('.container-accommodation-preference');
+        if (temp_container_accommodation_preference !== 0) {
+            temp_container_accommodation_preference.forEach(elm => {
+                elm.remove();
+            });
+        }
+    } catch (err){}
+    
+    switch(evt.target.value){
+        case 'Hotel':
+            Object.keys(html_css_vars.accommodation_options_html).forEach(key => {
+                if (key !== 'camping') {
+                    evt.target.insertAdjacentHTML('afterend', html_css_vars.accommodation_options_html[key]);
+                }
+            });
+            nest_fn_set_up_event_new_elements();
+            break;
+
+        case 'Motel':
+        case 'Airbnb':
+            Object.keys(html_css_vars.accommodation_options_html).forEach(key => {
+                if (key !== 'stars' && key !== 'camping') {
+                    evt.target.insertAdjacentHTML('afterend', html_css_vars.accommodation_options_html[key]);
+                }
+            });
+            nest_fn_set_up_event_new_elements();
+            break;
+
+        case 'Student':
+            evt.target.insertAdjacentHTML('afterend', html_css_vars.accommodation_options_html['breakfast']);
+            evt.target.insertAdjacentHTML('afterend', html_css_vars.accommodation_options_html['bathroom']);
+            document.querySelector('label[for="number-of-bathrooms"]').remove();
+            nest_fn_set_up_event_new_elements();
+            break;
+
+        case 'Backpacker':
+            evt.target.insertAdjacentHTML('afterend', html_css_vars.accommodation_options_html['breakfast']);
+            break;
+
+        case 'Camping':
+            evt.target.insertAdjacentHTML('afterend', html_css_vars.accommodation_options_html['camping']);
+            nest_fn_set_up_event_new_elements();
+            break;
+
+        default:
+            break;
+    }
+
+    function nest_fn_set_up_event_new_elements(){
+        try{
+            // input fields to get the number of rooms
+            const cnt_number_of_rooms = document.querySelector('input[name="number-of-rooms"]');
+
+            // Directly enter the number of rooms
+            cnt_number_of_rooms.addEventListener('keyup', (evt) => {
+                fn_filter_number_travellers(evt);
+            });
+
+            // Increae or decrease the number of rooms
+            document.querySelectorAll('.number-of-rooms').forEach((elm, idx) => {
+                if (idx === 0) {
+                    elm.addEventListener('click', () => {
+                        if (cnt_number_of_rooms.value < 30) {
+                            cnt_number_of_rooms.value++;
+                        }
+                    });
+                }
+                else {
+                    elm.addEventListener('click', () => {
+                        if (cnt_number_of_rooms.value > 0) {
+                            cnt_number_of_rooms.value--;
+                        }
+                    });
+                }
+            });
+        } catch (err) {}
+
+        try{
+            // input fields to get the number of bethrooms
+            const cnt_number_of_bathrooms = document.querySelector('input[name="number-of-bathrooms"]');
+
+            // Directly enter the number of bathrooms
+            cnt_number_of_bathrooms.addEventListener('keyup', (evt) => {
+                fn_filter_number_travellers(evt);
+            });
+
+            // Increae or decrease the number of bathrooms
+            document.querySelectorAll('.number-of-bathrooms').forEach((elm, idx) => {
+                if (idx === 0) {
+                    elm.addEventListener('click', () => {
+                        if (cnt_number_of_bathrooms.value < 30) {
+                            cnt_number_of_bathrooms.value++;
+                        }
+                    });
+                }
+                else {
+                    elm.addEventListener('click', () => {
+                        if (cnt_number_of_bathrooms.value > 0) {
+                            cnt_number_of_bathrooms.value--;
+                        }
+                    });
+                }
+            });
+        } catch (err) {}
+
+        try{
+            // input fields to get the number of tents
+            const cnt_number_of_tents = document.querySelector('input[name="number-of-tents"]');
+
+            // Directly enter the number of tents
+            cnt_number_of_tents.addEventListener('keyup', (evt) => {
+                fn_filter_number_travellers(evt);
+            });
+
+            // Increae or decrease the number of tents
+            document.querySelectorAll('.number-of-tents').forEach((elm, idx) => {
+                if (idx === 0) {
+                    elm.addEventListener('click', () => {
+                        if (cnt_number_of_tents.value < 30) {
+                            cnt_number_of_tents.value++;
+                        }
+                    });
+                }
+                else {
+                    elm.addEventListener('click', () => {
+                        if (cnt_number_of_tents.value > 0) {
+                            cnt_number_of_tents.value--;
+                        }
+                    });
+                }
+            });
+        } catch (err) {}
+    }
+});
+
+
+
+
+
+
+
+
 // Buttons to shift the forms per person. This is the form where are the fields like name, birthdate, etc
 document.querySelector('#left-form-per-person').addEventListener('click', () => {
-    form_per_person_idx = form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, form_per_person_idx - 1);
+    form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, form_per_person_idx - 1);
 });
 
 document.querySelector('#right-form-per-person').addEventListener('click', () => {
-    form_per_person_idx = form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, form_per_person_idx + 1);
+    form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, form_per_person_idx + 1);
 });
 
 // 'how active' event. At travel preferences, bring up choices depending on the selected option
@@ -627,24 +675,23 @@ document.querySelector('#how-active-select').addEventListener('change', (evtSele
     tem_travel_info_dynamic_label.forEach(elm => elm.remove());
 
     if (evtSelect.target.value === 'high') {
-        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', cnt_check_how_active_options_html.strenuous);
-        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', cnt_check_how_active_options_html.rest_days);
-        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', cnt_check_how_active_options_html.travel_time);
+        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', html_css_vars.cnt_check_how_active_options_html.strenuous);
+        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', html_css_vars.cnt_check_how_active_options_html.rest_days);
+        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', html_css_vars.cnt_check_how_active_options_html.travel_time);
     }
     else if (evtSelect.target.value === 'middle') {
-        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', cnt_check_how_active_options_html.strenuous);
-        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', cnt_check_how_active_options_html.rest_days);
+        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', html_css_vars.cnt_check_how_active_options_html.strenuous);
+        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', html_css_vars.cnt_check_how_active_options_html.rest_days);
     }
     else if (evtSelect.target.value === 'low') {
-        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', cnt_check_how_active_options_html.sedentary);
-        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', cnt_check_how_active_options_html.strenuous);
-        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', cnt_check_how_active_options_html.rest_days);
+        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', html_css_vars.cnt_check_how_active_options_html.sedentary);
+        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', html_css_vars.cnt_check_how_active_options_html.strenuous);
+        document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', html_css_vars.cnt_check_how_active_options_html.rest_days);
     }
 });
 
 // ************************************** end events **************************************
 
 // ************************************** main **************************************
-
 fn_start();
 // ************************************** end main **************************************
