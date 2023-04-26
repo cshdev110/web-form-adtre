@@ -30,6 +30,15 @@ const cnt_number_of_friends = document.querySelector('input[name="number-of-frie
 // cnt_accommodation_select is to select the type of accommodation at Preferred Accommodation
 const cnt_accommodation_select = document.querySelector('#accommodation-select');
 
+// cnt_travel_mode_select is to select the type of travel mode at Preferred Travel Mode
+const cnt_travel_mode_select = document.querySelector('#travel-mode');
+
+// cnt_destination_select is to select the destination at Destination
+const cnt_destination_select = document.querySelector('#destination-select');
+
+// cnt_environment_checks is to select the environment
+const cnt_environment_checks = document.querySelectorAll('.environment-checks');
+
 // to go through the sub forms at container-form-info
 let sub_form_idx = 0;
 
@@ -119,8 +128,8 @@ function fn_start() {
 
         // Stalying the first step icon
 /////// for the sake of the test ///////////////////////////////////////////////////////
-        // steps_arr_index = 1;
-        // sub_form_idx = 1;
+        steps_arr_index = 2;
+        // sub_form_idx = 2;
         fn_sub_container_manager(sub_form_idx)
 
 
@@ -287,28 +296,35 @@ function fn_add_or_remove_traveller_form(list_old, list_new) {
 }
 
 // Filter the formulary's inputs plush block the next step if the inputs are not valid
-function fn_check_inputs(steps_index, sub_steps_index) {
+function fn_check_inputs(steps_index, sub_steps_index = 1, final_check = false) {
     if (steps_index === 0) {
+        // just the first step
         return true;
     }
-    else if (steps_index === 1 && sub_steps_index === 0) {        
+    else if (steps_index === 1 && sub_steps_index === 0) {   
+        //  check number of travellers
         traveller_obj_new.Partner = (document.querySelector('input[name="inp-traveling-partner"]:checked')) ? 1 : 0;
         traveller_obj_new.Child = (document.querySelector('input[name="inp-traveling-child"]:checked')) ? Number(cnt_number_of_childs.value) : 0;
         traveller_obj_new.Friend = (document.querySelector('input[name="inp-traveling-friend"]:checked')) ? Number(cnt_number_of_friends.value) : 0;
 
         if (!fn_compare_obj(traveller_obj_old, traveller_obj_new)) {
+            try{
+                form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, 0);
+            }catch(err){}
+
             fn_add_or_remove_traveller_form(traveller_obj_old, traveller_obj_new);
+
+            Object.keys(traveller_obj_new).forEach(key => traveller_obj_old[key] = traveller_obj_new[key]);
+
+            document.querySelector('#summary-partner').innerHTML = (traveller_obj_new.Partner === 1) ? '&heartsuit;' : 0;
+            document.querySelector('#summary-childs').textContent = traveller_obj_new.Child;
+            document.querySelector('#summary-friends').textContent = traveller_obj_new.Friend;
         }
-
-        Object.keys(traveller_obj_new).forEach(key => traveller_obj_old[key] = traveller_obj_new[key]);
-
-        document.querySelector('#summary-partner').innerHTML = (traveller_obj_new.Partner === 1) ? '&heartsuit;' : 0;
-        document.querySelector('#summary-childs').textContent = traveller_obj_new.Child;
-        document.querySelector('#summary-friends').textContent = traveller_obj_new.Friend;
 
         return true;
     }
     else if (steps_index === 1 && (sub_steps_index === 1 || sub_steps_index === 2)) {
+        // check travellers details
         let value_return = true;
         const temp_container_form_perperson_dynamically = document.querySelectorAll('.container-form-perperson-dynamically');
         temp_container_form_perperson_dynamically.forEach((parent, idx) => {
@@ -317,11 +333,14 @@ function fn_check_inputs(steps_index, sub_steps_index) {
                     if (sub_steps_index === 2){
                         fn_sub_container_manager(sub_form_idx = --sub_steps_index);
                     }
-                    form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, idx);
-                    if (steps_arr_index !== 1) {
-                        console.log('text_aux1');
+
+                    if (final_check) {
+                        steps_arr_index = fn_container_steps_manager_control(steps_index, steps_arr_index);
+                        fn_sub_container_manager(sub_form_idx);
                     }
-                    else elem.focus();
+
+                    form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, idx);
+                    elem.focus();
                     value_return = false;
                 }
             });
@@ -331,10 +350,13 @@ function fn_check_inputs(steps_index, sub_steps_index) {
         const temp_travel_preference_required_info = document.querySelector('#container-form-info-travel-preference').querySelectorAll('.required-info');
         temp_travel_preference_required_info.forEach((elem, idx) => {
             if (elem.value === '' && value_return === true && sub_steps_index === 2) {
-                if (steps_arr_index !== 1) {
-                    console.log('text_aux2');
+
+                if (final_check) {
+                    steps_arr_index = fn_container_steps_manager_control(steps_index, steps_arr_index);
+                    fn_sub_container_manager(sub_form_idx);
                 }
-                else elem.focus();
+
+                elem.focus();
                 value_return = false;
             }
             else {
@@ -357,23 +379,76 @@ function fn_check_inputs(steps_index, sub_steps_index) {
         return value_return;
     }
     else if (steps_index === 2) {
+        // check accommodation
         if (cnt_accommodation_select.value === '') {
+
+            if (final_check) {
+                steps_arr_index = fn_container_steps_manager_control(steps_index, steps_arr_index);
+            }
+
             cnt_accommodation_select.focus();
             return false;
         }
         else {
-            document.querySelector('#summary-accommodation').innerHTML = cnt_accommodation_select.value;
+            document.querySelector('#summary-accommodation').textContent = cnt_accommodation_select.value;
             return true;
         }
     }
     else if (steps_index === 3) {
-        return true;
+        // check transport
+        if (cnt_travel_mode_select.value === '') {
+
+            if (final_check) {
+                steps_arr_index = fn_container_steps_manager_control(steps_index, steps_arr_index);
+            }
+
+            cnt_travel_mode_select.focus();
+            return false;
+        }
+        else {
+            document.querySelector("#summary-transport").textContent = cnt_travel_mode_select.value;
+            return true;
+        }
     }
     else if (steps_index === 4) {
+        // environment no need to check
+        let envirionment_chosen = '';
+        let how_many_checked = 0;
+        cnt_environment_checks.forEach(elem => {
+            if (elem.checked) {
+                how_many_checked++;
+                envirionment_chosen = elem.getAttribute('name');
+            }
+            else if (elem.value !== '' && elem.getAttribute('type') === 'text') {
+                how_many_checked++;
+                envirionment_chosen = elem.value;
+            }
+        });
+        
+        if (how_many_checked > 1) {
+            document.querySelector('#summary-environment').textContent = 'Mixed';
+        }
+        else {
+            document.querySelector('#summary-environment').textContent = envirionment_chosen;
+        }
+
         return true;
     }
     else if (steps_index === 5) {
-        return true;
+        // check desitnation
+        if (cnt_destination_select.value === '') {
+
+            if (final_check) {
+                steps_arr_index = fn_container_steps_manager_control(steps_index, steps_arr_index);
+            }
+
+            cnt_destination_select.focus();
+            return false;
+        }
+        else {
+            document.querySelector('#summary-location').textContent = cnt_destination_select.value;
+            return true;
+        }
     }
 }
 
@@ -387,9 +462,10 @@ window.fn_add_required_attribute = fn_add_required_attribute;
 // function to filter number in the fields Traveling childs and Traveling Friends. Second step
 // allowing only two digits number
 function fn_filter_number_travellers(elm) {
-    if (!(/^[0-9]{1,2}$/.test(elm.target.value) && (elm.target.value >= '0') && (elm.target.value <= '30'))) {
+    if (!(/^[0-9]{1,2}$/.test(elm.target.value) && (elm.target.value >= '1') && (elm.target.value <= '30'))) {
         elm.target.value = /(?:[0-9]{1,2})/.exec(elm.target.value);
-        if (elm.target.value > 30) elm.target.value = 30;
+        if (elm.target.value > 30) {elm.target.value = 30};
+        if (elm.target.value === '0') {elm.target.value = 1};
     }
 }
 
@@ -414,7 +490,7 @@ window.addEventListener('resize', () => {
     fn_check_screen_event_size();
 });
 
-// The steps on the top of the form. They are used to navigate between the steps
+// icons on the left to navigate between the steps
 cnt_steps_icons.forEach((elm, idx) => {
     elm.addEventListener('click', () => {
         if (idx > steps_arr_index) {
@@ -471,6 +547,25 @@ Array.from(cnt_radio_btns_sub_form.children).forEach(radio_btn => {
 });
 
 // form events: Travellers
+// Checkbox to add child
+document.querySelector('input[name="inp-traveling-child').addEventListener('click', (evt) => {
+    if (evt.target.checked) {
+        cnt_number_of_childs.value = 1;
+    }
+    else {
+        cnt_number_of_childs.value = 0;
+    }
+});
+// Checkbox to add friend
+document.querySelector('input[name="inp-traveling-friend').addEventListener('click', (evt) => {
+    if (evt.target.checked) {
+        cnt_number_of_friends.value = 1;
+    }
+    else {
+        cnt_number_of_friends.value = 0;
+    }
+});
+
 // Increase or decrease the number of childs
 document.querySelectorAll('.number-of-childs').forEach((elm, idx) => {
     if (idx === 0) {
@@ -513,6 +608,12 @@ cnt_number_of_childs.addEventListener('keyup', (evt) => {
 
 cnt_number_of_friends.addEventListener('keyup', (evt) => {
     fn_filter_number_travellers(evt);
+});
+
+// format the currency in the budget input
+document.querySelector('#preference-budget-input').addEventListener('focusout', evt => {
+    evt.target.value = Number(evt.target.value).toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+    evt.target.value = (evt.target.value === '$NaN' || evt.target.value === '$0.00') ? '' : evt.target.value;
 });
 
 // Dynamically bring up the options when user selects the type of accommodation
@@ -653,13 +754,6 @@ cnt_accommodation_select.addEventListener('change', (evt) => {
     }
 });
 
-
-
-
-
-
-
-
 // Buttons to shift the forms per person. This is the form where are the fields like name, birthdate, etc
 document.querySelector('#left-form-per-person').addEventListener('click', () => {
     form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, form_per_person_idx - 1);
@@ -674,21 +768,84 @@ document.querySelector('#how-active-select').addEventListener('change', (evtSele
     let tem_travel_info_dynamic_label = document.querySelectorAll('.travel-info-dynamic-label');
     tem_travel_info_dynamic_label.forEach(elm => elm.remove());
 
-    if (evtSelect.target.value === 'high') {
+    if (evtSelect.target.value === 'High') {
         document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', html_css_vars.cnt_check_how_active_options_html.strenuous);
         document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', html_css_vars.cnt_check_how_active_options_html.rest_days);
         document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', html_css_vars.cnt_check_how_active_options_html.travel_time);
     }
-    else if (evtSelect.target.value === 'middle') {
+    else if (evtSelect.target.value === 'Middle') {
         document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', html_css_vars.cnt_check_how_active_options_html.strenuous);
         document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', html_css_vars.cnt_check_how_active_options_html.rest_days);
     }
-    else if (evtSelect.target.value === 'low') {
+    else if (evtSelect.target.value === 'Low') {
         document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', html_css_vars.cnt_check_how_active_options_html.sedentary);
         document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', html_css_vars.cnt_check_how_active_options_html.strenuous);
         document.querySelector('#how-actie-options').insertAdjacentHTML('afterend', html_css_vars.cnt_check_how_active_options_html.rest_days);
     }
 });
+
+// Preferred modes of transport
+document.querySelector('#travel-mode').addEventListener('change', evt => {
+    try{
+        document.querySelectorAll('.travel-modes-options').forEach(elm => elm.remove());
+    } catch(err){}
+
+    switch(evt.target.value) {
+        case 'Air':
+            document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.air);
+            break;
+        case 'Land':
+            document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.land);
+            break;
+        case 'Water':
+            document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.water);
+            break;
+        default:
+    }
+});
+
+// submit the form
+document.querySelector('#submit-form').addEventListener('click', () => {
+    let form_valid = true;
+    const go_through_all_required_steps = [1, 2, 3, 5];
+    go_through_all_required_steps.forEach(step => {
+        if (step === 1) {
+            if (!fn_check_inputs(step, sub_form_idx = 1, true)) {
+                form_valid = false;
+                return;
+            }
+            else if (!fn_check_inputs(step, sub_form_idx = 2, true)) {
+                form_valid = false;
+                return;
+            }
+        }
+        else if (step === 2) {
+            if (!fn_check_inputs(step, 0, true)) {
+                console.log('step 2');
+                form_valid = false;
+                return;
+            }
+        }
+        else if (step === 3) {
+            if (!fn_check_inputs(step, 0, true)) {
+                form_valid = false;
+                return;
+            }
+        }
+        else if (step === 5) {
+            if (!fn_check_inputs(step, 0, true)) {
+                form_valid = false;
+                return;
+            }
+        }
+    });
+    if (form_valid) cnt_containers_form.submit();
+});
+
+cnt_containers_form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+});
+
 
 // ************************************** end events **************************************
 

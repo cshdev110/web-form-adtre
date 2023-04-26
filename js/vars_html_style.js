@@ -6,6 +6,41 @@ export const button_start = `<div id="container-button-start">
                                 <button type="button" id="button-start__button"></button>
                             </div>`;
 
+// create new traveller function
+export function fn_create_new_traveller(person) {
+    const traveller = 
+    `<div class="container-form-perperson-dynamically" id="${person}">
+        <label for="name-${person}">Name *</label>
+        <input type="text" name="name-${person}" class="required-info form-perperson-inputs" maxlength="50" onfocusin="fn_add_required_attribute(event)" placeholder="${person}">
+
+        <label for="birthdate-${person}">Birth Date *</label>
+        <input type="date" name="birthdate-${person}"class="required-info form-perperson-inputs" onfocusin="fn_add_required_attribute(event)">
+
+        <label for="occupation-${person}">Occupation</label>
+        <input type="text" name="occupation-${person}" class="form-perperson-inputs" placeholder="${person}...">
+
+        <label for="gender-${person}">Gender *</label>
+        <select name="gender-${person}" class="required-info form-perperson-inputs" onfocusin="fn_add_required_attribute(event)">
+            <option value="" selected>Select</option>
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+        </select>
+
+        <label for="dietary-${person}">Dietary Requirements *</label><input list="form-datalist-dietary-${person}" name="dietary-${person}" class="required-info form-perperson-inputs" onfocusin="fn_add_required_attribute(event)" placeholder="double clic to see more">
+        <datalist id="form-datalist-dietary-${person}">
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Halal">Halal</option>
+            <option value="Kosher">Kosher</option>
+            <option value="Allergies">Allergies</option>
+        </datalist>
+
+        <label for="specialneeds-${person}">Special Needs</label>
+        <input type="text" name="specialneeds-${person}" class="form-perperson-inputs">                                     
+    </div>`;
+    return traveller;
+}
+
 // Object: how active html options to bring up after changing the how active select element at Travel Preferences
 export const cnt_check_how_active_options_html = {
     travel_time: `<label class="travel-info-dynamic-label" for="how-active-travelling-all-time">
@@ -101,40 +136,37 @@ export const accommodation_options_html = {
             </fieldset>`
 }
 
-// create new traveller function
-export function fn_create_new_traveller(person) {
-    const traveller = 
-    `<div class="container-form-perperson-dynamically" id="${person}">
-        <label for="name-${person}">Name *</label>
-        <input type="text" name="name-${person}" class="required-info form-perperson-inputs" maxlength="50" onfocusin="fn_add_required_attribute(event)" placeholder="${person}">
-
-        <label for="birthdate-${person}">Birth Date *</label>
-        <input type="date" name="birthdate-${person}"class="required-info form-perperson-inputs" onfocusin="fn_add_required_attribute(event)">
-
-        <label for="occupation-${person}">Occupation</label>
-        <input type="text" name="occupation-${person}" class="form-perperson-inputs" placeholder="${person}...">
-
-        <label for="gender-${person}">Gender *</label>
-        <select name="gender-${person}" class="required-info form-perperson-inputs" onfocusin="fn_add_required_attribute(event)">
-            <option value="" selected>Select</option>
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-        </select>
-
-        <label for="dietary-${person}">Dietary Requirements *</label><input list="form-datalist-dietary-${person}" name="dietary-${person}" class="required-info form-perperson-inputs" onfocusin="fn_add_required_attribute(event)" placeholder="double clic to see more">
-        <datalist id="form-datalist-dietary-${person}">
-            <option value="Vegetarian">Vegetarian</option>
-            <option value="Vegan">Vegan</option>
-            <option value="Halal">Halal</option>
-            <option value="Kosher">Kosher</option>
-            <option value="Allergies">Allergies</option>
-        </datalist>
-
-        <label for="specialneeds-${person}">Special Needs</label>
-        <input type="text" name="specialneeds-${person}" class="form-perperson-inputs">                                     
-    </div>`;
-
-    return traveller;
+// html field for the transport method step
+export const transport_mode_html = {
+    air: `
+        <div class="travel-modes-options" id="container-air-mode">
+            <label for="Jet">Jet<input type="checkbox" name="Jet" value="Jet"></label>
+            <label for="Turbo-prop">Turbo-prop<input type="checkbox" name="Turbo-prop" value="Turbo-prop"></label>
+            <label for="Helicopter">Helicopter<input type="checkbox" name="Helicopter" value="Helicopter"></label>
+            <label for="Airoplane">Airoplane<input type="checkbox" name="Airoplane" value="Airoplane"></label>
+        </div>`,
+    land: `
+        <div class="travel-modes-options" id="container-land-mode">
+            <label for="Car">Car<input type="checkbox" name="Car" value="Car"></label>
+            <label for="Motorcycle">Motorcycle<input type="checkbox" name="Motorcycle" value="Motorcycle"></label>
+            <label for="Bus">Bus<input type="checkbox" name="Bus" value="Bus"></label>
+            <label for="Train">Train<input type="checkbox" name="Train" value="Train"></label>
+        </div>`,
+    water: `
+        <div class="travel-modes-options" id="container-water-mode">
+            <fieldset>
+                <legend>Boat size</legend>
+                <label for="size-boat">
+                    Small <input type="radio" name="size-boat">
+                    - Large <input type="radio" name="size-boat">
+                </label>
+            </fieldset>
+            <label for="Yacht">Yacht<input type="checkbox" name="Yacht" value="Yacht"></label>
+            <label for="Sailboat">Sailboat<input type="checkbox" name="Sailboat" value="Sailboat"></label>
+            <label for="Motorboat">Motorboat<input type="checkbox" name="Motorboat" value="Motorboat"></label>
+            <label for="Ferry">Ferry<input type="checkbox" name="Ferry" value="Ferry"></label>
+            <label for="Barge">Barge<input type="checkbox" name="Barge" value="Barge"></label>
+        </div>`
 }
 
 // CSS style

@@ -101,7 +101,7 @@
     height: 100%;
     width: 100%;
     padding: 2% 4%;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
     position: absolute;
     top: 100%;
     left: 0px;
@@ -137,7 +137,7 @@
 .btn-continue {
     width: 100%;
     height: min(50px, 8vw);
-    margin-bottom: 5%;
+    /* margin-bottom: 5%; */
     background-color: #8600FF;
     font-family: 'Handlee', cursive;
     color: #FFFFFF;
@@ -387,19 +387,32 @@ input[name="radio-form-info-traveling-3-processes"]:checked {
 }
 
 /* ************************* form-section > form > info > travel mode ************************* */
-#container-air-mode {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+.travel-modes-options {
+    width: min(100%, 400px);
 }
 
-#container-form-info-travel-mode>div {
-    width: 100%;
-}
-
-#container-form-info-travel-mode label {
+.travel-modes-options>label {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    width: 100%;
+    padding-bottom: 1%;
+}
+
+.travel-modes-options>fieldset {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#container-form-info-travel-mode>label[for="travel-mode"] {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+#travel-mode {
+    padding-right: 25px;
 }
 
 /* ************************* form-section > form > info > travel environment ************************* */
@@ -489,7 +502,7 @@ input[name="radio-form-info-traveling-3-processes"]:checked {
 
     /* ************************* @media form-section > form ************************* */
     #main-form {
-        height: min(650px, 150vw);
+        height: min(450px, 150vw);
     }
 
     /* All its childrens */

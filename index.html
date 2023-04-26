@@ -48,7 +48,7 @@
             <!---------------------- from section ---------------------->
             <section id="form-section">
                 <button class="step-up-down" id="step-up-normal-screen">&#9204;</button>
-                <form action="" id="main-form">
+                <form name="travel-form" action="" id="main-form" method="post">
                     <div id="container-form-start">
                         <h2>Wellcome</h2>
                         <p>To offer you the best personal adventure experience, our agency requires you to 
@@ -131,16 +131,16 @@
                             </label>
 
                             <label for="budget">Budget ranges
-                                <input name="budget" type="number" min="0.0" step="0.01" placeholder="$ 1'000.000.00" 
-                                class="required-info" onfocusin="fn_add_required_attribute(event)">
+                                <input name="budget" type="currency" min="0" placeholder="$1,000.000" 
+                                id="preference-budget-input" class="required-info" onfocusin="fn_add_required_attribute(event)">
                             </label>
 
                             <label for="active" id="how-actie-options">How active
                                 <select name="active" id="how-active-select" class="required-info" onfocusin="fn_add_required_attribute(event)">
                                     <option value="" selected>Select &#9822;</option>
-                                    <option value="high">Highly active</option>
-                                    <option value="middle">Meddle active</option>
-                                    <option value="low">Low active</option>
+                                    <option value="High">Highly active</option>
+                                    <option value="Middle">Meddle active</option>
+                                    <option value="Low">Low active</option>
                                 </select>
                             </label>
 
@@ -175,82 +175,57 @@
                     <div id="container-form-info-travel-mode">
                         <h2>Preferred modes of travel</h2>
                         <label for="travel-mode">Choose your preference
-                            <select name="travel-mode" id="">
-                                <option value="Select">Select</option>
+                            <select name="travel-mode" id="travel-mode" class="required-info" onfocusin="fn_add_required_attribute(event)">
+                                <option value="">Select</option>
                                 <option value="Air">Air</option>
-                                <option value="Water">Water</option>
                                 <option value="Land">Land</option>
+                                <option value="Water">Water</option>
                             </select>
                         </label>
 
-
-                        <!-- <div id="container-air-mode">
-                            <label for="Jet">Jet<input type="checkbox" name="Jet" value="Jet"></label>
-                            <label for="Turbo-prop">Turbo-prop<input type="checkbox" name="Turbo-prop" value="Turbo-prop"></label>
-                            <label for="Helicopter">Helicopter<input type="checkbox" name="Helicopter" value="Helicopter"></label>
-                            <label for="Airoplane">Airoplane<input type="checkbox" name="Airoplane" value="Airoplane"></label>
-                        </div> -->
-
-                        <!-- <div id="container-water-mode">
-                            <fieldset>
-                                <label for="size-boat-check-small">Small<input type="checkbox" name="size-boat-check-small" id=""></label>
-                                <label for="size-boat-check-large">Large<input type="checkbox" name="size-boat-check-large" id=""></label>
-                            </fieldset>
-                            <label for="Cruise">Cruise<input type="checkbox" name="Cruise" value="Cruise"></label>
-                            <label for="Sail">Sail<input type="checkbox" name="Sail" value="Sail"></label>
-                            <label for="Barge">Barge<input type="checkbox" name="Barge" value="Barge"></label>
-                            <label for="Yacht">Yacht<input type="checkbox" name="Yacht" value="Yacht"></label>
-                        </div> -->
-
-                        <!-- <div id="container-land-mode">
-                            <label for="Car">Car<input type="checkbox" name="Car" value="Car"></label>
-                            <label for="Bus">Bus<input type="checkbox" name="Bus" value="Bus"></label>
-                            <label for="Train">Train<input type="checkbox" name="Train" value="Train"></label>
-                            <label for="Motorcycle">Motorcycle<input type="checkbox" name="Motorcycle" value="Motorcycle"></label>
-                        </div> -->
                         <button type="button" class="btn-continue">Continue</button>
                     </div>
 
                     <div id="container-form-info-travel-environment">
                         <h2>Preferred Environment</h2>
-                        <label for="travel-env-city">City
-                            <input type="checkbox" name="travel-env-city" id="">
+                        <label for="city">City
+                            <input type="checkbox" name="city" class="environment-checks">
                         </label>
 
-                        <label for="travel-env-Country">Country
-                            <input type="checkbox" name="" id="travel-env-Country">
+                        <label for="Country">Country
+                            <input type="checkbox" name="Country" class="environment-checks">
                         </label>
 
-                        <label for="travel-env-Natural">Natural
-                            <input type="checkbox" name="" id="travel-env-Natural">
+                        <label for="Natural">Natural
+                            <input type="checkbox" name="Natural" class="environment-checks">
                         </label>
 
-                        <label for="travel-env-Mountains">Mountains
-                            <input type="checkbox" name="" id="travel-env-Mountains">
+                        <label for="Mountains">Mountains
+                            <input type="checkbox" name="Mountains" class="environment-checks">
                         </label>
 
-                        <label for="travel-env-Deserts">Deserts
-                            <input type="checkbox" name="" id="travel-env-Deserts">
+                        <label for="Deserts">Deserts
+                            <input type="checkbox" name="Deserts" class="environment-checks">
                         </label>
 
-                        <label for="travel-env-Rain Forests">Rain Forests
-                            <input type="checkbox" name="" id="travel-env-Rain">
+                        <label for="Rain-Forests">Rain Forests
+                            <input type="checkbox" name="Rain-Forests" class="environment-checks">
                         </label>
 
-                        <label for="travel-env-Sea">Sea
-                            <input type="checkbox" name="" id="travel-env-Sea">
+                        <label for="Sea">Sea
+                            <input type="checkbox" name="Sea" class="environment-checks">
                         </label>
 
-                        <label for="travel-env-Coastal">Coastal
-                            <input type="checkbox" name="" id="travel-env-Coastal">
+                        <label for="Coastal">Coastal
+                            <input type="checkbox" name="Coastal" class="environment-checks">
                         </label>
 
-                        <label for="travel-env-Inland">Inland
-                            <input type="checkbox" name="" id="travel-env-Inland">
+                        <label for="Inland">Inland
+                            <input type="checkbox" name="Inland" class="environment-checks">
                         </label>
 
-                        <label for="travel-env-other">Other
-                            <input type="text" name="travel-env-other" id="" required>
+                        <label for="other">Other
+                            <input type="text" name="other" class="environment-checks">
                         </label>
 
                         <button type="button" class="btn-continue">Continue</button>
@@ -259,7 +234,8 @@
                     <div id="container-form-info-destination">
                         <h2>Preferred Destination</h2>
                         <label for="destination">Destination
-                            <select name="destination" id="">
+                            <select name="destination" id="destination-select" class="required-info" onfocusin="fn_add_required_attribute(event)">
+                                <option value="">Select</option>
                                 <option value="Africa">Africa</option>
                                 <option value="Asia">Asia</option>
                                 <option value="Central">Central</option>
@@ -268,7 +244,8 @@
                                 <option value="European Union">European Union</option>
                                 <option value="Middle East">Middle East</option>
                                 <option value="North America">North America</option>
-                                <option value="Oceania South America">Oceania South America</option>
+                                <option value="Oceania">Oceania</option>
+                                <option value="South America">South America</option>
                                 <option value="The Caribbean">The Caribbean</option>
                             </select>
                         </label>
@@ -280,7 +257,7 @@
                         <p>Thank you for supporting us with all the details enquired. Press the Submit 
                             button to finalise and begin with the tickets.
                         </p>
-                        <input type="submit" name="submit" value="Submit" class="btn-continue" disabled>
+                        <input type="button" name="submit-form-input" value="Submit" class="btn-continue" id="submit-form">
                     </div>
                 </form>
                 <button class="step-up-down" id="step-down-normal-screen">&#9205;</button>
