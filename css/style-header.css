@@ -7,8 +7,22 @@ header {
     justify-content: space-evenly;
 }
 
+#container-globe-ani {
+    position: relative;
+}
+
 #container-globe-ani>img {
     width: min(150px, 20vw);
+}
+
+
+#transport-animation-on-logo {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    background-color: black;
+    top: 0px;
+    left: 0px;
 }
 
 header h1 {

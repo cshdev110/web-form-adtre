@@ -15,6 +15,7 @@
     <header>
         <div id="container-globe-ani">
             <img src="icons/Globe.svg" alt="logo" srcset="">
+            <div id="transport-animation-on-logo"></div>
         </div>
         <h1>GLOBAL ADVENTURE</h1>
     </header>
@@ -91,8 +92,9 @@
                                 </div>
 
                                 <div class="container-form-perperson-dynamically" id="you">
-                                    <label for="name">Name *</label>
-                                    <input type="text" name="name" class="required-info form-perperson-inputs" placeholder="Name" maxlength="50" onfocusin="fn_add_required_attribute(event)">
+                                    <label for="name">Full name *</label>
+                                    <input type="text" name="name" class="required-info form-perperson-inputs" id="name-traveller-input"
+                                    placeholder="Name" maxlength="50" onfocusin="fn_add_required_attribute(event)">
                                     
                                     <label for="birthdate">Birth Date *</label>
                                     <input type="date" name="birthdate" class="required-info form-perperson-inputs" onfocusin="fn_add_required_attribute(event)">
@@ -130,9 +132,13 @@
                                 <input name="preference-date" type="date" class="required-info" onfocusin="fn_add_required_attribute(event)">
                             </label>
 
-                            <label for="budget">Budget ranges
-                                <input name="budget" type="currency" min="0" placeholder="$1,000.000" 
-                                id="preference-budget-input" class="required-info" onfocusin="fn_add_required_attribute(event)">
+                            <label for="budget"><p>Budget</p>
+                                <div id="container-input-budget">
+                                    <p>Min</p><input name="budget" type="currency" min="0" placeholder="$200" 
+                                    id="preference-budget-min-input" class="required-info preference-budget-input" onfocusin="fn_add_required_attribute(event)">
+                                    <p>Max</p><input name="budget" type="currency" min="0" placeholder="$10,000"
+                                    id="preference-budget-max-input" class="required-info preference-budget-input" onfocusin="fn_add_required_attribute(event)">
+                                </div>
                             </label>
 
                             <label for="active" id="how-actie-options">How active

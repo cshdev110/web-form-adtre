@@ -27,6 +27,9 @@ const cnt_container_form_info_details_fields = document.querySelector('#containe
 const cnt_number_of_childs = document.querySelector('input[name="number-of-childs"]');
 const cnt_number_of_friends = document.querySelector('input[name="number-of-friends"]');
 
+// cnt_budget_min_max cointain the min and max values of the budget
+const cnt_budget_min_max = document.querySelectorAll('.preference-budget-input');
+
 // cnt_accommodation_select is to select the type of accommodation at Preferred Accommodation
 const cnt_accommodation_select = document.querySelector('#accommodation-select');
 
@@ -128,7 +131,7 @@ function fn_start() {
 
         // Stalying the first step icon
 /////// for the sake of the test ///////////////////////////////////////////////////////
-        steps_arr_index = 2;
+        steps_arr_index = 3;
         // sub_form_idx = 2;
         fn_sub_container_manager(sub_form_idx)
 
@@ -410,8 +413,9 @@ function fn_check_inputs(steps_index, sub_steps_index = 1, final_check = false) 
             return true;
         }
     }
+
     else if (steps_index === 4) {
-        // environment no need to check
+        // check environment
         let envirionment_chosen = '';
         let how_many_checked = 0;
         cnt_environment_checks.forEach(elem => {
@@ -424,15 +428,30 @@ function fn_check_inputs(steps_index, sub_steps_index = 1, final_check = false) 
                 envirionment_chosen = elem.value;
             }
         });
+
+        try{
+            document.querySelector('#required-environment').remove();
+        }catch(err){}
         
         if (how_many_checked > 1) {
             document.querySelector('#summary-environment').textContent = 'Mixed';
+            return true;
+
+        }
+        else if (how_many_checked === 1) {
+            document.querySelector('#summary-environment').textContent = envirionment_chosen;
+            return true;
+
         }
         else {
-            document.querySelector('#summary-environment').textContent = envirionment_chosen;
+            if (final_check) {
+                steps_arr_index = fn_container_steps_manager_control(steps_index, steps_arr_index);
+            }
+            // show a message to let the user know that he must choose at least one option
+            const temp_required_environment = `<p id="required-environment">*Please choose one option</p>`;
+            document.querySelector('#container-form-info-travel-environment').children[0].insertAdjacentHTML('afterend', temp_required_environment);
         }
 
-        return true;
     }
     else if (steps_index === 5) {
         // check desitnation
@@ -610,10 +629,44 @@ cnt_number_of_friends.addEventListener('keyup', (evt) => {
     fn_filter_number_travellers(evt);
 });
 
-// format the currency in the budget input
-document.querySelector('#preference-budget-input').addEventListener('focusout', evt => {
-    evt.target.value = Number(evt.target.value).toLocaleString('en-US', {style: 'currency', currency: 'USD'});
-    evt.target.value = (evt.target.value === '$NaN' || evt.target.value === '$0.00') ? '' : evt.target.value;
+// Filfering name. Only letters, dots and spaces are allowed
+document.querySelector('#name-traveller-input').addEventListener('keyup', (evt) => {
+    evt.target.value = /(?:[a-zA-Z.\s]+)/.exec(evt.target.value);
+});
+
+
+// filtering the budget input. Only numbers are allowed
+cnt_budget_min_max.forEach(budget_ele => {
+    budget_ele.addEventListener('keyup', (evt) => {
+        evt.target.value = /(?:[0-9]+)/.exec(evt.target.value);
+    });
+});
+
+// format the currency in the budget input to dollar.
+// Also, if the min budget is greater than the max budget, the max budget is increased by 1
+// and opposite if the max budget is less than the min budget
+cnt_budget_min_max.forEach((budget_ele, idx) => {
+    
+    if (idx === 0) {
+        budget_ele.addEventListener('focusout', evt => {
+            if (Number(evt.target.value.replace(/[\$,]/g, '')) > Number(cnt_budget_min_max[1].value.replace(/[\$,]/g, ''))) {
+                cnt_budget_min_max[1].value = (Number(evt.target.value) + 1).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: 0});
+            }
+            
+            evt.target.value = Number(evt.target.value.replace(/[\$,]/g, '')).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: 0});
+            evt.target.value = (evt.target.value === '$NaN' || evt.target.value === '$0') ? '' : evt.target.value;
+        });
+    }
+    else if (idx === 1) {
+        budget_ele.addEventListener('focusout', evt => {
+            if (Number(evt.target.value.replace(/[\$,]/g, '')) < Number(cnt_budget_min_max[0].value.replace(/[\$,]/g, ''))) {
+                cnt_budget_min_max[0].value = (Number(evt.target.value) - 1).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: 0});
+            }
+
+            evt.target.value = Number(evt.target.value.replace(/[\$,]/g, '')).toLocaleString('en-US', {style: 'currency', currency: 'USD', minimumFractionDigits: 0});
+            evt.target.value = (evt.target.value === '$NaN' || evt.target.value === '$0') ? '' : evt.target.value;
+        });
+    }
 });
 
 // Dynamically bring up the options when user selects the type of accommodation
@@ -793,6 +846,7 @@ document.querySelector('#travel-mode').addEventListener('change', evt => {
     switch(evt.target.value) {
         case 'Air':
             document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.air);
+            fn_animation_transports();
             break;
         case 'Land':
             document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.land);
@@ -803,6 +857,62 @@ document.querySelector('#travel-mode').addEventListener('change', evt => {
         default:
     }
 });
+
+// transport animation over the icon
+function fn_animation_transports() {
+    
+
+    let width_logo = document.querySelector('#container-globe-ani').offsetWidth;
+    let radio_logo = width_logo / 2;
+    let x_log = document.querySelector('#container-globe-ani').offsetLeft;
+    let y_log = document.querySelector('#container-globe-ani').offsetTop;
+
+    let x_origin = Math.floor(Math.random() * radio_logo) + 1;
+    let left_or_rigth = Math.floor(Math.random() * 2);
+    if (left_or_rigth === 1) {
+        x_origin = width_logo - x_origin;
+    }
+
+    let y_origin = Math.floor(Math.sqrt(Math.pow(radio_logo, 2) - Math.pow((left_or_rigth)? (x_origin - radio_logo) : (radio_logo - x_origin), 2)));
+    
+    let up_or_down = Math.floor(Math.random() * 2);
+    if (up_or_down === 1) {
+        y_origin = width_logo - y_origin;
+    }
+
+    let x_end = width_logo - x_origin;
+    let y_end = width_logo - y_origin;
+
+    const transport_over = document.querySelector('#transport-animation-on-logo');
+
+    console.log('width_logo', width_logo, 'radio_logo', radio_logo);
+    console.log('x_origin', x_origin, 'y_origin', y_origin, 'x_end', x_end, 'y_end', y_end);
+
+
+    let anima_transport_inter = setInterval(frames, 50);
+
+    function frames() {
+        if (x_origin === x_end) {
+            anima_transport_inter = clearInterval(null);
+        }
+
+        
+
+        if (left_or_rigth === 0) {
+            transport_over.style.top = x_origin++ + 'px';
+        }
+        else {
+            transport_over.style.top = x_origin-- + 'px';
+        }
+
+        if (up_or_down === 0) {
+            transport_over.style.left = y_origin++ + 'px';
+        }
+        else {
+            transport_over.style.left = y_origin-- + 'px';
+        }
+    }
+}
 
 // submit the form
 document.querySelector('#submit-form').addEventListener('click', () => {
