@@ -846,71 +846,93 @@ document.querySelector('#travel-mode').addEventListener('change', evt => {
     switch(evt.target.value) {
         case 'Air':
             document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.air);
-            fn_animation_transports();
+            fn_animation_transports('../icons/plane_a.png');
             break;
         case 'Land':
             document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.land);
+            fn_animation_transports('../icons/bus.png');
             break;
         case 'Water':
             document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.water);
+            fn_animation_transports('../icons/boat.png');
             break;
         default:
     }
 });
-
+document.querySelector('#container-globe-ani').addEventListener('click', () => {
+    fn_animation_transports();
+});
 // transport animation over the icon
-function fn_animation_transports() {
+function fn_animation_transports(url_icon) {
     
+    let anima_transport_inter = null;
 
-    let width_logo = document.querySelector('#container-globe-ani').offsetWidth;
+    const transport_over = document.querySelector('#transport-animation-on-logo');
+    transport_over.style.backgroundImage = `url(${url_icon})`;
+
+    let width_logo = document.querySelector('#container-globe-ani').offsetWidth - 20;
     let radio_logo = width_logo / 2;
+
     let x_log = document.querySelector('#container-globe-ani').offsetLeft;
     let y_log = document.querySelector('#container-globe-ani').offsetTop;
 
-    let x_origin = Math.floor(Math.random() * radio_logo) + 1;
-    let left_or_rigth = Math.floor(Math.random() * 2);
-    if (left_or_rigth === 1) {
-        x_origin = width_logo - x_origin;
-    }
-
-    let y_origin = Math.floor(Math.sqrt(Math.pow(radio_logo, 2) - Math.pow((left_or_rigth)? (x_origin - radio_logo) : (radio_logo - x_origin), 2)));
-    
-    let up_or_down = Math.floor(Math.random() * 2);
-    if (up_or_down === 1) {
-        y_origin = width_logo - y_origin;
-    }
-
-    let x_end = width_logo - x_origin;
-    let y_end = width_logo - y_origin;
-
-    const transport_over = document.querySelector('#transport-animation-on-logo');
-
-    console.log('width_logo', width_logo, 'radio_logo', radio_logo);
-    console.log('x_origin', x_origin, 'y_origin', y_origin, 'x_end', x_end, 'y_end', y_end);
-
-
-    let anima_transport_inter = setInterval(frames, 50);
+    anima_transport_inter = setInterval(frames, 2000);
 
     function frames() {
-        if (x_origin === x_end) {
-            anima_transport_inter = clearInterval(null);
-        }
+        let x_origin = Math.floor(Math.random() * radio_logo) + 1;
+        let x_angle = radio_logo - x_origin;
 
+        let y_angle = Math.floor(Math.sqrt(Math.pow(radio_logo, 2) - Math.pow(x_angle, 2)));
+        let y_origin = radio_logo - y_angle;
         
+        // to shift to another quadrant randomly
+        let left_or_rigth = Math.floor(Math.random() * 2);
+        let up_or_down = Math.floor(Math.random() * 2);
 
-        if (left_or_rigth === 0) {
-            transport_over.style.top = x_origin++ + 'px';
-        }
-        else {
-            transport_over.style.top = x_origin-- + 'px';
+        if (left_or_rigth === 1) {
+            x_origin = width_logo - x_origin;
         }
 
-        if (up_or_down === 0) {
-            transport_over.style.left = y_origin++ + 'px';
+        if (up_or_down === 1) {
+            y_origin = width_logo - y_origin;
         }
-        else {
-            transport_over.style.left = y_origin-- + 'px';
+ 
+        let x_end = width_logo - x_origin;
+        let y_end = width_logo - y_origin;
+
+        // Calculate the angle how the transport will start
+        let transport_angle = Math.floor(Math.asin(y_angle/radio_logo) * 180 / Math.PI);
+
+        if (x_origin >= radio_logo && y_origin < radio_logo) {
+            transport_angle = 90 - transport_angle;
         }
+        else if (x_origin >= radio_logo && y_origin >= radio_logo) {
+            transport_angle = transport_angle + 90;
+        }
+        else if (x_origin < radio_logo && y_origin >= radio_logo) {
+            transport_angle = 270 - transport_angle;
+        }
+        else if (x_origin < radio_logo && y_origin < radio_logo) {
+            transport_angle = transport_angle + 270;
+        }
+
+        transport_over.style.transition = 'none';
+        transport_over.style.visibility = 'visible';
+        transport_over.style.left = (x_origin) + 'px';
+        transport_over.style.top = (y_origin) + 'px';
+        transport_over.style.transform = `rotate(${transport_angle}deg)`;
+
+        setTimeout(() => {
+            transport_over.style.transition = 'all ease-in-out .8s';
+            transport_over.style.left = x_end + 'px';
+            transport_over.style.top = y_end + 'px';
+        }, 1);
+
+        setTimeout(() => {
+            transport_over.style.visibility = 'hidden';
+        }, 10);
+
+        if (false) clearInterval(anima_transport_inter);
     }
 }
 

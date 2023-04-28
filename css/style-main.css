@@ -362,11 +362,6 @@ input[name="radio-form-info-traveling-3-processes"]:checked {
 }
 
 /* ************************* form-section > form > info > accommodation ************************* */
-#container-form-info-accommodation {
-    /* height: 100%; */
-}
-
-
 #accommodation-hotel-stars {
     padding-right: 20px;
 

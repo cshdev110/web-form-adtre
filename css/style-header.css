@@ -9,6 +9,7 @@ header {
 
 #container-globe-ani {
     position: relative;
+    background-color: antiquewhite;
 }
 
 #container-globe-ani>img {
@@ -17,12 +18,16 @@ header {
 
 
 #transport-animation-on-logo {
-    width: 25px;
-    height: 25px;
+    visibility: hidden;
+    width: 30px;
+    height: 30px;
     position: absolute;
-    background-color: black;
+    background-image: url('../icons/plane_a.png');
+    background-repeat: no-repeat;
+    background-size: contain;
     top: 0px;
     left: 0px;
+    /* transform: rotate(225deg); */
 }
 
 header h1 {
