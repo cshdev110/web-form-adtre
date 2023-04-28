@@ -9,7 +9,6 @@ header {
 
 #container-globe-ani {
     position: relative;
-    background-color: antiquewhite;
 }
 
 #container-globe-ani>img {
@@ -22,12 +21,11 @@ header {
     width: 30px;
     height: 30px;
     position: absolute;
-    background-image: url('../icons/plane_a.png');
+    background-image: url('../icons/plane.png');
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     top: 0px;
     left: 0px;
-    /* transform: rotate(225deg); */
 }
 
 header h1 {

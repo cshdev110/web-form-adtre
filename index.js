@@ -8,7 +8,7 @@ const cnt_steps_icons = document.querySelectorAll('.step-to-form');
 let steps_arr_index = 0;
 
 // cnt_containers_form contains the containers of every form step
-const cnt_containers_form = document.querySelector('#main-form');
+let cnt_containers_form = document.querySelector('#main-form');
 
 // cnt_container-form-info is where there are the elements that contain the field about the customer's details
 const cnt_container_form_info = document.querySelector('#container-form-info');
@@ -48,10 +48,6 @@ let sub_form_idx = 0;
 // to go through the forms per person at container-form-info-details-fields. There ara the details about name, birth date, etc.
 let form_per_person_idx = 0;
 
-// people_info_arr is a dynamic that increases when the user adds more people such as family members and friends
-let people_info_arr = new Array('You');
-let people_info_arr_index = 0;
-
 // Buttons for the step up/down or left and right when screen less than 768px
 let btn_step_up_normal = document.querySelector('#step-up-normal-screen');
 let btn_step_down_normal = document.querySelector('#step-down-normal-screen');
@@ -72,9 +68,12 @@ let traveller_obj_new = {
     Friend: 0
 }
 
+// Variable interval to manage the animation of the media transport going over the logo.
+// This happens when the user chooose a way of transport
+let anima_transport_inter = null;
+
 // -------------------------------------- function to initialise --------------------------------------
 function fn_start() {
-
     // Deactivating step icons until the start button is clicked
     cnt_steps_icons.forEach(el => {
         el.style.pointerEvents = 'none';
@@ -131,8 +130,8 @@ function fn_start() {
 
         // Stalying the first step icon
 /////// for the sake of the test ///////////////////////////////////////////////////////
-        steps_arr_index = 3;
-        // sub_form_idx = 2;
+        steps_arr_index = 1; 
+        sub_form_idx = 1;
         fn_sub_container_manager(sub_form_idx)
 
 
@@ -345,6 +344,17 @@ function fn_check_inputs(steps_index, sub_steps_index = 1, final_check = false) 
                     form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, idx);
                     elem.focus();
                     value_return = false;
+                }
+                else if (elem.getAttribute('name') === 'birthdate') {
+                    let temp = (new Date()).getFullYear() - 100;
+                    let temp2 = (new Date(elem.value)).getFullYear();
+                    console.log(temp, temp2);
+                    
+                    if (temp > temp2) {
+                        form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, idx);
+                        elem.focus();
+                        value_return = false;
+                    }
                 }
             });
             if (!value_return) return
@@ -841,31 +851,34 @@ document.querySelector('#how-active-select').addEventListener('change', (evtSele
 document.querySelector('#travel-mode').addEventListener('change', evt => {
     try{
         document.querySelectorAll('.travel-modes-options').forEach(elm => elm.remove());
+        clearInterval(anima_transport_inter);
     } catch(err){}
 
     switch(evt.target.value) {
+        case '':
+            clearInterval(anima_transport_inter);
+            break;
         case 'Air':
             document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.air);
-            fn_animation_transports('../icons/plane_a.png');
+            fn_animation_transports('../icons/plane.png', '.8s', '1300');
             break;
         case 'Land':
             document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.land);
-            fn_animation_transports('../icons/bus.png');
+            fn_animation_transports('../icons/bus.png', '1.2s', '2000');
             break;
         case 'Water':
             document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.water);
-            fn_animation_transports('../icons/boat.png');
+            fn_animation_transports('../icons/boat.png', '2.0s', '2500');
             break;
         default:
     }
 });
-document.querySelector('#container-globe-ani').addEventListener('click', () => {
-    fn_animation_transports();
-});
+
 // transport animation over the icon
-function fn_animation_transports(url_icon) {
+function fn_animation_transports(url_icon, time_interval, time_transition) {
+
+    console.log(`all ease-in-out ${String(time_interval)}`);
     
-    let anima_transport_inter = null;
 
     const transport_over = document.querySelector('#transport-animation-on-logo');
     transport_over.style.backgroundImage = `url(${url_icon})`;
@@ -876,9 +889,12 @@ function fn_animation_transports(url_icon) {
     let x_log = document.querySelector('#container-globe-ani').offsetLeft;
     let y_log = document.querySelector('#container-globe-ani').offsetTop;
 
-    anima_transport_inter = setInterval(frames, 2000);
+    anima_transport_inter = setInterval(frames, time_transition);
 
     function frames() {
+
+        console.log(`all ease-in-out ${time_interval}`);
+
         let x_origin = Math.floor(Math.random() * radio_logo) + 1;
         let x_angle = radio_logo - x_origin;
 
@@ -923,7 +939,8 @@ function fn_animation_transports(url_icon) {
         transport_over.style.transform = `rotate(${transport_angle}deg)`;
 
         setTimeout(() => {
-            transport_over.style.transition = 'all ease-in-out .8s';
+            console.log(`all ease-in-out ${time_interval}`);
+            transport_over.style.transition = `all ease-in-out ${time_interval}`;
             transport_over.style.left = x_end + 'px';
             transport_over.style.top = y_end + 'px';
         }, 1);
@@ -931,8 +948,6 @@ function fn_animation_transports(url_icon) {
         setTimeout(() => {
             transport_over.style.visibility = 'hidden';
         }, 10);
-
-        if (false) clearInterval(anima_transport_inter);
     }
 }
 
@@ -977,7 +992,6 @@ document.querySelector('#submit-form').addEventListener('click', () => {
 cnt_containers_form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 });
-
 
 // ************************************** end events **************************************
 
