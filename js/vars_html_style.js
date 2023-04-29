@@ -10,7 +10,7 @@ export const button_start = `<div id="container-button-start">
 export function fn_create_new_traveller(person) {
     const traveller = 
     `<div class="container-form-perperson-dynamically" id="${person}">
-        <label for="name-${person}">Name *</label>
+        <label for="name-${person}">Full Name *</label>
         <input type="text" name="name-${person}" class="required-info form-perperson-inputs" maxlength="50" onfocusin="fn_add_required_attribute(event)" placeholder="${person}">
 
         <label for="birthdate-${person}">Birth Date *</label>
@@ -35,8 +35,8 @@ export function fn_create_new_traveller(person) {
             <option value="Allergies">Allergies</option>
         </datalist>
 
-        <label for="specialneeds-${person}">Special Needs</label>
-        <input type="text" name="specialneeds-${person}" class="form-perperson-inputs">                                     
+        <label for="special-needs-${person}">Special Needs</label>
+        <input type="text" name="special-needs-${person}" class="form-perperson-inputs">                                     
     </div>`;
     return traveller;
 }
@@ -75,9 +75,9 @@ export const accommodation_options_html = {
                 <legend>Bed</legend>
                 <label for="radio-accommodation-bed">
                     Single bed
-                    <input type="radio" name="radio-accommodation-bed" checked>
+                    <input type="radio" name="accommodation-bed-single-double" checked>
                     - Double bed
-                    <input type="radio" name="radio-accommodation-bed">
+                    <input type="radio" name="accommodation-bed-single-double">
                 </label>
             </fieldset>`,
      bathroom: `
@@ -85,9 +85,9 @@ export const accommodation_options_html = {
                 <legend>Bathroom</legend>
                 <label for="radio-accommodation-bathrooms">
                     Private bathroom
-                    <input type="radio" name="radio-accommodation-bathrooms" checked>
+                    <input type="radio" name="accommodation-bathrooms-private-share" checked>
                     - Shared bathroom
-                    <input type="radio" name="radio-accommodation-bathrooms">
+                    <input type="radio" name="accommodation-bathrooms-private-share">
                 </label>
                 <label for="number-of-bathrooms">Bathrooms
                     <button type="button" class="number-of-bathrooms">+</button>
@@ -100,9 +100,9 @@ export const accommodation_options_html = {
                 <legend>Room</legend>
                 <label for="radio-accommodation-bethroom">
                     Single room
-                    <input type="radio" name="radio-accommodation-bethroom" checked>
+                    <input type="radio" name="accommodation-bethroom-sigle-share" checked>
                     - Shared room
-                    <input type="radio" name="radio-accommodation-bethroom">
+                    <input type="radio" name="accommodation-bethroom-sigle-share">
                 </label>
                 <label for="number-of-rooms">Bethrooms
                     <button type="button" class="number-of-rooms">+</button>
@@ -124,9 +124,9 @@ export const accommodation_options_html = {
                 <legend>Camping</legend>
                 <label for="radio-accommodation-camping">
                     Small tent
-                    <input type="radio" name="radio-accommodation-camping" checked>
+                    <input type="radio" name="accommodation-camping-small-large" checked>
                     - Large tent
-                    <input type="radio" name="radio-accommodation-camping">
+                    <input type="radio" name="accommodation-camping-small-large">
                 </label>
                 <label for="number-of-tents">Tents
                     <button type="button" class="number-of-tents">+</button>
@@ -157,8 +157,8 @@ export const transport_mode_html = {
             <fieldset>
                 <legend>Boat size</legend>
                 <label for="size-boat">
-                    Small <input type="radio" name="size-boat">
-                    - Large <input type="radio" name="size-boat">
+                    Small <input type="radio" name="size-boat-small-large">
+                    - Large <input type="radio" name="size-boat-small-large">
                 </label>
             </fieldset>
             <label for="Yacht">Yacht<input type="checkbox" name="Yacht" value="Yacht"></label>

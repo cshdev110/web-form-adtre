@@ -18,8 +18,8 @@ header {
 
 #transport-animation-on-logo {
     visibility: hidden;
-    width: 30px;
-    height: 30px;
+    width: min(30px, 8vw);
+    height: min(30px, 8vw);
     position: absolute;
     background-image: url('../icons/plane.png');
     background-repeat: no-repeat;

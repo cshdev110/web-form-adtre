@@ -49,7 +49,7 @@
             <!---------------------- from section ---------------------->
             <section id="form-section">
                 <button class="step-up-down" id="step-up-normal-screen">&#9204;</button>
-                <form name="travel-form" action="" id="main-form" method="post">
+                <form name="travel-form" action="https://tau.usq.edu.au/courses/CSC8740/reflect.php" id="main-form" method="post">
                     <div id="container-form-start">
                         <h2>Wellcome</h2>
                         <p>To offer you the best personal adventure experience, our agency requires you to 
@@ -64,17 +64,17 @@
                         <div id="container-form-info-travellers">
                             <h2>Travellers</h2>
                             <div id="container-form-info-traveling-inputs">
-                                <input type="checkbox" name="inp-traveling-partner">
-                                <label for="inp-traveling-partner">Traveling partner</label>
+                                <input type="checkbox" name="partner-traveling">
+                                <label for="partner-traveling">Traveling partner</label>
                                 
-                                <input type="checkbox" name="inp-traveling-child">
-                                <label for="inp-traveling-child">Traveling child</label>
+                                <input type="checkbox" name="child-traveling">
+                                <label for="child-traveling">Traveling child</label>
                                 <button type="button" class="number-of-childs">+</button>
                                 <input type="text" name="number-of-childs" value="0">
                                 <button type="button" class="number-of-childs">-</button>
                                 
-                                <input type="checkbox" name="inp-traveling-friend" id="">
-                                <label for="inp-traveling-friend">Traveling friend</label>
+                                <input type="checkbox" name="friend-traveling" id="">
+                                <label for="friend-traveling">Traveling friend</label>
                                 <button type="button" class="number-of-friends">+</button>
                                 <input type="text" name="number-of-friends" value="0">
                                 <button type="button" class="number-of-friends">-</button>
@@ -83,7 +83,7 @@
                         </div>
 
                         <div id="container-form-info-details">
-                            <h2>Personal Information</h2>
+                            <h2 id="title-personal-information">Personal Information</h2>
                             <div id="container-form-info-details-fields">
                                 <div id="container-form-info-details-traveller">
                                     <button type="button" id="left-form-per-person">&#9204;</button>
@@ -119,15 +119,15 @@
                                         <option value="Allergies">Allergies</option>
                                     </datalist>
 
-                                    <label for="specialneeds">Special Needs</label>
-                                    <input type="text" name="specialneeds" class="form-perperson-inputs">                                     
+                                    <label for="special-needs">Special Needs</label>
+                                    <input type="text" name="special-needs" class="form-perperson-inputs">                                     
                                 </div>
                             </div>
                             <button type="button" class="btn-continue">Continue</button>
                         </div>
 
                         <div id="container-form-info-travel-preference">
-                            <h2>Travel Preferences</h2>
+                            <h2 id="title-travel-preference">Travel Preferences</h2>
                             <label for="preference-date">Preference date
                                 <input name="preference-date" type="date" class="required-info" onfocusin="fn_add_required_attribute(event)">
                             </label>
@@ -263,6 +263,9 @@
                         <p>Thank you for supporting us with all the details enquired. Press the Submit 
                             button to finalise and begin with the tickets.
                         </p>
+                        <label for="extra-comments" id="label-final-comment"><h4>Any extra thoughts?</h4>
+                            <textarea name="extra-comments" id="final-comment" placeholder="Message"></textarea>
+                        </label>
                         <input type="button" name="submit-form-input" value="Submit" class="btn-continue" id="submit-form">
                     </div>
                 </form>

@@ -49,6 +49,7 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     width: 100%;
+    /* height: 100%; */
 }
 
 /* ************************* form-section > buttons left and rigth ************************* */
@@ -87,8 +88,12 @@
     padding: 2% 4%;
     overflow: hidden;
     position: relative;
+    font-family: 'Handlee', cursive;
 }
 
+#main-form h2 {
+    font-family: 'Indie Flower', cursive !important;
+}
 
 /* All its childrens */
 #main-form>div {
@@ -160,7 +165,6 @@
 }
 
 select, input:not([type='text']) {
-    font-size: min(0.8em, 1.6vw);
     cursor: pointer;
 }
 
@@ -251,7 +255,7 @@ select, input:not([type='text']) {
 #container-form-info-details-traveller * {
     width: 100%;
     text-align: center;
-    font-size: min(1em, 4vw);
+    /* font-size: min(1em, 4vw); */
 }
 
 .container-form-perperson-dynamically {
@@ -259,7 +263,7 @@ select, input:not([type='text']) {
     grid-template-columns: auto auto;
     row-gap: 10px;
     column-gap: 2%;
-    font-size: min(1em, 2.5vw);
+    /* font-size: min(1em, 2.5vw); */
 }
 
 .form-perperson-inputs {
@@ -344,19 +348,19 @@ input[type=date]::before {
     bottom: 2%;
 }
 
-input[name="radio-form-info-traveling-3-processes"] {
+#container-form-info-traveling-3-processes>input[name=radio-form-info-traveling-3-processes] {
     width: 10%;
     cursor: pointer;
     accent-color: #8600FF;
 }
 
-input[name="radio-form-info-traveling-3-processes"]:hover {
+#container-form-info-traveling-3-processes>input[name=radio-form-info-traveling-3-processes]:hover {
     transform: scale(1.1);
     transition: transform .1s;
 
 }
 
-input[name="radio-form-info-traveling-3-processes"]:checked {
+#container-form-info-traveling-3-processes>input[name=radio-form-info-traveling-3-processes]:checked {
     transform: scale(1.4);
     transition: transform .1s;
 }
@@ -489,10 +493,27 @@ input[name="radio-form-info-traveling-3-processes"]:checked {
     column-gap: 10px;
 
 }
+
 #container-travel-options-summary img {
     width: min(50px, 3.5vw);
     height: min(50px, 3.5vw);
 }
+
+#label-final-comment {
+    text-align: center;
+    width: 100%;
+}
+
+#final-comment {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 5%;
+    padding: 2%;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    resize: none;
+}
+
 
 /* ************************* @media ************************* */
 /* ************************* @media ************************* */
@@ -513,8 +534,8 @@ input[name="radio-form-info-traveling-3-processes"]:checked {
     }
 
     .step-to-form {
-        width: 50px;
-        height: 50px;
+        width: min(50px, 11vw);
+        height: min(50px, 11vw);
         margin: 2% 1%;    
     }
 
@@ -526,12 +547,12 @@ input[name="radio-form-info-traveling-3-processes"]:checked {
     /* ************************* form-section > buttons left and rigth ************************* */
     .step-up-down {
         width: 50%;
-        height: min(60px, 10vw);
+        height: min(600px, 10vw);
     }
 
     /* ************************* @media form-section > form ************************* */
     #main-form {
-        height: min(520px, 140vh);
+        height: min(600px, 110vw);
     }
 
     /* All its childrens */
@@ -540,19 +561,12 @@ input[name="radio-form-info-traveling-3-processes"]:checked {
         left: 100%;
     }
 
-    select, input:not([type='text']) {
-        font-size: min(1em, 3vw);
-    }
-
     /* ************************* @media form-section > form > info > travellers ************************* */
     #container-form-info-traveling-inputs {
         width: min(600px, 70vw);
     }
 
     /* ************************* @media form-section > form > info > details ************************* */
-    .container-form-perperson-dynamically {
-        font-size: min(1em, 4vw);
-    }
 
     /* ************************* @media form-section > form > info > accommodation ************************* */
     

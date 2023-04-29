@@ -72,6 +72,9 @@ let traveller_obj_new = {
 // This happens when the user chooose a way of transport
 let anima_transport_inter = null;
 
+// Variable to manage the animation keeps working after resizing
+let anima_transport_inter_resize = null;
+
 // -------------------------------------- function to initialise --------------------------------------
 function fn_start() {
     // Deactivating step icons until the start button is clicked
@@ -130,8 +133,8 @@ function fn_start() {
 
         // Stalying the first step icon
 /////// for the sake of the test ///////////////////////////////////////////////////////
-        steps_arr_index = 1; 
-        sub_form_idx = 1;
+        // steps_arr_index = 1; 
+        // sub_form_idx = 1;
         fn_sub_container_manager(sub_form_idx)
 
 
@@ -181,6 +184,11 @@ function fn_check_screen_event_size() {
         steps_arr_index = fn_container_steps_manager_control(steps_arr_index, 0);
         // It arranges from the last step to the current step
         steps_arr_index = fn_container_steps_manager_control(steps_arr_index, cnt_containers_form.children.length - 1);
+    }
+
+    // update the animation transport event
+    if (anima_transport_inter_resize !== ''){
+        fn_animation_transports_event(anima_transport_inter_resize);
     }
 }
 
@@ -297,7 +305,7 @@ function fn_add_or_remove_traveller_form(list_old, list_new) {
     });
 }
 
-// Filter the formulary's inputs plush block the next step if the inputs are not valid
+// Filter the formulary's inputs plus block the next step if the inputs are not valid
 function fn_check_inputs(steps_index, sub_steps_index = 1, final_check = false) {
     if (steps_index === 0) {
         // just the first step
@@ -305,9 +313,9 @@ function fn_check_inputs(steps_index, sub_steps_index = 1, final_check = false) 
     }
     else if (steps_index === 1 && sub_steps_index === 0) {   
         //  check number of travellers
-        traveller_obj_new.Partner = (document.querySelector('input[name="inp-traveling-partner"]:checked')) ? 1 : 0;
-        traveller_obj_new.Child = (document.querySelector('input[name="inp-traveling-child"]:checked')) ? Number(cnt_number_of_childs.value) : 0;
-        traveller_obj_new.Friend = (document.querySelector('input[name="inp-traveling-friend"]:checked')) ? Number(cnt_number_of_friends.value) : 0;
+        traveller_obj_new.Partner = (document.querySelector('input[name="partner-traveling"]:checked')) ? 1 : 0;
+        traveller_obj_new.Child = (document.querySelector('input[name="child-traveling"]:checked')) ? Number(cnt_number_of_childs.value) : 0;
+        traveller_obj_new.Friend = (document.querySelector('input[name="friend-traveling"]:checked')) ? Number(cnt_number_of_friends.value) : 0;
 
         if (!fn_compare_obj(traveller_obj_old, traveller_obj_new)) {
             try{
@@ -318,6 +326,7 @@ function fn_check_inputs(steps_index, sub_steps_index = 1, final_check = false) 
 
             Object.keys(traveller_obj_new).forEach(key => traveller_obj_old[key] = traveller_obj_new[key]);
 
+            // Inserting values to the summary
             document.querySelector('#summary-partner').innerHTML = (traveller_obj_new.Partner === 1) ? '&heartsuit;' : 0;
             document.querySelector('#summary-childs').textContent = traveller_obj_new.Child;
             document.querySelector('#summary-friends').textContent = traveller_obj_new.Friend;
@@ -329,6 +338,14 @@ function fn_check_inputs(steps_index, sub_steps_index = 1, final_check = false) 
         // check travellers details
         let value_return = true;
         const temp_container_form_perperson_dynamically = document.querySelectorAll('.container-form-perperson-dynamically');
+
+        try{
+            document.querySelector('#wrong-birthday').remove();
+        }catch(err){}
+        try{
+            document.querySelector('#wrong-date').remove();
+        }catch(err){}
+
         temp_container_form_perperson_dynamically.forEach((parent, idx) => {
             parent.querySelectorAll('.required-info').forEach(elem => {
                 if (elem.value === '' && value_return === true) {
@@ -345,50 +362,74 @@ function fn_check_inputs(steps_index, sub_steps_index = 1, final_check = false) 
                     elem.focus();
                     value_return = false;
                 }
-                else if (elem.getAttribute('name') === 'birthdate') {
-                    let temp = (new Date()).getFullYear() - 100;
-                    let temp2 = (new Date(elem.value)).getFullYear();
-                    console.log(temp, temp2);
+                // Validation of birthday
+                else if (elem.getAttribute('type') === 'date' && value_return === true) {
+                    let back_100_years = (new Date()).getFullYear() - 122;
+                    let input_birthday = new Date(elem.value);
                     
-                    if (temp > temp2) {
+                    // A birthday must not be less than 122 years before current day. 122 because the oldest person in the world lived 122 years.
+                    if (back_100_years > input_birthday.getFullYear() || input_birthday.toLocaleString() > new Date().toLocaleString()) {
+
+                        let wrong_birthday = `<p id="wrong-birthday">The bithday between ${back_100_years} and less than current date*</p>`;
+
+                        document.querySelector('#title-personal-information').insertAdjacentHTML('afterend', wrong_birthday);
+
                         form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, idx);
+                        elem.value = '';
                         elem.focus();
                         value_return = false;
                     }
                 }
             });
-            if (!value_return) return
         });
 
+        // check travel preference
         const temp_travel_preference_required_info = document.querySelector('#container-form-info-travel-preference').querySelectorAll('.required-info');
-        temp_travel_preference_required_info.forEach((elem, idx) => {
-            if (elem.value === '' && value_return === true && sub_steps_index === 2) {
+        if (value_return) {
+            temp_travel_preference_required_info.forEach((elem, idx) => {
+                if (elem.value === '' && value_return === true && sub_steps_index === 2) {
 
-                if (final_check) {
-                    steps_arr_index = fn_container_steps_manager_control(steps_index, steps_arr_index);
-                    fn_sub_container_manager(sub_form_idx);
-                }
+                    if (final_check) {
+                        steps_arr_index = fn_container_steps_manager_control(steps_index, steps_arr_index);
+                        fn_sub_container_manager(sub_form_idx);
+                    }
 
-                elem.focus();
-                value_return = false;
-            }
-            else {
-                switch(elem.getAttribute('name')) {
-                    case 'preference-date':
-                        document.querySelector('#summary-calender').textContent = elem.value;
-                        break;
-                    case 'budget':
-                        document.querySelector('#summary-budget').textContent = elem.value;
-                        break;
-                    case 'active':
-                        document.querySelector('#summary-active').textContent = elem.value;
-                        break;
-                    default:
-                        break;
+                    elem.focus();
+                    value_return = false;
                 }
-            }
-            if (!value_return) return
-        });                                                       
+                // Validation of preference date travel
+                else if (elem.getAttribute('type') === 'date' && value_return === true) {
+                    let current_date = new Date();
+                    let input_date = new Date(elem.value);
+                    
+                    // Must be greater than the current date
+                    if (current_date.toLocaleDateString() >= input_date.toLocaleDateString()) {
+                        let wrong_date = `<p id="wrong-date">The preference travel date cannot be before ${current_date.toLocaleDateString()} *</p>`;
+                        document.querySelector('#title-travel-preference').insertAdjacentHTML('afterend', wrong_date);
+                        form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, idx);
+                        elem.value = '';
+                        elem.focus();
+                        value_return = false;
+                    }
+                }
+                // Inserting values to the summary
+                if (value_return) {
+                    switch(elem.getAttribute('name')) {
+                        case 'preference-date':
+                            document.querySelector('#summary-calender').textContent = elem.value;
+                            break;
+                        case 'budget':
+                            document.querySelector('#summary-budget').textContent = elem.value;
+                            break;
+                        case 'active':
+                            document.querySelector('#summary-active').textContent = elem.value;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            });                
+        }                                       
         return value_return;
     }
     else if (steps_index === 2) {
@@ -510,6 +551,151 @@ function fn_nav_dynamic_forms_pp(idx, direction) {
     return idx;
 }
 
+// Function to animate the transport icons over the logo after the user select the preferred mode of transport
+function fn_animation_transports_event(mode_transport) {
+    try{
+        // Remove the elements air, land or water created when the html 'select' element is change. "html_css_vars.transport_mode_html.<air, land, water>"
+        document.querySelectorAll('.travel-modes-options').forEach(elm => elm.remove());
+        clearInterval(anima_transport_inter);
+    } catch(err){}
+
+    switch(mode_transport) {
+        case '':
+            clearInterval(anima_transport_inter);
+            break;
+        case 'Air':
+            document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.air);
+            fn_animation_transports('../icons/plane.png', '.8s', '1300');
+            break;
+        case 'Land':
+            document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.land);
+            fn_animation_transports('../icons/bus.png', '1.2s', '2000');
+            break;
+        case 'Water':
+            document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.water);
+            fn_animation_transports('../icons/boat.png', '2.0s', '2500');
+            break;
+        default:
+    }
+}
+
+// transport animation over the logo when a user chooses a mode of transport
+function fn_animation_transports(url_icon, time_interval, time_transition) {
+
+    const transport_over = document.querySelector('#transport-animation-on-logo');
+    transport_over.style.backgroundImage = `url(${url_icon})`;
+
+    let width_logo = document.querySelector('#container-globe-ani').offsetWidth - 20;
+    let radio_logo = width_logo / 2;
+
+    let x_log = document.querySelector('#container-globe-ani').offsetLeft;
+    let y_log = document.querySelector('#container-globe-ani').offsetTop;
+
+    anima_transport_inter = setInterval(frames, time_transition);
+
+    function frames() {
+
+        // Choosing randomly where transport icon will start
+        let x_origin = Math.floor(Math.random() * radio_logo) + 1;
+        let x_angle = radio_logo - x_origin;
+
+        let y_angle = Math.floor(Math.sqrt(Math.pow(radio_logo, 2) - Math.pow(x_angle, 2)));
+        let y_origin = radio_logo - y_angle;
+        
+        // to shift to another quadrant randomly
+        let left_or_rigth = Math.floor(Math.random() * 2);
+        let up_or_down = Math.floor(Math.random() * 2);
+
+        if (left_or_rigth === 1) {
+            x_origin = width_logo - x_origin;
+        }
+
+        if (up_or_down === 1) {
+            y_origin = width_logo - y_origin;
+        }
+ 
+        let x_end = width_logo - x_origin;
+        let y_end = width_logo - y_origin;
+
+        // Calculate the angle of how the transport icon will start
+        let transport_angle = Math.floor(Math.asin(y_angle/radio_logo) * 180 / Math.PI);
+
+        if (x_origin >= radio_logo && y_origin < radio_logo) {
+            transport_angle = 90 - transport_angle;
+        }
+        else if (x_origin >= radio_logo && y_origin >= radio_logo) {
+            transport_angle = transport_angle + 90;
+        }
+        else if (x_origin < radio_logo && y_origin >= radio_logo) {
+            transport_angle = 270 - transport_angle;
+        }
+        else if (x_origin < radio_logo && y_origin < radio_logo) {
+            transport_angle = transport_angle + 270;
+        }
+
+        // Posionate the icon
+        transport_over.style.transition = 'none';
+        transport_over.style.visibility = 'visible';
+        transport_over.style.left = (x_origin) + 'px';
+        transport_over.style.top = (y_origin) + 'px';
+        transport_over.style.transform = `rotate(${transport_angle}deg)`;
+
+        // start ani
+        setTimeout(() => {
+            transport_over.style.transition = `all ease-in-out ${time_interval}`;
+            transport_over.style.left = x_end + 'px';
+            transport_over.style.top = y_end + 'px';
+        }, 1);
+
+        setTimeout(() => {
+            transport_over.style.visibility = 'hidden';
+        }, 10);
+    }
+}
+
+async function fn_validate_after_submit() {
+    let form_valid = true;
+    const go_through_all_required_steps = [1, 2, 3, 4, 5];
+    go_through_all_required_steps.forEach(step => {
+        if (form_valid) {
+            if (step === 1) {
+                if (!fn_check_inputs(step, sub_form_idx = 1, true)) {
+                    form_valid = false;
+                }
+                else if (!fn_check_inputs(step, sub_form_idx = 2, true)) {
+                    form_valid = false;
+                }
+            }
+            else if (step === 2) {
+                if (!fn_check_inputs(step, 0, true)) {
+                    form_valid = false;
+                }
+            }
+            else if (step === 3) {
+                if (!fn_check_inputs(step, 0, true)) {
+                    form_valid = false;
+                }
+            }
+            else if (step === 4) {
+                if (!fn_check_inputs(step, 0, true)) {
+                    form_valid = false;
+                }
+            }
+            else if (step === 5) {
+                if (!fn_check_inputs(step, 0, true)) {
+                    form_valid = false;
+                }
+            }
+        }
+    });
+    if (form_valid) {
+        return 'Thank you for submitting your information. You can see the summary in the next page';
+    }
+    else {
+        throw 'Please, fill the missing fields';
+    }
+}
+
 // ************************************** end main functions **************************************
 
 // ************************************** events **************************************
@@ -554,7 +740,7 @@ btn_step_down_normal.addEventListener('click', () => {
     }
 });
 
-// The blue buttons Continue. When pressed, form steps are shifted to the right
+// The blue buttons Continue. When pressed, form are shifted to the right
 cnt_btns_continue.forEach(elem => {
     elem.addEventListener('click', () => {
         if (fn_check_inputs(steps_arr_index, sub_form_idx)) {
@@ -577,7 +763,7 @@ Array.from(cnt_radio_btns_sub_form.children).forEach(radio_btn => {
 
 // form events: Travellers
 // Checkbox to add child
-document.querySelector('input[name="inp-traveling-child').addEventListener('click', (evt) => {
+document.querySelector('input[name="child-traveling').addEventListener('click', (evt) => {
     if (evt.target.checked) {
         cnt_number_of_childs.value = 1;
     }
@@ -586,7 +772,7 @@ document.querySelector('input[name="inp-traveling-child').addEventListener('clic
     }
 });
 // Checkbox to add friend
-document.querySelector('input[name="inp-traveling-friend').addEventListener('click', (evt) => {
+document.querySelector('input[name="friend-traveling').addEventListener('click', (evt) => {
     if (evt.target.checked) {
         cnt_number_of_friends.value = 1;
     }
@@ -849,148 +1035,24 @@ document.querySelector('#how-active-select').addEventListener('change', (evtSele
 
 // Preferred modes of transport
 document.querySelector('#travel-mode').addEventListener('change', evt => {
-    try{
-        document.querySelectorAll('.travel-modes-options').forEach(elm => elm.remove());
-        clearInterval(anima_transport_inter);
-    } catch(err){}
 
-    switch(evt.target.value) {
-        case '':
-            clearInterval(anima_transport_inter);
-            break;
-        case 'Air':
-            document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.air);
-            fn_animation_transports('../icons/plane.png', '.8s', '1300');
-            break;
-        case 'Land':
-            document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.land);
-            fn_animation_transports('../icons/bus.png', '1.2s', '2000');
-            break;
-        case 'Water':
-            document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.water);
-            fn_animation_transports('../icons/boat.png', '2.0s', '2500');
-            break;
-        default:
-    }
+    anima_transport_inter_resize = evt.target.value;
+    fn_animation_transports_event(anima_transport_inter_resize);
 });
-
-// transport animation over the icon
-function fn_animation_transports(url_icon, time_interval, time_transition) {
-
-    console.log(`all ease-in-out ${String(time_interval)}`);
-    
-
-    const transport_over = document.querySelector('#transport-animation-on-logo');
-    transport_over.style.backgroundImage = `url(${url_icon})`;
-
-    let width_logo = document.querySelector('#container-globe-ani').offsetWidth - 20;
-    let radio_logo = width_logo / 2;
-
-    let x_log = document.querySelector('#container-globe-ani').offsetLeft;
-    let y_log = document.querySelector('#container-globe-ani').offsetTop;
-
-    anima_transport_inter = setInterval(frames, time_transition);
-
-    function frames() {
-
-        console.log(`all ease-in-out ${time_interval}`);
-
-        let x_origin = Math.floor(Math.random() * radio_logo) + 1;
-        let x_angle = radio_logo - x_origin;
-
-        let y_angle = Math.floor(Math.sqrt(Math.pow(radio_logo, 2) - Math.pow(x_angle, 2)));
-        let y_origin = radio_logo - y_angle;
-        
-        // to shift to another quadrant randomly
-        let left_or_rigth = Math.floor(Math.random() * 2);
-        let up_or_down = Math.floor(Math.random() * 2);
-
-        if (left_or_rigth === 1) {
-            x_origin = width_logo - x_origin;
-        }
-
-        if (up_or_down === 1) {
-            y_origin = width_logo - y_origin;
-        }
- 
-        let x_end = width_logo - x_origin;
-        let y_end = width_logo - y_origin;
-
-        // Calculate the angle how the transport will start
-        let transport_angle = Math.floor(Math.asin(y_angle/radio_logo) * 180 / Math.PI);
-
-        if (x_origin >= radio_logo && y_origin < radio_logo) {
-            transport_angle = 90 - transport_angle;
-        }
-        else if (x_origin >= radio_logo && y_origin >= radio_logo) {
-            transport_angle = transport_angle + 90;
-        }
-        else if (x_origin < radio_logo && y_origin >= radio_logo) {
-            transport_angle = 270 - transport_angle;
-        }
-        else if (x_origin < radio_logo && y_origin < radio_logo) {
-            transport_angle = transport_angle + 270;
-        }
-
-        transport_over.style.transition = 'none';
-        transport_over.style.visibility = 'visible';
-        transport_over.style.left = (x_origin) + 'px';
-        transport_over.style.top = (y_origin) + 'px';
-        transport_over.style.transform = `rotate(${transport_angle}deg)`;
-
-        setTimeout(() => {
-            console.log(`all ease-in-out ${time_interval}`);
-            transport_over.style.transition = `all ease-in-out ${time_interval}`;
-            transport_over.style.left = x_end + 'px';
-            transport_over.style.top = y_end + 'px';
-        }, 1);
-
-        setTimeout(() => {
-            transport_over.style.visibility = 'hidden';
-        }, 10);
-    }
-}
 
 // submit the form
 document.querySelector('#submit-form').addEventListener('click', () => {
-    let form_valid = true;
-    const go_through_all_required_steps = [1, 2, 3, 5];
-    go_through_all_required_steps.forEach(step => {
-        if (step === 1) {
-            if (!fn_check_inputs(step, sub_form_idx = 1, true)) {
-                form_valid = false;
-                return;
-            }
-            else if (!fn_check_inputs(step, sub_form_idx = 2, true)) {
-                form_valid = false;
-                return;
-            }
-        }
-        else if (step === 2) {
-            if (!fn_check_inputs(step, 0, true)) {
-                console.log('step 2');
-                form_valid = false;
-                return;
-            }
-        }
-        else if (step === 3) {
-            if (!fn_check_inputs(step, 0, true)) {
-                form_valid = false;
-                return;
-            }
-        }
-        else if (step === 5) {
-            if (!fn_check_inputs(step, 0, true)) {
-                form_valid = false;
-                return;
-            }
-        }
+
+    fn_validate_after_submit().then((res) => {
+        if (confirm(res)) cnt_containers_form.submit();
+    }).catch(rej => {
+        confirm(rej);
     });
-    if (form_valid) cnt_containers_form.submit();
 });
 
 cnt_containers_form.addEventListener('submit', (evt) => {
-    evt.preventDefault();
+    console.log('submit');
+    setTimeout(() => evt.preventDefault(), 3000);
 });
 
 // ************************************** end events **************************************

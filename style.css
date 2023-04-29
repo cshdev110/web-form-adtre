@@ -17,7 +17,6 @@ html {
 }
 
 body {
-    font-family: 'Handlee', cursive;
     font-family: 'Indie Flower', cursive;
     color: #8600FF;
     width: min(1920px, 100vw);
