@@ -1,6 +1,7 @@
 @import url('css/style-header.css');
 @import url('css/style-footer.css');
 @import url('css/style-main.css');
+@import url('css/report.css');
 /* Importing fonts */
 @import url('https://fonts.googleapis.com/css2?family=Handlee&family=Indie+Flower&display=swap');
 
@@ -17,7 +18,7 @@ html {
 }
 
 body {
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Handlee', cursive;
     color: #8600FF;
     width: min(1920px, 100vw);
 }
@@ -33,4 +34,12 @@ body::before {
     right: 0px;
     bottom: 0px;
     opacity: .25;
+}
+
+h1, h2 {
+    font-family: 'Indie Flower', cursive !important;
+}
+
+button {
+    font-family: 'Handlee', cursive;
 }

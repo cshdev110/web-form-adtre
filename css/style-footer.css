@@ -12,6 +12,17 @@
     align-items: center;
 }
 
+#container-company-info>h2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    background-image: url('../icons/Globe.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: min(100px, 20vw);
+}
+
 #container-icons-media {
     display: flex;
 }
@@ -40,6 +51,9 @@
     text-align: center;
     color: white;
     background-color: #8600FF;
+    font-size: min(1em, 4vw);
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0.5%;
 }
 
 /* ************************* @media ************************* */

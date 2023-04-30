@@ -1,0 +1,2725 @@
+<!DOCTYPE html>
+<html lang="en-au">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../icon/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../style.css">
+    <title>Report</title>
+</head>
+
+<body>
+    <!---------------------------------------------- bar menu - nav ---------------------------------------------->
+    <header>
+        <div id="container-globe-ani">
+            <img src="../icons/Globe.svg" alt="logo" srcset="">
+            <div id="transport-animation-on-logo"></div>
+        </div>
+        <h1>GLOBAL ADVENTURE</h1>
+        <a href="../index.html" id="report">Back</a>
+    </header>
+    <!---------------------------------------------- main ---------------------------------------------->
+    <main>
+        <section id="report-global-section">
+            <section id="repor-content-main-section">
+                <h3>Content</h3>
+                <ul>
+                    <li><a href="#report-introduction">Introduction</a></li>
+                    <li><a href="#report-structure">Structure</a></li>
+                    <li><a href="#report-nav">Nav</a></li>
+                    <li><a href="#report-social-media">Social media</a></li>
+                    <li><a href="#report-header">Header</a></li>
+                    <li id="report-main-submenu"><a href="#report-main">Main</a>
+                        <ul>
+                            <li><a href="#report-home">Home</a></li>
+                            <li><a href="#report-try-archery">Try Archery</a></li>
+                            <li><a href="#report-membership">Membership</a></li>
+                            <li><a href="#report-disciplines">Disciplines</a></li>
+                            <li><a href="#report-coaching">Coaching</a></li>
+                            <li><a href="#report-info">Info</a></li>
+                        </ul>
+                    <li><a href="#report-form">Form</a></li>
+                    <li><a href="#report-footer">Footer</a></li>
+                    </li>
+                </ul>
+            </section>
+            <section id="report-main-section-html">
+                <dialog close>
+                    <h1>University of Souther Queensland</h1>
+                    <h2>Report - Assignment 3</h2>
+                    <p>Master of Cyber Security</p>
+                    <p>Client-side Web Technology - CIS8740</p>
+                    <p>By, Daniel Arango - U1143210</p>
+
+                    <form method="dialog">
+                        <button></button>
+                    </form>
+                </dialog>
+                <article id="report-presentation">
+                    <h2>University of Souther Queensland</h2>
+                    <h3>Report - Assignment 2</h3>
+                    <p>Master of Cyber Security</p>
+                    <p>Client-side Web Technology - CIS8740</p>
+                    <p>By, Daniel Arango - U1143210</p>
+                </article>
+                <br>
+                <hr>
+                <br>
+                <article class="report-articles-content" id="report-introduction">
+                    <h3>Introduction</h3>
+                    <p>
+                        The page 'Report' aims to explain the components of the current website and how the technology
+                        managed was used to build it, however not in-depth. Therefore, the objective is to show the
+                        significant points of each component, which are in the content panel. Hence, two technologies
+                        were implemented to create the site (HTML and CSS), making it a usable front-end. However, it
+                        requires more work to be a fully functional website, like adding dynamic capabilities using
+                        JavaScript and some back-end technologies.
+                    </p>
+                    <p>
+                        Some parts of the website that were developed using CSS, as requirements, are not precisely to
+                        be written only in CSS, like some animation and shifting images, how it is shown on this
+                        website. The best practice is making use of JavaScript. However, as it was not allowed for this
+                        work to use other technologies, those features were built using only CSS, where JavaScript would
+                        be a better option, instead. Perhaps, those changes could be done in feature updates.
+                    </p>
+                    <p>
+                        Lastly, this website is almost responsive, except for the report page, which is better to
+                        display on regular screens rather than on small devices.
+                    </p>
+                </article>
+                <!-- <hr> -->
+                <article class="report-articles-content" id="report-structure">
+                    <h3>Structure</h3>
+                    <p>
+                        Globally, the website is constituted of a central storage folder, where inside are all the files
+                        needed to make it works. The main folder contains five sub-folders: docs, icons, img, sections,
+                        style, and the index.html file.
+                    </p>
+                    <ul>
+                        <li>In the docs folder are important files that the company wants to show to give more
+                            information, like, in this case, PDF files.</li>
+                        <li>In the "icons" folder are the icons used over each page.</li>
+                        <li>All the pictures are in the "img" folder.</li>
+                        <li>The section's folder stores each site page, unlike the index.html page, which is always
+                            placed in the main folder.</li>
+                        <li>Style's folder contains all CSS files that transform a page to a specific "style".</li>
+                        <li>The index.html is the principal file that shows up at first when a site is visited.</li>
+                    </ul>
+                    <p>
+                        There are seven web pages: home, Try Archery, Membership, Disciplines, Coaching, Info, and
+                        Report. Every page has a standard CSS stylesheet file and a particular one. First, there are
+                        nine CSS stylesheets, seven of which are the particular ones, one per page and with the same
+                        name as its respective page. Those are to style the "main" section of the HTML body. The two
+                        reminded CSS stylesheets are style.css and header-footer.css. Every page links the style.css,
+                        and style.css imports the others CSS stylesheets. The header-footer.css gives the standard style
+                        for the header and footer on each page.
+                    </p>
+                    <img src="../img/report/structure-img.png" alt="image-structure-folder">
+                    <img src="../img/report/structure-section-hmtl-img.png" alt="image-structure-section">
+                    <img src="../img/report/structure-css-img.png" alt="image-structure-style"
+                        id="image-structure-style">
+                    <p>
+                        The style.css file is linked on each page, then imports all the other CSS stylesheets and the
+                        font used on this website. Additionally, it adds some previous global styles.
+                    </p>
+                    <textarea class="report-text-area" readonly>
+/* Importing Ubuntu font from google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap');
+/* Importing styles */
+@import url(../style/header-footer.css);
+@import url(../style/home.css);
+@import url(../style/tryarchery.css);
+@import url(../style/membership.css);
+@import url(../style/archerydisciplines.css);
+@import url(../style/coaching.css);
+@import url(../style/info.css);
+@import url(../style/report.css);
+
+/************************* General settings *************************/
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+html {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+body {
+    width: min(100vw, 1920px);
+    background-color: #000000;
+}
+
+main {
+    background-color: white;
+}
+                    </textarea>
+                    <p>
+                        Every HTML file has the same settings at the beginning of the page to add behaviour to browsers
+                        from MS like Edge, manage the scaling and dimensions of the screen across devices, link the CSS
+                        stylesheet to the document, and add the title and the logo to the tap website.
+                    </p>
+                    <textarea class="report-text-area" readonly>
+<!-- start
+
+<!DOCTYPE html>
+<html lang="en-au">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../icon/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../style/style.css">
+    <title> "Page Name" </title>
+</head>
+
+end -->
+                    </textarea>
+                    <p>
+                        As the HTML flows, the CSS files follow it too, which means the written CSS code starts from
+                        the top to the bottom, styling the bar menu first and then the rest of the document down to the
+                        last part of the footer. Each CSS file is conformed into two parts. The first is to manage the
+                        screen with a size up to 1920px, and the second is for screens up to 720px. The mentioned makes
+                        the website responsive to fit into different sorts of devices. The first part is the most
+                        extended section of the CSS files making it with the capability to allow the site to be
+                        responsive as well. The second part is the shortest and contains less code.
+                        It is easy to differentiate every section of the CSS stylesheet files, even the HTML files, as
+                        they are separated by a long comment as a label.
+                    </p>
+                    <textarea class="report-text-area" readonly>
+/************************* main *************************/
+/************************* main > info main section *************************/
+#info-main-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 8% 0%;
+}
+
+#info-main-section>* {
+    width: min(350px, max(200px, 27vw));
+    padding: 3%;
+}
+
+
+... removed code ...
+
+
+/************************* @media *************************/
+/************************* @media *************************/
+@media screen and (max-width: 720px) {
+
+    
+
+    /************************* @media main *************************/
+    /************************* main > info main section *************************/
+    #info-main-section>* {
+        width: 90%;
+    }
+
+
+... removed code ...
+
+
+}
+                    </textarea>
+                    <textarea class="report-text-area" readonly>
+<!--start 
+
+<body>
+    ---------------------------------------------- bar menu - nav ----------------------------------------------
+    <section id="section-menu-bar-nav">
+        ... code ...
+        <nav id="menu-bar-nav">
+            ... code ...
+        </nav>
+    </section>
+    ---------------------------------------------- social media ----------------------------------------------
+    <div id="container-social-media-float">
+        ... code ...
+    </div>
+    ---------------------------------------------- header ----------------------------------------------
+    <header>
+        ... code ...
+    </header>
+    ---------------------------------------------- main ----------------------------------------------
+    <main>
+        <!---------------------------------------------- main info main section ----------------------------------------------
+        ... code ...
+    </main>
+    ---------------------------------------------- footer ----------------------------------------------
+    <footer>
+        ... code ...
+    </footer>
+</body>
+
+end-->
+                    </textarea>
+                    <h4>Design</h4>
+                    <p>
+                        The concept is about archery which came from the company Archery Club. The pictures and icons
+                        focus on that theme, and the colours are from the target's colour. The development uses six
+                        colours; four came from the archery target's colour, and the others are white and black primary
+                        colours.
+                    </p>
+                    <div id="container-color-design-report">
+                        <p>#097054</p>
+                        <p>#FFDE00</p>
+                        <p>#6599FF</p>
+                        <p>#FF9900</p>
+                        <p>Black</p>
+                        <p>White</p>
+                    </div>
+                    <br>
+                    <h4>Font</h4>
+                    <p>The font used in the entire website is 'Ubuntu' and imported on the style.css main stylesheet.
+                        Link to the font:
+                        <i>https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap</i>
+                    </p>
+                    <br><br>
+                    <h4>Resources</h4>
+                    <ul>
+                        <p>Font and Icons</p>
+                        <li>
+                            https://fonts.google.com/?selected=Material+Symbols+Outlined:info:&icon.set=Material+Symbols
+                        </li>
+                        <li>
+                            https://www.flaticon.com/free-icon/
+                        </li>
+                    </ul>
+                    <ul>
+                        <p>Images</p>
+                        <li>https://www.pexels.com/search/archery/</li>
+                        <li>https://pixabay.com/photos/archery-bow-shoot-target-objective-4195452/</li>
+
+                    </ul>
+                    <ul>
+                        <p>Symbols</p>
+                        <li>https://www.htmlsymbols.xyz/unicode/U+002D</li>
+                    </ul>
+                </article>
+                <article class="report-articles-content" id="report-nav">
+                    <h3>Nav</h3>
+                    <p>
+                        Nav is the HTML tag used to build a bar menu like the one on this site located on top of it. It
+                        means the way a user can navigate the website. Although it uses only CSS and HTML, this is one
+                        of the components to be leveraged using JavaScript. It is also fully responsive; however, the
+                        best practice to make it is to use JavaScript.
+                    </p>
+                    <p>
+                        For instance, the responsive bar menu uses a check input HTML tag to open it. It is a way to
+                        substitute for an event in JavaScrip. Similar to the HTML and CSS buttons in this report.
+                    </p>
+                    <p>Code:</p>
+                    <div class="container-html-css-code-report">
+                        <input type="radio" name="html-css-code-selection-nav" class="html-code-report"
+                            id="html-code-nav-report" checked>
+                        <input type="radio" name="html-css-code-selection-nav" class="css-code-report"
+                            id="css-code-nav-report">
+                        <textarea class="html-code-textarea-report" id="html-code-nav-textarea-report" readonly>
+<!-- strat 
+
+---------------------------------------------- bar menu - nav ----------------------------------------------
+<section id="section-menu-bar-nav">
+    <a href="index.html"><img src="icon/Logo.png" alt="Logo" id="logo-nav"></a>
+    <p id="contact-menu-bar-section">
+        <img src="icon/phone-icon.png" alt="icon-phone" id="phone-icon-menu-bar-section"> (+61) 401573236
+    </p>
+    <input type="checkbox" id="responsive-nav-input">
+    <nav id="menu-bar-nav">
+        <ul>
+            <li id="home-li"><a href="index.html"><img src="icon/home-icon.png" alt="Home"></a></li>
+            <li id="sub-menu-bar-tryarchery">
+                <div>
+                    <a href="#">
+                        <h3>Try Archery</h3>
+                        <i></i>
+                    </a>
+                </div>
+                <ul class="ul-sub-menu-bar">
+                    <li><a href="section/tryarchery.html#archery-courses-article">Archery Courses</a></li>
+                    <li><a href="section/tryarchery.html#archery-with-disabilities-article">Archery Width Disabilities</a></li>
+                    <li><a href="section/tryarchery.html#come-n-try-sessions-article">Come &#39;N&#39; Try Sessions</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="section/membership.html">
+                    <h3>Membership</h3>
+                </a>
+            </li>
+            <li id="sub-menu-bar-disciplines">
+                <div>
+                    <a href="#">
+                        <h3>Disciplines</h3>
+                        <i></i>
+                    </a>
+                </div>
+                <ul class="ul-sub-menu-bar">
+                    <li><a href="section/archerydisciplines.html#target-article">Target Archery</a></li>
+                    <li><a href="section/archerydisciplines.html#indoor-article">Indoor Archery</a></li>
+                    <li><a href="section/archerydisciplines.html#clout-article">Clout Archery</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="section/coaching.html">
+                    <h3>Coaching</h3>
+                </a>
+            </li>
+            <li>
+                <a href="section/info.html">
+                    <h3>Info</h3>
+                </a>
+            </li>
+            <li>
+                <a href="section/report.html">
+                    <h3>Report</h3>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</section>
+
+end -->
+                        </textarea>
+                        <textarea class="css-code-textarea-report" id="css-code-nav-textarea-report" readonly>
+/************************* Nav - menu *************************/
+#section-menu-bar-nav {
+    position: sticky;
+    z-index: 20;
+    top: 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: min(45px, 8vw);
+    background-color: rgb(9, 112, 84, .9);
+    box-shadow: 3px 5px 10px;
+}
+
+#section-menu-bar-nav>a:first-child {
+    margin-right: 1%;
+    text-decoration: none;
+    color: #000000;
+}
+
+#logo-nav {
+    width: min(75px, 9vw);
+    height: min(75px, 9vw);
+    border-radius: 50%;
+    box-shadow: 0px 5px 15px black;
+    cursor: pointer;
+    transition: transform ease-in-out .2s;
+}
+
+#logo-nav:hover {
+    transform: scale(1.1);
+}
+
+/* Mnage on @media */
+#contact-menu-bar-section {
+    display: none;
+}
+
+/* Mnage the responsive nav on @media */
+#responsive-nav-input {
+    display: none;
+}
+
+#menu-bar-nav>ul {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+/* all links (<a>) inside the nav */
+#menu-bar-nav a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: min(13px, 1.6vw);
+    text-decoration: none;
+    color: white;
+}
+
+#home-li>a>img {
+    width: min(35px, 6vw);
+    filter: invert();
+    opacity: .75;
+}
+
+#menu-bar-nav>ul>li {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: min(125px, 12.5vw);
+    list-style: none;
+}
+
+#menu-bar-nav>ul>li:hover {
+    background-color: #10b98c;
+    cursor: pointer;
+}
+
+#menu-bar-nav>ul>li:nth-child(3) a {
+    color: yellow !important;
+}
+
+#menu-bar-nav>ul>li:last-child a {
+    background-color: #FFDE00;
+    color: black !important;
+}
+
+#menu-bar-nav>ul>li:last-child:hover a {
+    background-color: #ddc002;
+}
+
+/************************* Nav - menu > sub-menus *************************/
+#sub-menu-bar-tryarchery>div,
+#sub-menu-bar-disciplines>div {
+    width: 100%;
+    height: 100%;
+}
+
+#sub-menu-bar-tryarchery>div>a>h3 {
+    text-align: center;
+}
+
+/* Arrows to show: expand and contract */
+#sub-menu-bar-tryarchery i,
+#sub-menu-bar-disciplines i {
+    width: 20px;
+    height: 20px;
+    background-image: url('../icon/expand-icon.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    filter: invert();
+}
+
+#sub-menu-bar-tryarchery:hover>div>i,
+#sub-menu-bar-disciplines:hover>div>i {
+    background-image: url('../icon/contract-icon.png');
+}
+
+/* sub-menus */
+.ul-sub-menu-bar {
+    position: absolute;
+    top: 115%;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #097054;
+    list-style: none;
+    width: min(210px, 22vw);
+    height: min(180px, 22vw);
+    opacity: 0;
+    box-shadow: 3px 5px 10px black;
+    transform: scaleY(0);
+    transform-origin: top left;
+    transition: transform ease .2s, opacity ease-out .4s;
+}
+
+.ul-sub-menu-bar>li {
+    height: 100%;
+}
+
+.ul-sub-menu-bar>li a {
+    justify-content: left !important;
+    padding-left: 5%;
+}
+
+.ul-sub-menu-bar>li:hover {
+    background-color: #10b98c;
+}
+
+#sub-menu-bar-tryarchery:hover>ul,
+#sub-menu-bar-disciplines:hover>ul {
+    /* 410% to allow the sub menu shows up, from up to down.  */
+    transform: scaleY(1);
+    opacity: .9;
+}
+
+/************************* @media *************************/
+/************************* @media *************************/
+@media screen and (max-width: 720px) {
+    
+    /************************* @media - nav - menu *************************/
+    #section-menu-bar-nav {
+        justify-content: flex-end;
+        z-index: 10;
+    }
+
+    #logo-nav {
+        display: none;
+    }
+
+    #contact-menu-bar-section {
+        display: block;
+        display: flex;
+        align-self: center;
+        margin-right: 20%;
+        font-size: 3vw;
+    }
+
+    #phone-icon-menu-bar-section {
+        width: 12%;
+        margin-right: 5%;
+    }
+
+    #responsive-nav-input {
+        display: block;
+        width: 9vw;
+        height: 100%;
+        background-image: url('../icon/menu-close.png');
+        background-size: 65%;
+        background-repeat: no-repeat;
+        background-position: center;
+        appearance: none;
+        box-shadow: -1px 2px 3px;
+    }
+
+    #responsive-nav-input:hover {
+        background-color: #10b98c;
+    }
+
+    #responsive-nav-input:checked {
+        background-image: url('../icon/menu-open.png');
+    }
+
+    #menu-bar-nav {
+        position: absolute;
+        top: 100%;
+        background-color: #097054;
+        height: 0vh;
+        width: 0vw;
+        opacity: .95;
+        transition: all ease-out .2s;
+    }
+
+    #responsive-nav-input:checked+#menu-bar-nav {
+        height: 100vh;
+        width: 100vw;
+    }
+
+    #menu-bar-nav>ul {
+        display: none;
+    }
+
+    #responsive-nav-input:checked+#menu-bar-nav>ul {
+        display: block;
+    }
+
+    #home-li>a>img {
+        padding-left: 5%;
+        filter: none;
+        opacity: 1;
+    }
+
+    #menu-bar-nav>ul>li {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #menu-bar-nav>ul>li>a {
+        justify-content: left;
+        padding: 2.3% 0%;
+        font-size: .9em;
+        color: black;
+    }
+
+    #menu-bar-nav>ul>li>a>h3 {
+        padding-left: 5%;
+    }
+
+    /************************* @media - nav - menu > sub-menus *************************/
+    #sub-menu-bar-tryarchery>div>a,
+    #sub-menu-bar-disciplines>div>a {
+        width: auto;
+        justify-content: space-between !important;
+        font-size: .9em;
+        color: black;
+        padding: 2.3% 0%;
+    }
+
+    #sub-menu-bar-tryarchery>div>a,
+    #sub-menu-bar-disciplines>div>a {
+        padding-left: 5%;
+    }
+
+    #sub-menu-bar-tryarchery>div>a>i,
+    #sub-menu-bar-disciplines>div>a>i {
+        filter: none;
+        padding-right: 5%;
+    }
+
+    .ul-sub-menu-bar {
+        position: static;
+        z-index: inherit;
+        width: 100%;
+        height: 0px;
+        background-color: #0e9b76;
+        transform-origin: top;
+        transition: height ease .2s, opacity ease-out .4s;
+    }
+
+    #sub-menu-bar-tryarchery:hover>ul,
+    #sub-menu-bar-disciplines:hover>ul {
+        height: 130px;
+    }
+
+    .ul-sub-menu-bar>li {
+        font-weight: lighter;
+    }
+
+    .ul-sub-menu-bar>li a {
+        color: #000000 !important;
+        font-size: min(16px, 3.8vw) !important;
+    }
+}
+                        </textarea>
+                    </div>
+                    <p>
+                        As said at the beginning, some parts of the website are meant to be developed using something
+                        other than HTML and CSS, so the report aims to show that issue too.
+                    </p>
+                </article>
+                <article class="report-articles-content" id="report-social-media">
+                    <h3>Social Media</h3>
+                    <p>
+                        Social media is the component fixed on the right side of the screen and shows up when the mouse
+                        hovers it. It also appears on the bar menu, on the top, when the screen goes down less than
+                        720px. There is another social media component, but it owns the footer.
+                    </p>
+                    <p>Code:</p>
+                    <div class="container-html-css-code-report">
+                        <input type="radio" name="html-css-code-selection-social-media" class="html-code-report"
+                            id="html-code-social-meida-report" checked>
+                        <input type="radio" name="html-css-code-selection-social-media" class="css-code-report"
+                            id="css-code-social-meida-report">
+                        <textarea class="html-code-textarea-report" id="html-code-social-meida-textarea-report"
+                            readonly>
+<!-- start
+
+---------------------------------------------- social media ----------------------------------------------
+<div id="container-social-media-float">
+    <a href="https://facebook.com">
+        <img src="icon/facebook-icon.png" alt="facebook" id="facebook" class="social-media">
+    </a>
+    <a href="https://instagram.com">
+        <img src="icon/instagram-icon.png" alt="instagram" id="instagram" class="social-media">
+    </a>
+    <a href="https://youtube.com">
+        <img src="icon/youtube-icon.png" alt="youtube" id="youtube" class="social-media">
+    </a>
+</div>
+
+end -->
+                        </textarea>
+                        <textarea class="css-code-textarea-report" id="css-code-social-meida-textarea-report" readonly>
+/************************* Social Media *************************/
+#container-social-media-float {
+    position: fixed;
+    right: -40px;
+    top: 30%;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFDE00;
+    border-radius: 10px 0px 0px 10px;
+    box-shadow: 0px 5px 10px;
+    transition: right ease-out .1s;
+}
+
+#container-social-media-float::before {
+    content: "";
+    position: absolute;
+    top: calc(50% - 10px);
+    left: -10px;
+    width: 20px;
+    height: 20px;
+    background-color: #d6ba02;
+    rotate: 45deg;
+    z-index: -1;
+}
+
+#container-social-media-float:hover {
+    right: 0px;
+}
+
+#container-social-media-float .social-media {
+    width: 35px;
+    margin: 6px;
+    cursor: pointer;
+}
+
+#container-social-media-float .social-media:hover {
+    transform: scale(110%);
+}
+
+#instagram {
+    background-color: #FFDE00;
+}
+                        </textarea>
+                    </div>
+                </article>
+                <article class="report-articles-content" id="report-header">
+                    <h3>Header</h3>
+                    <p>
+                        The header contains four images that can be shifted, and when the screen decreases by less than
+                        720px, it is only possible to change those images again until the screen increases by more than
+                        720px. Also, the company's logo is placed in the bottom middle of the header when the screen
+                        size is small. This element is another part of the website where JavaScript is the best option
+                        to use it.
+                    </p>
+                    <p>
+                        The bar menu is a component that usually goes inside the header. However, in this case, it goes
+                        outside to allow the menu to be sticky on the screen and follow it up and down.
+                    </p>
+                    <p>Code:</p>
+                    <div class="container-html-css-code-report">
+                        <input type="radio" name="html-css-code-selection-header" class="html-code-report"
+                            id="html-code-header-report" checked>
+                        <input type="radio" name="html-css-code-selection-header" class="css-code-report"
+                            id="css-code-header-report">
+                        <textarea class="html-code-textarea-report" id="html-code-header-textarea-report" readonly>
+<!-- start
+
+---------------------------------------------- header ----------------------------------------------
+<header>
+    <a href="../index.html" id="logo-link-header"><img src="icon/Logo.png" alt="logo" id="logo-header"></a>
+    <div id="container-slide-imgs-header">
+        <input type="radio" name="radio-slide-imgs-header" class="radio-slide-class"
+            id="input-images-slide-header-1" checked>
+        <input type="radio" name="radio-slide-imgs-header" class="radio-slide-class"
+            id="input-images-slide-header-2">
+        <input type="radio" name="radio-slide-imgs-header" class="radio-slide-class"
+            id="input-images-slide-header-3">
+        <input type="radio" name="radio-slide-imgs-header" class="radio-slide-class"
+            id="input-images-slide-header-4">
+
+        <div id="container-images-header"></div>
+    </div>
+</header>
+
+end -->
+                        </textarea>
+                        <textarea class="css-code-textarea-report" id="css-code-header-textarea-report" readonly>
+/************************* Header *************************/
+header {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: min(400px, 30vw);
+}
+
+#logo-link-header {
+    display: none;
+}
+
+/************************* Header > to switch images on header *************************/
+#container-slide-imgs-header {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.radio-slide-class {
+    position: absolute;
+    align-self: flex-end;
+    width: min(20px, 2vw);
+    height: min(20px, 2vw);
+    margin-bottom: 1%;
+    box-shadow: 2px 4px 5px;
+    opacity: .7;
+    transition: transform .1s ease;
+}
+
+.radio-slide-class:hover {
+    transform: scale(1.2);
+}
+
+#input-images-slide-header-1 {
+    margin-right: 6%;
+}
+
+#input-images-slide-header-2 {
+    margin-right: 2%;
+}
+
+#input-images-slide-header-3 {
+    margin-right: -2%;
+}
+
+#input-images-slide-header-4 {
+    margin-right: -6%;
+}
+
+#container-slide-imgs-header img {
+    width: 100%;
+    height: 100%;
+    display: none;
+    transition: all ease 1s;
+}
+
+#container-images-header {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+#input-images-slide-header-1:checked~#container-images-header {
+    background-image: url('../img/Image1.jpg');
+}
+
+#input-images-slide-header-2:checked~#container-images-header {
+    background-image: url('../img/Image3.jpg');
+}
+
+#input-images-slide-header-3:checked~#container-images-header {
+    background-image: url('../img/Image5.jpg');
+}
+
+#input-images-slide-header-4:checked~#container-images-header {
+    background-image: url('../img/Image8.jpg');
+}
+                        </textarea>
+                    </div>
+                </article>
+                <article class="report-articles-content" id="report-main">
+                    <h3>Main</h3>
+                    <p>
+                        The main section is where all the required information is set. It is where an owner's website
+                        wants to show all the relevant facts to users. This section changes on each page as every page
+                        contains different aspects of the business. For instance, the home page is the first and most
+                        important, as it
+                        aims to engage and keeps users in.
+                    </p>
+                    <p>
+                        This section can also be divided into multiple parts, depending on the information to put up
+                        there.
+                    </p>
+                    <article class="report-articles-content" id="report-home">
+                        <h3>Home</h3>
+                        <p>
+                            This home page was designed to summarise the whole website so that a user can check the
+                            entire website by only scanning the first page. If a user engages with relevant information,
+                            there are several links to send them where they can find more info. This page is the
+                            index.html.
+                        </p>
+                        <p>
+                            There are two interactive sections on this page the membership and target archery
+                            disciplines sections. The Home Membership section has a button link to the Membership page.
+                            Likewise, the Home "target archery disciplines" section shows three buttons linked to the
+                            Disciplines page. Further, the image next to them changes if the mouse hovers over those
+                            buttons.
+                        </p>
+                        <p>Code:</p>
+                        <div class="container-html-css-code-report">
+                            <input type="radio" name="html-css-code-selection-home" class="html-code-report"
+                                id="html-code-home-report" checked>
+                            <input type="radio" name="html-css-code-selection-home" class="css-code-report"
+                                id="css-code-home-report">
+                            <textarea class="html-code-textarea-report" id="html-code-home-textarea-report" readonly>
+<!-- start
+    
+---------------------------------------------- main ----------------------------------------------
+<main>
+    ---------------------------------------------- main info main section ----------------------------------------------
+    <section id="info-main-section">
+        <article>
+            <h2>Welcome</h2><br>
+            <p>Welcome to Bendigo Target Archery Club. The club started in 1948 and is one of the oldest target
+                archery clubs in Victoria.
+                <br>
+                We&#39;re a family-friendly target archery club located at the Bendigo Racecourse off Golf Course
+                Rd.
+                <a href="section/info.html">more...</a>
+            </p>
+        </article>
+        <h1 class="half-title-main">Bendigo Target <br> Archery Club<p><img src="icon/target-icon.png" alt="target">
+            </p>
+        </h1>
+        <article>
+            <h2>About us</h2><br>
+            <p>The Bendifo Target Archery Club The club started in 1948 and is one of the oldest target archery
+                clubs in Victoria. The club operates a target field and an Indoor Archery Facility at the Bendigo
+                Racecourse.
+                <br>
+                Archery is a great sport that gets you outside and keeps you active and healthy which many people
+                find relaxing. Our club has a very family friendly approach, great social atmosphere and some very
+                serious competitors aiming for international representation.
+                <a href="section/info.html">more...</a>
+            </p>
+        </article>
+    </section>
+    ---------------------------------------------- main tryarchery main section ----------------------------------------------
+    <section id="tryarchery-main-section">
+        <div id="tryarchery-fix-img-section"></div>
+        <article id="tryarchery-global-article">
+            <article>
+                <h2>Archery Courses</h2>
+                <div>
+                    <p><b>Beginner&#39;s Course contents:</b></p><br>
+                    <ul>
+                        <li>Introduction</li>
+                        <li>Equipment & safety briefing</li>
+                        <li>Shooting demonstration</li>
+                        <li>Shoot your first arrows</li>
+                        <li>Bow type demonstration</li>
+                        <li>Shooting & scoring</li>
+                    </ul>
+                    <br>
+                    <p><b></b>Session contents:</b></b></p><br>
+                    <ul>
+                        <li>Finish membership paperwork</li>
+                        <li>Club walkaround and familiarisation</li>
+                        <li>Further training</li>
+                        <li>Fletching/choosing your new arrows</li>
+                    </ul>
+                    <a href="section/tryarchery.html#archery-courses-article">More...</a>
+                    <span>&#127919;</span>
+                </div>
+            </article>
+            <article>
+                <h2>Archery With Disabilities</h2>
+                <p>The club supports archers with all abilities, including members competing at national and
+                    international para-archery events and the Invictus Games. Club facilities include indoor
+                    shooting facilities, paved disabled parking bays, an accessible toilet, and cement paths between
+                    buildings. The grassed outdoor fields are also used by para-archers. Experienced instructors and
+                    coaches can take you from novice through to international competitor and our members provide a
+                    friendly, supportive environment. You will need to arrange your own carer if required. Please
+                    contact us to discuss your requirements.&nbsp;
+                    <a href="section/tryarchery.html#archery-with-disabilities-article">More...</a>
+                </p>
+            </article>
+            <article>
+                <h2>Come &#39;N&#39; Try</h2>
+                <p>If you are interested in giving archery a go, then the Come &#39;N&#39; Try Session is designed
+                    for you.
+                    A chance to experience archery in a low commitment way.<br><br>
+                    The club is very welcoming of people who use wheelchairs or have a disability, however please
+                    contact us before booking in as we may wish to arrange a special session with coaches with
+                    relevant experience.&nbsp;
+                    <a href="section/tryarchery.html#come-n-try-sessions-article">More...</a>
+                </p>
+                <span>&#127919;</span>
+            </article>
+        </article>
+    </section>
+    ---------------------------------------------- main membership main section ----------------------------------------------
+    <section id="membership-main-section">
+        <div id="container-membership-main-section">
+            <h2>Check out our Membership Fees!</h2>
+            <div id="container-icon-membership"></div>
+            <button><a href="section/membership.html">Membership</a></button>
+        </div>
+    </section>
+    ---------------------------------------------- main target archery disciplines main section ----------------------------------------------
+    <section id="archery-disciplines-main-section">
+        <h2>Target Archery Disciplines</h2>
+        <div id="container-archery-disciplines-main-section">
+            <a href="section/archerydisciplines.html#target-article">Target</a>
+            <a href="section/archerydisciplines.html#indoor-article">Indoor</a>
+            <a href="section/archerydisciplines.html#clout-article">Clout</a>
+
+            <div id="container-disciplines-pictures"></div>
+        </div>
+    </section>
+    ---------------------------------------------- main coaching main section ----------------------------------------------
+    <section id="coaching-main-section">
+        <article id="article-coaching-main-section">
+            <h2>Coaching</h2>
+            <p><i></i>There are 3 levels of coaches at the club Level 1, level 2, and level 3.
+                Basic coaching help is available to all archers on most Saturday mornings from 9.00 to 11.30. The
+                Level 2 and 3 Coaches offer assistance with measuring and advising you on your first bow purchase
+                and the setup of your new bow.&nbsp;
+                <a href="section/coaching.html">More...</a>
+            </p>
+        </article>
+    </section>
+</main>
+    
+end -->
+
+                            </textarea>
+                            <textarea class="css-code-textarea-report" id="css-code-home-textarea-report" readonly>
+/************************* main *************************/
+/************************* main > info main section *************************/
+#info-main-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 8% 0%;
+}
+
+#info-main-section>* {
+    width: min(350px, max(200px, 27vw));
+    padding: 3%;
+}
+
+#info-main-section article:first-child,
+#info-main-section article:last-child {
+    background-color: rgb(255, 222, 0, .1);
+    text-align: justify;
+}
+
+.half-title-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(101, 153, 255, .1);
+    font-size: min(35px, 5vw);
+    text-align: center;
+    color: #097054;
+}
+
+.half-title-main img {
+    width: min(150px, 50%);
+    margin-top: 5%;
+}
+
+/************************* main > tryarchery main section *************************/
+#tryarchery-fix-img-section {
+    width: 100%;
+    height: 100vh;
+    background-image: url('../img/Image2.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position-y: center;
+    background-size: 180vw;
+}
+
+#tryarchery-global-article {
+    display: flex;
+    flex-direction: column;
+    padding: 0% 3%;
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+#tryarchery-global-article article {
+    margin: 3% 0%;
+}
+
+#tryarchery-global-article article a {
+    color: white;
+}
+
+/* first article - tryarchery main section */
+#tryarchery-global-article>article:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding: 2% 3%;
+    background-color: rgb(255, 222, 0, .1);
+}
+
+#tryarchery-global-article>article:first-child>div {
+    position: relative;
+}
+
+#tryarchery-global-article>article:first-child>h2 {
+    margin-left: 3%;
+}
+
+#tryarchery-global-article>article:first-child>div>span {
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    font-size: min(150px, 15vw);
+    transform: translateY(-50%);
+}
+
+#tryarchery-global-article>article:first-child>* {
+    margin: 1% 0%;
+}
+
+#tryarchery-global-article>article:first-child div {
+    width: auto;
+    padding: 3%;
+    background-color: rgb(255, 222, 0, .1);
+}
+
+#tryarchery-global-article>article:first-child>div li {
+    list-style: symbols(cyclic '\27B3') inside;
+}
+
+/* second article - tryarchery main section */
+#tryarchery-global-article>article:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2% 0%;
+    background-color: rgb(101, 153, 255, .1);
+}
+
+#tryarchery-global-article>article:nth-child(2)>p {
+    padding: 3%;
+    background-color: rgb(101, 153, 255, .1);
+    text-align: justify;
+}
+
+#tryarchery-global-article>article:nth-child(2) * {
+    margin: 1% 0%;
+}
+
+/* last article - tryarchery main section */
+#tryarchery-global-article>article:last-child {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 2% 3%;
+    background-color: rgb(255, 153, 0, .1);
+}
+
+#tryarchery-global-article>article:last-child>h2 {
+    margin-right: 3%;
+
+}
+
+#tryarchery-global-article>article:last-child>p {
+    width: auto;
+    padding: 3% 3% 3% min(900px,40%);
+    background-color: rgb(255, 153, 0, .1);
+    text-align: justify;
+}
+
+#tryarchery-global-article>article:last-child>span {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    font-size: min(150px, 15vw);
+    transform: translateY(-40%);
+}
+
+#tryarchery-global-article>article:last-child * {
+    margin: 1% 0%;
+}
+
+/************************* main > membership fees main section *************************/
+#membership-main-section {
+    padding: 3%;
+}
+
+#container-membership-main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#container-icon-membership {
+    width: 150px;
+    height: 150px;
+    background-image: url('../icon/membership-icon.png');
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+    ;
+    border-radius: 40px;
+    box-shadow: 0px 5px 10px;
+}
+
+#container-membership-main-section>button {
+    display: flex;
+    justify-content: center;
+    width: min(220px, 30vw);
+    height: min(60px, 10vw);
+    background-color: #6599FF;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 2px 4px 5px;
+}
+
+#container-membership-main-section>button:hover {
+    background-color: #84acfc;
+}
+
+#container-membership-main-section>button>a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    font-size: min(1.5em, 4vw);
+    color: #000000;
+    transition: transform ease .1s;
+}
+
+#container-membership-main-section>button>a:hover {
+    transform: scale(1.1);
+}
+
+#container-membership-main-section * {
+    margin: 2% 0%;
+}
+
+/************************* main > target archery disciplines main section *************************/
+#archery-disciplines-main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: min(40px, 3vw);
+    background-color: black;
+    color: #FFFFFF;
+}
+
+#archery-disciplines-main-section>h2 {
+    margin-bottom: 2%;
+}
+
+#container-archery-disciplines-main-section {
+    position: relative;
+    width: 100%;
+    height: min(500px, 60vw);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    padding: 2% 0%;
+    background-color: rgb(9, 112, 84, .3);
+}
+
+#container-archery-disciplines-main-section a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: min(300px, 25vw);
+    height: min(40px, 7vw);
+    margin: 0.5% 8%;
+    background-color: rgb(255, 222, 0, .4);
+    font-size: min(1.2em, 3.5vw);
+    text-decoration: none;
+    border-radius: 0.5vw;
+    color: black;
+    cursor: pointer;
+    box-shadow: 0px 0px 18px black;
+}
+
+#container-archery-disciplines-main-section a:hover {
+    background-color: rgb(255, 222, 0, .9);
+}
+
+#container-archery-disciplines-main-section a:first-child:hover~#container-disciplines-pictures {
+    background-image: url(../img/Image9.jpg);
+}
+
+#container-archery-disciplines-main-section a:nth-child(2):hover~#container-disciplines-pictures {
+    background-image: url(../img/Image11.jpg);
+}
+
+#container-archery-disciplines-main-section a:nth-child(3):hover~#container-disciplines-pictures {
+    background-image: url(../img/Image13.jpg);
+}
+
+#container-disciplines-pictures {
+    position: absolute;
+    right: 8%;
+    width: min(500px, 50vw);
+    height: min(500px, 50vw);
+    background-image: url('../img/Image7.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    box-shadow: 0px 0px 18px black;
+}
+
+/************************* main > coaching main section *************************/
+#coaching-main-section {
+    padding: 4%;
+}
+
+#article-coaching-main-section {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    margin: 5% 0%;
+}
+
+#article-coaching-main-section>p>i {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-image: url('../icon/coach-icon.png');
+    background-repeat: no-repeat;
+}
+
+#article-coaching-main-section>p {
+    width: 400px;
+    text-align: justify;
+}
+
+/************************* main > form main section *************************/
+#form-main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4%;
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+#form-main-section>form {
+    display: flex;
+    flex-direction: column;
+    width: min(500px, 90vw);
+    margin-top: 4%;
+}
+
+#form-main-section>form>input[type=email],
+#form-main-section>form>input[type=text] {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 40px;
+    margin-bottom: 5%;
+    padding-left: 2%;
+}
+
+#form-main-section>form>input[type=email]:valid,
+#form-main-section>form>input[type=text]:valid {
+    background-color: rgb(117, 255, 117);
+}
+
+#form-main-section>form>input[type=email]:valid:focus,
+#form-main-section>form>input[type=text]:valid:focus {
+    background-image: url('../icon/valid-icon.png');
+}
+
+#form-main-section>form>input[type=email]:required:invalid:focus,
+#form-main-section>form>input[type=text]:required:invalid:focus {
+    background-image: url('../icon/advise-icon.png'); 
+}
+
+#form-main-section>form>input[type=email]:invalid,
+#form-main-section>form>input[type=text]:invalid {
+    background-color: red;
+}
+ 
+
+
+#form-main-section>form>input[type=submit] {
+    height: 40px;
+    margin-top: 1%;
+    background-color: #097054;
+    border: none;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: font-size ease .1s;
+}
+
+#form-main-section>form>input[type=submit]:hover {
+    background-color: #0d9b75;
+    font-size: 1.3em;
+
+}
+
+/************************* @media *************************/
+/************************* @media *************************/
+@media screen and (max-width: 720px) {
+
+    
+
+    /************************* @media main *************************/
+    /************************* main > info main section *************************/
+    #info-main-section>* {
+        width: 90%;
+    }
+
+    /************************* @media main > tryarchery main section *************************/
+    #tryarchery-fix-img-section {
+        background-size: 300vw;
+    }
+
+    #tryarchery-global-article>article:first-child>div>span {
+        font-size: 15vw;
+    }
+}
+                            </textarea>
+                        </div>
+                    </article>
+                    <article class="report-articles-content" id="report-try-archery">
+                        <h3>Try Archery</h3>
+                        <p>
+                            This section shows what the company, in this case, the Archery Club, can offer to the users.
+                            Users can navigate this page and see if there is something they might be interested in. It
+                            does not have any interaction.
+                        </p>
+                        <p>Code:</p>
+                        <div class="container-html-css-code-report">
+                            <input type="radio" name="html-css-code-selection-try-archery" class="html-code-report"
+                                id="html-code-try-archery-report" checked>
+                            <input type="radio" name="html-css-code-selection-try-archery" class="css-code-report"
+                                id="css-code-try-archery-report">
+                            <textarea class="html-code-textarea-report" id="html-code-try-archery-textarea-report"
+                                readonly>
+<!-- start
+
+---------------------------------------------- main ----------------------------------------------
+<main>
+    <section id="tryarchery-main-section-html">
+        <article id="container-tryarchery-articles-main-section">
+            <h2>Try Archery</h2>
+            <p>Bendigo Target Archery Club runs a variety of beginner courses and Come &#39;N&#39; Try sessions
+                throughout the year to start you on your archery journey or simply to tick the box. They&#39;re very
+                popular with families, friends and work mates and make a great gift. Bookings are essential, see
+                below for upcoming dates, further details and online booking links.
+
+                Have any questions about our courses? Email us at <b><i>bendigoarcheryclub@gmail.com</i></b>.</p>
+            <article id="archery-courses-article">
+                <img src="../img/Image9.jpg" alt="picture-archery">
+
+                <h3>Archery Courses</h3>
+                <p>Bendigo Target Archery Club holds beginner&#39;s courses for participants aged 10 and over. Cost
+                    for the course is $99 per participant and bookings are essential. The courses are usually held
+                    on the first Saturday morning of each month, from 07.45 to 11.30, all equipment inclusive. The
+                    course is held in the onsite indoor facility during inclement weather. Course fees are not
+                    refundable if you change your mind or are unable to attend on your booked date.
+                </p><br>
+                <b>Beginner&#39;s Course contents:</b>
+                <ul>
+                    <li>Introduction</li>
+                    <li>Equipment & safety briefing</li>
+                    <li>Shooting demonstration</li>
+                    <li>Shoot your first arrows</li>
+                    <li>Bow type demonstration</li>
+                    <li>Shooting & scoring</li>
+                </ul>
+                <p>An induction session is held 8:00am-11:30am on the following Saturday morning for
+                    beginners&#39;s course attendees who would like to join the club. The club membership
+                    information form is available at the induction course, and should be filled out before starting
+                    the the session. So please arrive before the session starts to leave enough time to fill out the
+                    form. Please see our <a href="../section/membership.html">Membership</a> details for further
+                    details.
+                </p><br>
+                <b>Session contents:</b>
+                <ul>
+                    <li>Finish membership paperwork</li>
+                    <li>Club walkaround and familiarisation</li>
+                    <li>Further training</li>
+                    <li>Fletching/choosing your new arrows</li>
+                </ul>
+            </article>
+            <article id="archery-with-disabilities-article">
+                <img src="../img/Image10.jpg" alt="picture-archery-disability">
+                <h3>Archery With Disabilities</h3>
+                <p>The club supports archers with all abilities, including members competing at national and
+                    international para-archery events and the Invictus Games. Club facilities include indoor
+                    shooting facilities, paved disabled parking bays, an accessible toilet, and cement paths between
+                    buildings. The grassed outdoor fields are also used by para-archers. Experienced instructors and
+                    coaches can take you from novice through to international competitor and our members provide a
+                    friendly, supportive environment. You will need to arrange your own carer if required. Please
+                    <a href="../section/info.html">contact</a> us to discuss your requirements.
+                </p>
+
+                <p>As a sport, archery can cater for a range of disabilities and visual impairments. Therefore the
+                    club wholeheartedly welcomes and encourages people with a disability or visual impairment to
+                    join. All newcomers to BTAC must do our Archery Course before being accepted as a club member.
+                    Courses are usually held on our outdoor field from 7.45 &#45; 11.30am on the first Saturday of
+                    each month, all equipment inclusive. In the event of inclement weather, courses go ahead in the
+                    onsite indoor facility. An induction session is held from 8:00am &#45; 11:30am on the Saturday
+                    following for course attendees who would like to join the club.
+                </p>
+
+                <p>All beginners, including those with a disability or vision impairment, undergo the same
+                    instruction process on the same shooting line. If you require an assistant for your
+                    participation, your assistant must do the Archery Course with you. This is for your safety and
+                    also so that the assistant can receive instruction on how to become an archery assistant.
+                </p>
+
+                <p>The club requires advance warning about beginners who have a disability or visual impairment.
+                    This will allow the club if necessary to allocate extra coaching or one-on-one coaching. Please
+                    be aware that as BTAC is run solely by volunteers and volunteer coaches who give freely of their
+                    time, our personnel resources are finite. This necessarily limits the number of disabled and
+                    visually impaired archers that we can cater for at any one Archery Course.
+                </p>
+
+                <p>Archers who require an assistant and who decide to join the club as members must organise and
+                    attend with their own assistant at all times. The club cannot undertake to provide assistants.
+                    Assistants are required to join the club as Associate Members (non-shooting members) and can
+                    attend the Archery Course free of charge. This ensures that the club meets its insurance
+                    obligations and safety protocols are followed.
+                </p>
+
+                <p>Please see the <a href="../section/tryarchery.html#archery-courses-article">Archery Courses</a> section for further details and to <i>register</i> for the next course.
+                </p>
+            </article>
+            <article id="come-n-try-sessions-article">
+                <h3>Come &#39;N&#39; Try Sessions</h3>
+                <p>If you are interested in giving archery a go, then the Come &#39;N&#39; Try Session is designed
+                    for you.
+                    A chance to experience archery in a low commitment way.
+                    Participants must wear fully enclosed shoes, tie long hair back and remove ear/nose/lip rings
+                    etc.
+                    The club is very welcoming of people who use wheelchairs or have a disability, however please
+                    contact us before booking in as we may wish to arrange a special session with coaches with
+                    relevant experience.
+                    Please be aware that there is a no refund policy for cancellation or no shows.
+                    Should you wish to discuss any aspect of the session please email <a href="mailto: bendigoarcheryclub@gmail.com">bendigoarcheryclub@gmail.com</a>
+                </p>
+            </article>
+        </article>
+    </section>
+</main>
+    
+end -->
+                            </textarea>
+                            <textarea class="css-code-textarea-report" id="css-code-try-archery-textarea-report"
+                                readonly>
+/************************* main *************************/
+/************************* main > tryarchery main section *************************/
+#tryarchery-main-section-html {
+    padding: 3%;
+}
+
+#container-tryarchery-articles-main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+}
+
+#container-tryarchery-articles-main-section>* {
+    margin: 3% 0%;
+}
+
+#container-tryarchery-articles-main-section img {
+    width: min(400px, 40vw);
+    margin: 1% 2%;
+    box-shadow: 0px 5px 10px;
+}
+
+/************************* main > tryarchery main section > archery courses *************************/
+#archery-courses-article {
+    padding: 3%;
+    background-color: rgb(9, 112, 84, .3);
+    box-shadow: 0px 5px 10px;
+
+}
+
+#archery-courses-article ul>li {
+    list-style: symbols(cyclic '\27B3') inside;
+}
+
+#archery-courses-article img {
+    float: right;
+}
+
+#archery-courses-article>* {
+    margin-top: 2%;
+}
+
+/************************* main > tryarchery main section > archery with disabilities *************************/
+#archery-with-disabilities-article {
+    padding: 3%;
+    background-color: rgb(9, 112, 84, .3);
+    box-shadow: 0px 5px 10px;
+
+}
+
+#archery-with-disabilities-article {
+    padding-left: 1%;
+}
+
+#archery-with-disabilities-article img {
+    float: left;
+}
+
+#archery-with-disabilities-article>* {
+    margin-top: 2%;
+}
+
+/************************* main > tryarchery main section > archery with disabilities *************************/
+#come-n-try-sessions-article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+}
+
+#come-n-try-sessions-article>* {
+    margin: 3% 0%;
+}
+                            </textarea>
+                        </div>
+                    </article>
+                    <article class="report-articles-content" id="report-membership">
+                        <h3>Membership</h3>
+                        <p>
+                            The membership page is a simple page showing options for what a user can enrol. It also
+                            does not have any interaction.
+                        </p>
+                        <p>Code:</p>
+                        <div class="container-html-css-code-report">
+                            <input type="radio" name="html-css-code-selection-membership" class="html-code-report"
+                                id="html-code-membership-report" checked>
+                            <input type="radio" name="html-css-code-selection-membership" class="css-code-report"
+                                id="css-code-membership-report">
+                            <textarea class="html-code-textarea-report" id="html-code-membership-textarea-report"
+                                readonly>
+<!-- start
+
+---------------------------------------------- main ----------------------------------------------
+<main>
+    <section id="membership-fees-main-section-html">
+        <h1>Membership Fees</h1>
+        <article>
+            <h2>Senior (18 and over)</h2>
+            <ul>
+                <li>$191/year</li>
+                <li>Includes:
+                    <ul>
+                        <li>Archery Australia membership $90</li>
+                        <li>Archery Victorian membership $35</li>
+                        <li>Bendigo Archery Club membership $66</li>
+                        <li>Insurance</li>
+                    </ul>
+                </li>
+                <li>Membership is provisional for the first 12 months.</li>
+            </ul>
+        </article>
+        <article>
+            <h2>Under 18 </h2>
+            <ul>
+                <li>$134/year</li>
+                <li>Includes:
+                    <ul>
+                        <li>Archery Australia membership $60</li>
+                        <li>Archery Victorian membership $30</li>
+                        <li>Bendigo Archery Club membership $44</li>
+                        <li>Insurance</li>
+                    </ul>
+                </li>
+                <li>Membership is provisional for the first 12 months.</li>
+            </ul>
+        </article>
+        <article>
+            <h2>Family</h2>
+            <ul>
+                <li>$382/year</li>
+                <li>Includes:
+                    <ul>
+                        <li>Archery Australia membership $180</li>
+                        <li>Archery Victorian membership $70</li>
+                        <li>Bendigo Archery Club membership $132</li>
+                        <li>Insurance</li>
+                    </ul>
+                </li>
+                <li>Membership is provisional for the first 12 months.</li>
+                <li>Family membership is any combination of two or more memberships</li>
+            </ul>
+        </article>
+        <article>
+            <h2>Archery Course</h2>
+            <ul>
+                <li>$99</li>
+                <li>Includes:
+                    <ul>
+                        <li>Accredited instructors</li>
+                        <li>Equipment supplied</li>
+                        <li>Participation Certificate</li>
+                    </ul>
+                </li>
+            </ul>
+        </article>
+        <article>
+            <h2>Range Shooting Fees</h2>
+            <ul>
+                <li>Members with own equipment:
+                    <ul>
+                        <li>Seniors & Under 18</li>
+                        <li>$4/day</li>
+                    </ul>
+                </li>
+                <li>Individual&#39;s weekly maximum
+                    <ul>
+                        <li>Monday to Sunday</li>
+                        <li>$10/week</li>
+                    </ul>
+                </li>
+                <li>Family weekly maximum
+                    <ul>
+                        <li>Monday to Sunday</li>
+                        <li>$20/week</li>
+                    </ul>
+                </li>
+            </ul>
+        </article>
+    </section>
+</main>
+    
+end -->
+                            </textarea>
+                            <textarea class="css-code-textarea-report" id="css-code-membership-textarea-report"
+                                readonly>
+/************************* main *************************/
+/************************* main > membership-fees - main section *************************/
+#membership-fees-main-section-html {
+    padding: 3%;
+}
+
+#membership-fees-main-section-html>h1 {
+    margin-bottom: 5%;
+    text-align: center;
+}
+
+#membership-fees-main-section-html article>ul>li {
+    list-style: symbols(cyclic '\27B3');
+}
+
+#membership-fees-main-section-html li li {
+    list-style: symbols(cyclic '\1F5F8') inside;
+}
+
+
+#membership-fees-main-section-html article {
+    margin: 2% 0%;
+    padding: 3% 6%;
+    background-color: rgb(9, 112, 84, .3);
+    background-repeat: no-repeat;
+    background-size: min(100px, 15vw);
+    background-position-x: 95%;
+    background-position-y: 50%;
+    box-shadow: 0px 5px 10px;
+}
+
+#membership-fees-main-section-html article>* {
+    margin: 2% 0%;
+}
+
+#membership-fees-main-section-html article:nth-of-type(1) {
+    background-image: url('../icon/archer-pro.png');    
+}
+
+#membership-fees-main-section-html article:nth-of-type(2) {
+    background-image: url('../icon/archery-junior.png');
+}
+
+#membership-fees-main-section-html article:nth-of-type(3) {
+    background-image: url('../icon/arrows-double.png');
+}
+
+#membership-fees-main-section-html article:nth-of-type(4) {
+    background-image: url('../icon/archery-curse.png');
+}
+
+#membership-fees-main-section-html article:nth-of-type(5) {
+    background-image: url('../icon/target-shootings.png');
+}
+                            </textarea>
+                        </div>
+                    </article>
+                    <article class="report-articles-content" id="report-disciplines">
+                        <h3>Disciplines</h3>
+                        <p>
+                            It is a simple page regarding the disciplines the Archery Club offers. It
+                            does not have any interaction, only style.
+                        </p>
+                        <p>Code:</p>
+                        <div class="container-html-css-code-report">
+                            <input type="radio" name="html-css-code-selection-disciplines" class="html-code-report"
+                                id="html-code-disciplines-report" checked>
+                            <input type="radio" name="html-css-code-selection-disciplines" class="css-code-report"
+                                id="css-code-disciplines-report">
+                            <textarea class="html-code-textarea-report" id="html-code-disciplines-textarea-report"
+                                readonly>
+<!-- start
+
+---------------------------------------------- main ----------------------------------------------
+<main>
+    <section id="archery-disciplines-main-section-html">
+        <article id="container-archery-disciplines-section">
+            <h2>Target Archery Disciplines</h2>
+            <p>Bendigo Target Archery Club offers Target, Indoor, and Clout archery. Target, Indoor and Clout
+                competitions are regularly hosted on our facilities.</p>
+            <article id="target-article">
+                <img src="../img/Image12.jpg" alt="picture-archery-target">
+                <h3>Target</h3>
+                <p>Target archery involves shooting at a target butt centred approximately 1.5m above ground level
+                    which will have scoring circles of up to 122cm in diameter on the target face. The target face
+                    has concentric circles and scoring starts in the centre with the smallest circle &#45; the bulls eye
+                    &#45; recorded as an X which equals 10 points. The next larger circle also equals 10, then 9, 8, 7,
+                    6, 5, 4, 3, 2, 1 and then M for miss. Some target faces only have X through to 6 scoring rings.
+                    There are also a few smaller target faces where the circles are closer together. Archers usually
+                    shoot 3 or 6 arrows per &#39;end&#39;.
+                </p>
+                <p>See the official Archery Australia Target Rounds: <a href="../docs/AA-TargetRounds.pdf" target="_blank">AA-TargetRounds.pdf</a> and the World Archery
+                    Target Rounds: <a href="../docs/WA-TargetRounds.pdf" target="_blank">WA-TargetRounds.pdf</a>
+                </p>
+                    <p>The club accommodates approximately 50 target lanes or 150 archers shooting simultaneously, with
+                    target distances up to 90 metres.
+                </p>
+            </article>
+            <article id="indoor-article">
+                <img src="../img/Image11.jpg" alt="picture-archery-indoor">
+                <h3>Indoor</h3>
+                <p>Indoor archery has smaller scoring faces than target archery and archers shoot 3 arrows per end
+                    at 18m or 25m distances. The target faces are fixed to a vertical wall centred approximately
+                    1.2m to 1.7m above the floor. 18m distances use a 40cm diameter with X/10 through to 1 scoring
+                    rings or a &#39;three spot&#39;, which shows three separate target circles with scoring circles from
+                    X/10 to the 6 ring. The &#39;three spot&#39; requires the archer to shoot one arrow into each of the
+                    three circles.
+                </p>
+                <p>The indoor shed holds 15 18m indoor target lanes. Most of the lanes also allow 25m shooting
+                    distances. The club uses an electronic timing system in the indoor halls.
+                </p>
+            </article>
+            <article id="clout-article">
+                <img src="../img/Image13.jpg" alt="picture-archery-clout">
+                <h3>Clout</h3>
+                <p>
+                    The target face in clout is 15 metres across and is flat on the ground! Each scoring circle on
+                    the target is about 75cm wide and is bordered by a coloured flag identifying the standard 10
+                    ring scoring circles. The &#39;bulls eye&#39; in the centre of the target face is a marker post which is
+                    called the Clout. Archers shoot six arrows per end, aiming up into the air to about a 45 degree
+                    angle so their arrows travel in a large parabola.
+                </p>
+                <p>
+                    Clout is shot at distances from 100m to 180m depending on the archer&#39;s age and bow division.
+                </p>
+                <p>
+                    See the official Archery Australia Clout Rounds: <a href="../docs/AA-CloutRounds.pdf" target="_blank">AA-CloutRounds.pdf</a>
+                </p>
+            </article>
+        </article>
+    </section>
+</main>
+
+end -->
+                            </textarea>
+                            <textarea class="css-code-textarea-report" id="css-code-disciplines-textarea-report"
+                                readonly>
+/************************* main *************************/
+/************************* main > archery disciplines main section *************************/
+#archery-disciplines-main-section-html {
+    padding: 3%;
+}
+
+#container-archery-disciplines-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+}
+
+#container-archery-disciplines-section>* {
+    margin: 3% 0%;
+}
+
+#container-archery-disciplines-section img {
+    width: min(400px, 40vw);
+    margin: 1% 2%;
+    box-shadow: 0px 5px 10px;
+}
+
+/************************* main > archery disciplines main section > target *************************/
+#target-article {
+    padding: 3%;
+    background-color: rgb(9, 112, 84, .3);
+    box-shadow: 0px 5px 10px;
+}
+
+#target-article img {
+    float: right;
+}
+
+#target-article>* {
+    margin-top: 2%;
+}
+
+/************************* main > archery disciplines main section > Indoor *************************/
+#indoor-article {
+    padding: 3%;
+    background-color: rgb(9, 112, 84, .3);
+    box-shadow: 0px 5px 10px;
+}
+
+#indoor-article {
+    padding-left: 1%;
+}
+
+#indoor-article img {
+    float: left;
+}
+
+#indoor-article>* {
+    margin-top: 2%;
+}
+
+/************************* main > archery disciplines main section > clout *************************/
+#clout-article {
+    padding: 3%;
+    background-color: rgb(9, 112, 84, .3);
+    box-shadow: 0px 5px 10px;
+}
+
+#clout-article img {
+    float: right;
+}
+
+#clout-article>* {
+    margin-top: 2%;
+}
+                            </textarea>
+                        </div>
+                    </article>
+                    <article class="report-articles-content" id="report-coaching">
+                        <h3>Coaching</h3>
+                        <p>
+                            The coaching site is where users can find advice and what instructors can offer them. The
+                            page has an animation on the title of the tips to expand or contract. It was made by using
+                            the details HTML tag.
+                        </p>
+                        <p>Code:</p>
+                        <div class="container-html-css-code-report">
+                            <input type="radio" name="html-css-code-selection-coaching" class="html-code-report"
+                                id="html-code-coaching-report" checked>
+                            <input type="radio" name="html-css-code-selection-coaching" class="css-code-report"
+                                id="css-code-coaching-report">
+                            <textarea class="html-code-textarea-report" id="html-code-coaching-textarea-report"
+                                readonly>
+<!-- start
+
+---------------------------------------------- main ----------------------------------------------
+<main>
+    <section id="coaching-main-section-html">
+        <h1>Coaching</h1>
+        <article>
+            <p>There are 3 levels of coaches at the club. They are:</p>
+            <ul>
+                <li>Level 1, Archery Instructors &#45; there are about 20 active Archery Instructors at the club.
+                </li>
+                <li>Level 2, Coaches (level 2) &#45; Jenny, Melissa, David, and Adrian.</li>
+                <li>Level 3, Club and Regional Coach &#45; Shelley.</li>
+            </ul>
+            <p>The Level 2 and 3 Coaches can be identified by the shirts they wear. They look a little different
+                to most members&#39; shirts to make it easier to spot them around the club. They have bright gold
+                sleeves with “coach” written on the back and their first name on the front. Whilst always busy
+                helping people, they are also very approachable.
+                Basic coaching help is available to all archers on most Saturday mornings from 9.00 to 11.30.
+                The Level 2 and 3 Coaches offer assistance with measuring and advising you on your first bow
+                purchase and the setup of your new bow. More experienced archers may make arrangements for
+                coaching by seeing the Club Coach.
+            </p>
+            <p>Coaches and instructors deserve some time themselves to shoot so please respect their time in the
+                afternoon.
+            </p>
+            <p>General workshop/seminar sessions are held each month for all members, with topics like &#39;Bow Set
+                Up and Tuning&#39;, &#39;Purchasing the correct Arrows&#39;, &#39;Arrow Fletching and
+                Maintenance&#39;,
+                etc.
+            </p>
+        </article>
+        <img src="../img/Image8.jpg" alt="image-archery-coaching">
+        <article id="container-coaching-tips">
+            <h2>Coaching Tips</h2>
+            <p>Below are some basic tips for the beginner and intermediate archer:</p>
+            <details>
+                <summary>Hot Weather Precautions</summary>
+                <div id="container-hot-weather-datails-coaching">
+                    <p>Please wear sun protection.</p>
+                    <ul>
+                        <li>Wear a hat.</li>
+                        <li>Uses sunscreen. The club also provides free sun lotion for members.</li>
+                        <li>Watch for signs of dehydration. The urine colour charts in the toilets to help you
+                            self-monitor.</li>
+                        <li>Drink plenty of water. There is free filtered tank water in the kitchen and also cold drinks
+                            for sale in the fridge.</li>
+                        <li>While on the field take every opportunity to retreat to the shades between ends.</li>
+                        <li>Sit out an end or two from time to time when you&#39;re just practising.</li>
+                        <li>Remember this is sport by choice, so in very hot weather it is sometimes better to sit it
+                            out in the shade and spectate.</li>
+                    </ul>
+                    <p>With summer also comes the risk of storms and strong winds …</p>
+                    <ul>
+                        <li>Never shoot outside as a storm approaches.</li>
+                        <li>Do not shelter under trees in windy weather.</li>
+                    </ul>
+                </div>
+            </details>
+            <details>
+                <summary>Purchasing your first bow</summary>
+                <div id="container-purchasing-datails-coaching">
+                    <p>
+                        New members are encouraged not to go out and buy a bow until you have spoken to a coach. It is
+                        recommended that you hire equipment for the first two months and then see a coach to get
+                        measured and to discuss the options.
+                    </p>
+                    <p>When you do have a new bow, book in advance with a coach to obtain help with setting it up for
+                        the first time. This can be done on most Saturday mornings, however the time for this is 09.00
+                        sharp. Booking via email is preferred.
+                    </p>
+                    <p>Please be aware that arrows must in general be matched both to the bow and to the archer&#39;s
+                        draw length.
+                    </p>
+                </div>
+            </details>
+            <details>
+                <summary>Aiming</summary>
+                <div id="container-Aiming-datails-coaching">
+                    <p>Arrows go where the bow is pointing at the time of release and during the time it takes for the
+                        arrow travel to clear the bow.
+                    </p>
+                    <p>To point the bow in the right place we use a back sight and a front sight, unless you are just
+                        using your judgement to guess where the bow is pointed. The back sight must be aligned with the
+                        front sight and straight at the gold at the instant of release. We must use all our training and
+                        practice of skills to keep the bow stable at the instant of release and until the arrow has
+                        cleared the bow.
+                    </p>
+                    <p>The back sight on a bow is the string. The front sight is the circle, pin or dot on the sight,
+                        or for bare bow archers, the tip of the arrow.
+                    </p>
+                    <p>To aim, only focus the eye&#39;s vision on the gold on the target face. Focus with determination.
+                        The front sight (circle or dot) should drift down to the gold as part of the shooting process,
+                        but do not adjust the eye&#39;s focus onto the circle/dot. Let the brain naturally centre the
+                        circle
+                        on the gold. Ensure the back sight (the string) is aligned on the side of the bow&#39;s riser
+                        “cut
+                        out” or through the side of the circle of the sight (for a recurver). For compounders using a
+                        peep in the string the concept is exactly the same.
+                    </p>
+                    <p>Check that the string is vertical as bow cant (tilting) variation will cause left and right
+                        arrows; to do this if you are a recurver use the side of the target face as a vertical
+                        reference, or for a compounder use your bubble. Expand through the clicker (if you are using a
+                        clicker) and release the arrow.
+                    </p>
+                    <p>Skills acquisition requires determined effort. Archery is the art of repetitive precision. In
+                        time, the more natural and subconscious the process the better. The arrow goes where the bow is
+                        pointed at the instance of release and clearing of the bow.
+                    </p>
+                </div>
+            </details>
+            <details>
+                <summary>Core Stability</summary>
+                <div id="container-core-stability-datails-coaching">
+                    <p>Why are coaches so concerned with core strength and stability?
+                        The most important technique or factor in scoring well in archery is Core Stability — that is,
+                        holding a fully-drawn bow without any wobble. Without a solid core, an archer will need to be
+                        very lucky to get a good score. The core is the foundation of the shot &#45; without a solid
+                        core
+                        there is little an archer can consistently do to overcome instability. The core is said to be
+                        over 80% of the shot and all technique needs to be built on top of a solid foundation.
+                    </p>
+                    <p>An archer shooting at 50 metres onto the large 122cm target aiming at the cntre oif the target
+                        but has a 9mm wobble (that is, the sight is not rock solid on the bulls-eye) will not score a
+                        point! The arrows will land outside the 1 ring.As one of our top recurve archers points out,
+                        scoring 10s is easy &#45; just point it at the middle and don&#39;t wobble!
+                    </p>
+                    <p>So what can you do to score more points?
+                    </p>
+                    <ul>
+                        <li>Be solid in the shot</li>
+                        <li>Have a solid foundation on the ground (no running shoes with curved soles)</li>
+                        <li>Release the string cleanly by relaxing the fingers, not opening, as this will minimise the
+                            plucking and movement of the string away from the face in the release</li>
+                        <li>Stay balanced front to back, the push and pull should be equal so you do not move in the
+                            shot</li>
+                        <li>Have a solid, stable front shoulder and relaxed bow hand</li>
+                        <li>Keep your head still</li>
+                        <li>Aim at the middle!</li>
+                    </ul>
+                    <p>It is easier to stay solid in the shot and have a good consistent technique to score more points
+                        than it is to be lucky!
+                    </p>
+                </div>
+            </details>
+        </article>
+    </section>
+</main>
+
+end -->
+                            </textarea>
+                            <textarea class="css-code-textarea-report" id="css-code-coaching-textarea-report" readonly>
+/************************* main *************************/
+/************************* main > coaching main section *************************/
+#coaching-main-section-html {
+    padding: 3% 0%;
+    text-align: justify;
+
+}
+
+#coaching-main-section-html article:first-of-type>* {
+    margin: 2% 0%;
+}
+
+#coaching-main-section-html>h1 {
+    text-align: center;
+}
+
+#coaching-main-section-html li {
+    padding-left:1%;
+    list-style: symbols(cyclic '\27B3') inside;
+}
+
+#coaching-main-section-html article {
+    margin: 5% 3%;
+    padding: 4%;
+    background-color: rgb(9, 112, 84, .3);
+    box-shadow: 0px 5px 10px;
+}
+
+#coaching-main-section-html img {
+    width: 100%;
+}
+
+#coaching-main-section-html details {
+    margin: 4% 0%;
+    background-color: rgb(9, 112, 84, .3);
+    box-shadow: 0px 5px 10px;
+}
+
+#coaching-main-section-html details summary {
+    position: relative;
+    display: flex;
+    align-items: center;
+    list-style: none ;
+    font-size: 1em;
+    padding: 3% 0% 3% 15%;
+    cursor: pointer;
+}
+
+#coaching-main-section-html details summary::before {
+    content: "";
+    position: absolute;
+    left: 1%;
+    width: min(40px, 7vw);
+    height: min(40px, 7vw);
+    background-image: url(../icon/target-tips.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: all ease .1s;
+}
+
+#coaching-main-section-html details summary:hover::before {
+    transform: scale(1.3);
+}
+
+#coaching-main-section-html details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+#coaching-main-section-html details div {
+    padding: 0% 5% 5% 5%;
+}
+
+#coaching-main-section-html details div>* {
+    margin: 2% 0%;
+}
+                            </textarea>
+                        </div>
+                    </article>
+                    <article class="report-articles-content" id="report-info">
+                        <h3>Info</h3>
+                        <p>
+                            A user can find a welcome and their history on the Info page. There is a field where their
+                            details can be found. The last part is a simple form to make contacting them for any query
+                            easier. The "form" will be presented in the following article.
+                        </p>
+                        <p>Code:</p>
+                        <div class="container-html-css-code-report">
+                            <input type="radio" name="html-css-code-selection-info" class="html-code-report"
+                                id="html-code-info-report" checked>
+                            <input type="radio" name="html-css-code-selection-info" class="css-code-report"
+                                id="css-code-info-report">
+                            <textarea class="html-code-textarea-report" id="html-code-info-textarea-report" readonly>
+<!-- start
+
+---------------------------------------------- main ----------------------------------------------
+<main>
+    <section id="info-main-section-html">
+        <article>
+            <h2>Welcome</h2>
+            <p>Welcome to Bendigo Target Archery Club. The club started in 1948 and is one of the oldest target
+                archery clubs in Victoria.</p>
+            <p>We&#39;re a family-friendly target archery club located at the Bendigo Racecourse off Golf Course Rd.
+                Our
+                facilities offer target, indoor and clout archery plus field archery practice and we host club,
+                state and national level events.</p>
+            <p>Please note that we don&#39;t allow casual walk-ins. You must be an Archery Australia member or be
+                participating in a course to shoot at our club.</p>
+            <p>If you&#39;re new to archery we hold archery courses each month. Please visit our Try Archery section
+                for
+                further details. If you&#39;re an experienced archer and would like to join our club, please contact
+                us
+                to arrange an appointment.</p>
+        </article>
+        <img src="../img/Image4.jpg" alt="">
+        <div id="container-info-about-main-section">
+            <article>
+                <h2>About Us</h2>
+                <p>The Bendifo Target Archery Club The club started in 1948 and is one of the oldest target archery
+                    clubs in Victoria. The club operates a target field and an Indoor Archery Facility at the
+                    Bendigo Racecourse. </p>
+                <p>Archery is a great sport that gets you outside and keeps you active and healthy which many people
+                    find relaxing. Our club has a very family friendly approach, great social atmosphere and some
+                    very serious competitors aiming for international representation. The club invites memberships
+                    from a range of abilities and members range from 10 years to eighty plus.</p>
+                <p>Archery is a sport that almost anyone can participate in. You don&#39;t have to have any
+                    particular
+                    physical attribute to become good at the sport so come along and have a go … it&#39;s great fun
+                    and
+                    the company is very friendly! Archery can be enjoyed at a social level, as a self-improvement
+                    discipline, or for the competitively-minded at club, state, national, international and Olympic
+                    level.</p>
+            </article>
+            <article>
+                <h2>Contact</h2>
+                <div>
+                    <b>Address:</b>
+                    <address>
+                        Bendigo Target Archery Club <br>
+                        Golf Course Rd. <br>
+                        Ascot VIC 3551
+                    </address>
+                </div>
+                <div>
+                    <b>Email:</b>
+                    <address><a href="mailto: bendigoarcheryclub@gmail.com">bendigoarcheryclub@gmail.com</a>
+                    </address>
+                </div>
+                <div>
+                    <b>Phone:</b>
+                    <i>0 401 573 236</i>
+                </div>
+                <div>
+                    <b>Club Hours:</b>
+                    <i>Saturday 8:00am to 4:00pm. <br>
+                        Thursday 8:00am to 12:00pm. <br>
+                        Wednesday 6:30pm to 9pm.</i>
+                </div>
+            </article>
+        </div>
+    </section>
+</main>
+
+end -->
+                            </textarea>
+                            <textarea class="css-code-textarea-report" id="css-code-info-textarea-report" readonly>
+/************************* main *************************/
+/************************* main > info main section *************************/
+#info-main-section-html {
+padding-top: 3%;
+text-align: justify;
+}
+
+#info-main-section-html>* {
+margin: 2% 0%;
+}
+
+#info-main-section-html article {
+margin: 5% 2%;
+padding: 2% 0%;
+background-color: rgb(9, 112, 84, .3);
+box-shadow: 0px 5px 10px;
+}
+
+#info-main-section-html article:first-child>* {
+padding: 1% 10%;
+}
+
+#info-main-section-html article>* {
+padding: 2% 5%;
+}
+
+#info-main-section-html>article:first-child>h2 {
+margin-bottom: 2%;
+text-align: center;
+}
+
+#info-main-section-html>img {
+width: 100%;
+}
+
+#container-info-about-main-section {
+display: flex;
+justify-content: space-around;
+}
+
+#container-info-about-main-section article {
+width: 100%;
+}
+
+#container-info-about-main-section>article:nth-child(2) div {
+display: flex;
+}
+
+#container-info-about-main-section>article:nth-child(2) div>* {
+margin-right: 1%;
+}
+
+/************************* @media *************************/
+/************************* @media *************************/
+@media screen and (max-width:720px){
+#container-info-about-main-section {
+flex-wrap: wrap;
+}
+}
+                            </textarea>
+                        </div>
+                    </article>
+                </article>
+                <article class="report-articles-content" id="report-form">
+                    <h3>Form</h3>
+                    <p>
+                        The Form built for this website has few fields, although it contains some interesting
+                        interactions with the user. The Form can be found on the Home and Info page. It contains three
+                        fields that users can fill up. Those fields are "input type text" with a pattern for the user's
+                        name and an "input type email" for the user's email. The last is a simple "textarea" for user
+                        queries. This section is to allow users to reach out to them quickly.
+                    </p>
+                    <p>
+                        Fields Name and Email have interaction with users. Using CSS to background them in red if they
+                        are empty or invalid and show up an exclamation sign when they get the focus to give users more
+                        information about the issue. Similarly, the background turns green when they are valid, and a
+                        tick mark appears.
+                    </p>
+                    <p>Code:</p>
+                    <div class="container-html-css-code-report">
+                        <input type="radio" name="html-css-code-selection-form" class="html-code-report"
+                            id="html-code-form-report" checked>
+                        <input type="radio" name="html-css-code-selection-form" class="css-code-report"
+                            id="css-code-form-report">
+                        <textarea class="html-code-textarea-report" id="html-code-form-textarea-report" readonly>
+<!-- start
+
+---------------------------------------------- main form main section ----------------------------------------------
+<section id="form-main-section">
+    <h2>Send us your question</h2>
+    <form action="" method="post">
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="form-name" placeholder="Name..." maxlength="45" pattern="[A-Za-z]{2,45}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="form-email" placeholder="example@email.com" required>
+
+        <label for="message">Message:</label>
+        <textarea name="message" id="form-message" cols="30" rows="10" placeholder="Write your message" required>< /textarea>
+
+        <input type="submit" value="Submit">
+
+    </form>
+</section>
+
+end -->
+                        </textarea>
+                        <textarea class="css-code-textarea-report" id="css-code-form-textarea-report" readonly>
+/************************* main > form main section *************************/
+#form-main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4%;
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+#form-main-section>form {
+    display: flex;
+    flex-direction: column;
+    width: min(500px, 90vw);
+    margin-top: 4%;
+}
+
+#form-main-section>form>input[type=email],
+#form-main-section>form>input[type=text] {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 40px;
+    margin-bottom: 5%;
+    padding-left: 2%;
+}
+
+#form-main-section>form>input[type=email]:valid,
+#form-main-section>form>input[type=text]:valid {
+    background-color: rgb(117, 255, 117);
+}
+
+#form-main-section>form>input[type=email]:valid:focus,
+#form-main-section>form>input[type=text]:valid:focus {
+    background-image: url('../icon/valid-icon.png');
+}
+
+#form-main-section>form>input[type=email]:required:invalid:focus,
+#form-main-section>form>input[type=text]:required:invalid:focus {
+    background-image: url('../icon/advise-icon.png'); 
+}
+
+#form-main-section>form>input[type=email]:invalid,
+#form-main-section>form>input[type=text]:invalid {
+    background-color: red;
+}
+ 
+
+
+#form-main-section>form>input[type=submit] {
+    height: 40px;
+    margin-top: 1%;
+    background-color: #097054;
+    border: none;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: font-size ease .1s;
+}
+
+#form-main-section>form>input[type=submit]:hover {
+    background-color: #0d9b75;
+    font-size: 1.3em;
+
+}
+                        </textarea>
+                    </div>
+                </article>
+                <article class="report-articles-content" id="report-footer">
+                    <h3>Footer</h3>
+                    <p>
+                        The Footer comprises two sections, "info footer" and "copyrights". The "info footer" has three
+                        fieldsets, one for the club's details, a website map like the bar menu, and the social for
+                        social media. The latter has interaction using three links to social medias Facebook, Instagram,
+                        and youtube.
+                    </p>
+                    </p>
+                    <p>Code:</p>
+                    <div class="container-html-css-code-report">
+                        <input type="radio" name="html-css-code-selection-footer" class="html-code-report"
+                            id="html-code-footer-report" checked>
+                        <input type="radio" name="html-css-code-selection-footer" class="css-code-report"
+                            id="css-code-footer-report">
+                        <textarea class="html-code-textarea-report" id="html-code-footer-textarea-report" readonly>
+<!-- start
+
+---------------------------------------------- footer ----------------------------------------------
+<footer>
+        <section id="info-footer">
+            <fieldset id="general-info-footer-fieldset">
+                <h2>Contact</h2>
+                <div>
+                    <b>Address:</b>
+                    <address>
+                        Bendigo Target Archery Club <br>
+                        Golf Course Rd. <br>
+                        Ascot VIC 3551
+                    </address>
+                </div>
+                <div>
+                    <b>Email:</b>
+                    <address><a href="mailto: bendigoarcheryclub@gmail.com">bendigoarcheryclub@gmail.com</a></address>
+                </div>
+                <div>
+                    <b>Phone:</b>
+                    <i>0 401 573 236</i>
+                </div>
+                <div>
+                    <b>Club Hours:</b>
+                    <i>Saturday 8:00am to 4:00pm. <br>
+                        Thursday 8:00am to 12:00pm. <br>
+                        Wednesday 6:30pm to 9pm.</i>
+                </div>
+            </fieldset>
+            <fieldset id="map-footer-fieldset">
+                <h2>Map</h2>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="section/tryarchery.html">Try Archery</a></li>
+                    <li><a href="section/membership.html">Membership</a></li>
+                    <li><a href="section/archerydisciplines.html">Disciplines</a></li>
+                    <li><a href="section/coaching.html">Coaching</a></li>
+                    <li><a href="section/info.html">Info</a></li>
+                    <li><a href="section/report.html">Report</a></li>
+                </ul>
+            </fieldset>
+            <fieldset id="social-media-footer-fieldset">
+                <h2>Social</h2>
+                <div id="container-social-media-footer">
+                    <a href="https://facebook.com">Facebook &#128279;
+                        <img src="icon/facebook-icon.png" alt="facebook" id="facebook-footer" class="social-media-footer">
+                    </a>
+                    <a href="https://instagram.com">Instagram &#128279;
+                        <img src="icon/instagram-icon.png" alt="instagram" id="instagram-footer" class="social-media-footer">
+                    </a>
+                    <a href="https://youtube.com">Youtube &#128279;
+                        <img src="icon/youtube-icon.png"alt="youtube" id="youtube-footer" class="social-media-footer">
+                    </a>
+                </div>
+            </fieldset>
+        </section>
+        <hr>
+        <section id="copyrights">
+            <p>&#169; 2023 by Daniel Arango - U1143210<br>University of Southern Queensland - unisq</p>
+        </section>
+    </footer>
+
+end -->
+                        </textarea>
+                        <textarea class="css-code-textarea-report" id="css-code-footer-textarea-report" readonly>
+/************************* footer *************************/
+/* general settings */
+#info-footer {
+    display: flex;
+    flex-direction: row;
+    background-color: #097054;
+    padding: 0% 0%;
+}
+
+#info-footer fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+    margin: 8% 1%;
+    padding: 2% 0%;
+    border: none;
+    border-radius: 10px;
+    border-color: #097054;
+    box-shadow: 0px 5px 10px black;
+}
+
+#info-footer h2 {
+    width: 100%;
+    padding: 4% 0%;
+    text-align: center;
+}
+
+/* general info footer */
+#general-info-footer-fieldset {
+    background-color: rgb(101, 153, 255, .1);
+
+}
+
+#general-info-footer-fieldset div {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin; ;
+}
+
+#general-info-footer-fieldset div>* {
+    padding: 0% 2%;
+}
+
+#general-info-footer-fieldset b {
+    text-decoration: underline;
+}
+
+/* map footer */
+#map-footer-fieldset {
+    background-color: rgb(101, 153, 255, .1);
+}
+
+#map-footer-fieldset ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2% 0%;
+    list-style: none;
+}
+
+#map-footer-fieldset li {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1%;
+}
+
+#map-footer-fieldset li a {
+    color: black;
+}
+
+/* social media footer */
+#social-media-footer-fieldset {
+    background-color: rgb(101, 153, 255, .1);
+}
+
+#container-social-media-footer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+#container-social-media-footer>a {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-left: 2%;
+    padding-right: 2%;
+    color: black;
+    text-decoration: none;
+}
+
+#container-social-media-footer>a>img {
+    width: min(50px, 10vw);
+    height: min(50px, 10vw);
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    margin: 2%;
+    box-shadow: 0px 5px 10px;
+    cursor: pointer;
+    transition: transform ease .2s;
+}
+
+#container-social-media-footer>a:hover>img {
+    transform: scale(1.2);
+}
+
+/* section copyrights */
+#copyrights>p {
+    text-align: center;
+    padding: 2% 0%;
+    color: white;
+}
+
+/************************* @media *************************/
+/************************* @media *************************/
+@media screen and (max-width: 720px) {
+    /************************* footer *************************/
+    #info-footer {
+        flex-wrap: wrap;
+    }
+
+    #info-footer fieldset {
+        margin: 2% 1%;
+    }
+}
+                        </textarea>
+                    </div>
+                </article>
+            </section>
+        </section>
+    </main>
+    <!---------------------------------------------- footer ---------------------------------------------->
+    <footer>
+        <div id="container-footer-text">
+            <p>&copy;University of Southern Queensland - UNISQ <br> by Daniel Arango, U1143210. 2023</p>
+        </div>
+    </footer>
+    <!--script for js-->
+    <script src="report.js"></script>
+</body>
+
+</html>

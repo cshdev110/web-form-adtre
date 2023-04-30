@@ -1,0 +1,418 @@
+/************************* REPORT *************************/
+
+/************************* main *************************/
+/************************* main > global section *************************/
+#report-global-section {
+    /* position: relative; */
+    display: flex;
+    text-align: justify;
+    color: rgb(255, 255, 255, .9);
+}
+
+#container-html-css-code-report {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Report - articles */
+.report-articles-content {
+    padding: 0% 3%;
+}
+
+.report-articles-content>h3 {
+    padding: 8% 0% 2% 0%;
+}
+
+.report-articles-content p {
+    padding: 1% 0%;
+}
+
+/* general images */
+#report-global-section img {
+    padding: 1%;
+    margin: 0% 2% 2% 0%;
+    border: #696969 solid 1px;
+}
+
+/* general textarea */
+.report-text-area {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 2%;
+    padding: 1%;
+    background-color: rgb(0, 0, 0, .2);
+    border: #696969 solid 1px;
+    color: rgb(255, 255, 255, .7);
+    white-space: pre;
+    outline: none;
+}
+
+/* code container */
+.container-html-css-code-report input[type=radio] {
+    width: 15%;
+    height: 35px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    filter: invert();
+    appearance: none;
+    cursor: pointer;
+    z-index: -1;
+}
+
+.html-code-report {
+    background-image: url('../icon/html-icon.png');
+}
+
+.html-code-report:hover {
+    background-color: rgb(139, 139, 139) !important;
+}
+
+.html-code-report:checked {
+    background-color: rgb(0, 0, 0, .2);
+    filter: invert();
+}
+
+.css-code-report {
+    background-image: url('../icon/css-icon.png');
+}
+
+.css-code-report:hover {
+    background-color: rgb(139, 139, 139) !important;
+}
+
+.css-code-report:checked {
+    background-color: rgb(192, 191, 191);
+    filter: invert();
+}
+
+.container-html-css-code-report textarea {
+    display: none;
+    width: 100%;
+    height: 300px;
+    margin-bottom: 2%;
+    padding: 1%;
+    background-color: rgb(0, 0, 0, .2);
+    border: #696969 solid 1px;
+    color: rgb(255, 255, 255, .7);
+    white-space: pre;
+    outline: none;
+}
+
+/************************* main > main screen *************************/
+dialog {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10%;
+    background-color: black;
+    border: none;
+    text-align: center;
+    color: white;
+    z-index: 10;
+}
+
+dialog button {
+    background-image: url('../icons/door-close-icon.png');
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+    background-color: white;
+    filter: invert();
+    width: 100px;
+    height: 100px;
+    margin-top: 10%;
+    padding: 1%;
+    border-radius: 20%;
+    box-shadow: 0px 0px 20px black;
+    cursor: pointer;
+    transition: all ease .1s;
+}
+
+dialog button:hover {
+    background-image: url('../icons/door-open-icon.png');
+    transform: scale(1.2);
+}
+
+dialog>* {
+    margin: 3% 0%;
+}
+
+/************************* main > content *************************/
+#repor-content-main-section {
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: min(200px, 17vw);
+    height: 100vh;
+    background-color: rgb(0, 0, 0, .9);
+    color: white;
+    z-index: 10;
+}
+
+#repor-content-main-section>ul li {
+    display: flex;
+}
+
+#report-main-submenu {
+    display: flex;
+    flex-direction: column;
+}
+
+#report-main-submenu li{
+    padding-left: 10%;
+}
+
+#repor-content-main-section>ul li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#repor-content-main-section>ul li::marker {
+    content: '';
+}
+
+#repor-content-main-section>h3 {
+    text-align: center;
+}
+
+#repor-content-main-section>* {
+    margin: 10% 0%;
+}
+
+#repor-content-main-section a {
+    width: 100%;
+    padding: 2% 8%;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+/************************* main > document - report-main-section-html *************************/
+#report-main-section-html {
+    width: 100%;
+    padding: 5% 3% 3% 17%;
+    background-color: rgb(0, 0, 0, .9);
+}
+
+#report-presentation {
+    text-align: center;
+}
+#report-presentation>* {
+    padding: 1% 0%;
+}
+
+/************************* main > document - Introduction *************************/
+
+
+/************************* main > document - structure *************************/
+#report-structure>ul li {
+    list-style: symbols(cyclic '\265E') inside;
+}
+
+#container-color-design-report {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3%;
+}
+
+#container-color-design-report p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+}
+
+#container-color-design-report p:first-child {
+    background-color: #097054;
+}
+
+#container-color-design-report p:nth-child(2) {
+    background-color: #FFDE00;
+    color: #000000;
+}
+
+#container-color-design-report p:nth-child(3) {
+    background-color: #6599FF;
+}
+
+#container-color-design-report p:nth-child(4) {
+    background-color: #FF9900;
+}
+
+#container-color-design-report p:nth-child(5) {
+    background-color: #000000;
+}
+
+#container-color-design-report p:last-child {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+/************************* main > document - nav *************************/
+
+/* HTML */
+.html-code-report:checked ~ #html-code-nav-textarea-report {
+    display: block !important;
+}
+
+/* CSS */
+.css-code-report:checked ~ #css-code-nav-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - social media *************************/
+/* HTML */
+.html-code-report:checked ~ #html-code-social-meida-textarea-report {
+    display: block !important;
+}
+
+/* CSS */
+.css-code-report:checked ~ #css-code-social-meida-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - header *************************/
+/* HTML */
+.html-code-report:checked ~ #html-code-header-textarea-report {
+    display: block !important;
+}
+
+/* CSS */
+.css-code-report:checked ~ #css-code-header-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - main *************************/
+/************************* main > document - main > home *************************/
+/* HTML */
+.html-code-report:checked ~ #html-code-home-textarea-report {
+    display: block !important;
+}
+
+/* CSS */
+.css-code-report:checked ~ #css-code-home-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - main > try-archery *************************/
+/* HTML */
+.html-code-report:checked ~ #html-code-try-archery-textarea-report {
+    display: block !important;
+}
+
+/* CSS */
+.css-code-report:checked ~ #css-code-try-archery-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - main > membership *************************/
+/* HTML */
+.html-code-report:checked ~ #html-code-membership-textarea-report {
+    display: block !important;
+}
+
+/* CSS */
+.css-code-report:checked ~ #css-code-membership-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - main > disciplines *************************/
+/* HTML */
+.html-code-report:checked ~ #html-code-disciplines-textarea-report {
+    display: block !important;
+}
+
+/* CSS */
+.css-code-report:checked ~ #css-code-disciplines-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - main > coaching *************************/
+/* HTML */
+.html-code-report:checked ~ #html-code-coaching-textarea-report {
+    display: block !important;
+}
+
+/* CSS */
+.css-code-report:checked ~ #css-code-coaching-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - main > info *************************/
+/* HTML */
+.html-code-report:checked ~ #html-code-info-textarea-report {
+    display: block !important;
+}
+
+/* CSS */
+.css-code-report:checked ~ #css-code-info-textarea-report {
+    display: block !important;
+}
+
+/************************* main > content *************************/
+/************************* main > document - form *************************/
+/* HTML */
+.html-code-report:checked ~ #html-code-form-textarea-report {
+    display: block !important;
+}
+
+/* CSS */
+.css-code-report:checked ~ #css-code-form-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - footer *************************/
+/* HTML */
+.html-code-report:checked ~ #html-code-footer-textarea-report {
+    display: block !important;
+}
+
+/* CSS */
+.css-code-report:checked ~ #css-code-footer-textarea-report {
+    display: block !important;
+}
+
+/************************* @media *************************/
+/************************* @media *************************/
+@media screen and (max-width:720px){
+
+    /************************* @media > content *************************/
+    #repor-content-main-section {
+        width: min(200px, 30vw);
+        transform: translateX(-100%);
+        transition: transform ease .2s;
+    }
+    #repor-content-main-section>ul a {
+        font-size: .8em;
+    }
+
+    #repor-content-main-section::after {
+        content: "\25EC";
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        font-size: 3em;
+        text-shadow: 0px 0px 20px;
+        cursor: pointer;
+        transform: rotate(90deg) translateX(-50%);
+        transition: all ease .2s;
+    }
+
+    #repor-content-main-section:hover {
+        transform: translateX(0%);
+    }
+
+    #repor-content-main-section:hover::after {
+        font-size: 7em;
+        transform: rotate(90deg) translateX(-50%);
+    }
+
+    /************************* main > document - report-main-section-html *************************/
+    #report-main-section-html {
+        padding-left: 9%;
+    }
+}

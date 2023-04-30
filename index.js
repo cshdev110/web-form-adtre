@@ -1091,11 +1091,6 @@ document.querySelector('#submit-form').addEventListener('click', () => {
     });
 });
 
-cnt_containers_form.addEventListener('submit', (evt) => {
-    console.log('submit');
-    setTimeout(() => evt.preventDefault(), 3000);
-});
-
 // ************************************** end events **************************************
 
 // ************************************** main **************************************

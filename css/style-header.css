@@ -38,3 +38,27 @@ header h1 {
     text-shadow: 3px 4px 5px #000000FF;
     -webkit-text-stroke: min(4px, .5vw);
 }
+
+/* ************************* button report ************************* */
+#report {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: yellow;
+    border-color: black;
+    border-bottom-left-radius: 25px;
+    padding: 1% 0.5% 1% 2%;
+    font-size: min(1rem, 3vw);
+    color: black;
+    cursor: pointer;
+    box-shadow: -4px 4px 9px #000000;
+    transition: transform ease 1s;
+    z-index: 10;
+
+}
+
+#report:hover {
+    background-color: #FFFF00;
+    transform: scale(1.1);
+    z-index: 1;
+}
