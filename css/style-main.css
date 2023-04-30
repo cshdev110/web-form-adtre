@@ -255,7 +255,10 @@ select, input:not([type='text']) {
 #container-form-info-details-traveller * {
     width: 100%;
     text-align: center;
-    /* font-size: min(1em, 4vw); */
+}
+
+#container-form-info-details-traveller button {
+    font-size: min(1em, 4vw);
 }
 
 .container-form-perperson-dynamically {

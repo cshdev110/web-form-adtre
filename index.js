@@ -353,14 +353,36 @@ function fn_check_inputs(steps_index, sub_steps_index = 1, final_check = false) 
                         fn_sub_container_manager(sub_form_idx = --sub_steps_index);
                     }
 
-                    if (final_check) {
-                        steps_arr_index = fn_container_steps_manager_control(steps_index, steps_arr_index);
-                        fn_sub_container_manager(sub_form_idx);
-                    }
-
                     form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, idx);
                     elem.focus();
                     value_return = false;
+                }
+                // Validation of email
+                else if (elem.getAttribute('type') === 'email' && value_return === true || elem.validity.valid === false) {
+                    if (elem.value.length < 5) {
+                        elem.setCustomValidity('Please enter a valid email address:example@mail.com');
+
+                        form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, idx);
+                        elem.focus();
+                        value_return = false;
+                    }
+                    else {
+                        elem.setCustomValidity('');
+                    }
+                }
+                // Validation of phone number
+                else if (elem.getAttribute('type') === 'tel' && value_return === true || elem.validity.valid === false) {
+                    if (elem.value.length < 12) {
+
+                        elem.setCustomValidity('Please enter a valid phone number: 0000-000-000');
+
+                        form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, idx);
+                        elem.focus();
+                        value_return = false;
+                    }
+                    else {
+                        elem.setCustomValidity('');
+                    }
                 }
                 // Validation of birthday
                 else if (elem.getAttribute('type') === 'date' && value_return === true) {
@@ -388,12 +410,6 @@ function fn_check_inputs(steps_index, sub_steps_index = 1, final_check = false) 
         if (value_return) {
             temp_travel_preference_required_info.forEach((elem, idx) => {
                 if (elem.value === '' && value_return === true && sub_steps_index === 2) {
-
-                    if (final_check) {
-                        steps_arr_index = fn_container_steps_manager_control(steps_index, steps_arr_index);
-                        fn_sub_container_manager(sub_form_idx);
-                    }
-
                     elem.focus();
                     value_return = false;
                 }
@@ -403,7 +419,7 @@ function fn_check_inputs(steps_index, sub_steps_index = 1, final_check = false) 
                     let input_date = new Date(elem.value);
                     
                     // Must be greater than the current date
-                    if (current_date.toLocaleDateString() >= input_date.toLocaleDateString()) {
+                    if (current_date >= input_date) {
                         let wrong_date = `<p id="wrong-date">The preference travel date cannot be before ${current_date.toLocaleDateString()} *</p>`;
                         document.querySelector('#title-travel-preference').insertAdjacentHTML('afterend', wrong_date);
                         form_per_person_idx = fn_nav_dynamic_forms_pp(form_per_person_idx, idx);
@@ -429,7 +445,14 @@ function fn_check_inputs(steps_index, sub_steps_index = 1, final_check = false) 
                     }
                 }
             });                
-        }                                       
+        }
+        
+        // send the user back to where the wrong input is
+        if (final_check && !value_return) {
+            steps_arr_index = fn_container_steps_manager_control(steps_index, steps_arr_index);
+            fn_sub_container_manager(sub_form_idx);
+        }
+        
         return value_return;
     }
     else if (steps_index === 2) {
@@ -830,6 +853,24 @@ document.querySelector('#name-traveller-input').addEventListener('keyup', (evt) 
     evt.target.value = /(?:[a-zA-Z.\s]+)/.exec(evt.target.value);
 });
 
+// Filtering the email
+document.querySelector('#email-traveller-input').addEventListener('keyup', (evt) => {
+    evt.target.value = /(?:^[a-zA-Z0-9._-]*[@]{0,1}[a-zA-Z0-9.-]*[\.]{0,1}[a-zA-Z]{0,4})/g.exec(evt.target.value);
+});
+
+// Filtering the phone number
+document.querySelector('#phone-traveller-input').addEventListener('keyup', (evt) => {
+    evt.target.value = /(?:^[0-9]{0,4}[-]{0,1}[0-9]{0,3}[-]{0,1}[0-9]{0,3}$)/g.exec(evt.target.value);
+    evt.target.value = evt.target.value.replace(/-/g, '');
+    for (let i = 0; i < evt.target.value.length; i++) {
+        if (i === 4) {
+            evt.target.value = evt.target.value.slice(0, 4) + '-' + evt.target.value.slice(4);
+        }    
+        else if (i === 8) {
+            evt.target.value = evt.target.value.slice(0, 8) + '-' + evt.target.value.slice(8);
+        }
+    }
+});
 
 // filtering the budget input. Only numbers are allowed
 cnt_budget_min_max.forEach(budget_ele => {
