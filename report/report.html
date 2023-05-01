@@ -27,20 +27,15 @@
                 <h3>Content</h3>
                 <ul>
                     <li><a href="#report-introduction">Introduction</a></li>
+                    <li><a href="#report-launch-page">Launch the page</a></li>
                     <li><a href="#report-structure">Structure</a></li>
-                    <li><a href="#report-nav">Nav</a></li>
-                    <li><a href="#report-social-media">Social media</a></li>
                     <li><a href="#report-header">Header</a></li>
                     <li id="report-main-submenu"><a href="#report-main">Main</a>
                         <ul>
-                            <li><a href="#report-home">Home</a></li>
-                            <li><a href="#report-try-archery">Try Archery</a></li>
-                            <li><a href="#report-membership">Membership</a></li>
-                            <li><a href="#report-disciplines">Disciplines</a></li>
-                            <li><a href="#report-coaching">Coaching</a></li>
-                            <li><a href="#report-info">Info</a></li>
+                            <li><a href="#report-steps">Section Steps</a></li>
+                            <li><a href="#report-form">Section Form</a></li>
+                            <li><a href="#report-summary">Section Summary</a></li>
                         </ul>
-                    <li><a href="#report-form">Form</a></li>
                     <li><a href="#report-footer">Footer</a></li>
                     </li>
                 </ul>
@@ -59,7 +54,7 @@
                 </dialog>
                 <article id="report-presentation">
                     <h2>University of Souther Queensland</h2>
-                    <h3>Report - Assignment 2</h3>
+                    <h3>Report - Assignment 3</h3>
                     <p>Master of Cyber Security</p>
                     <p>Client-side Web Technology - CIS8740</p>
                     <p>By, Daniel Arango - U1143210</p>
@@ -70,94 +65,53 @@
                 <article class="report-articles-content" id="report-introduction">
                     <h3>Introduction</h3>
                     <p>
-                        The page 'Report' aims to explain the components of the current website and how the technology
-                        managed was used to build it, however not in-depth. Therefore, the objective is to show the
-                        significant points of each component, which are in the content panel. Hence, two technologies
-                        were implemented to create the site (HTML and CSS), making it a usable front-end. However, it
-                        requires more work to be a fully functional website, like adding dynamic capabilities using
-                        JavaScript and some back-end technologies.
+                        The HTML form helps us with allowing a user to write certain information into input fields. This
+                        information can be optional or required, and they are collected and used for specific purposes
+                        creating interaction from a website. For this work, a dynamic form for a travel agency, Global
+                        Adventure, has been built to permit the company to offer tailored travel experiences for its
+                        customers.
                     </p>
                     <p>
-                        Some parts of the website that were developed using CSS, as requirements, are not precisely to
-                        be written only in CSS, like some animation and shifting images, how it is shown on this
-                        website. The best practice is making use of JavaScript. However, as it was not allowed for this
-                        work to use other technologies, those features were built using only CSS, where JavaScript would
-                        be a better option, instead. Perhaps, those changes could be done in feature updates.
+                        The presented form dynamically leads a user through the fields showing how and what is required.
+                        Every input will alert the user if the data is valid or invalid via a green or red colour plush
+                        tick or cross icon. Also, some fields remove inputs that are not valid while a user types.
+                        Interaction throughout the form will be added or removed depending on user choices.
+                        The page has been developed using only HTML, CSS, and JavaScript, as required. LocalStorage is a
+                        great feature to allow a user not to lose information already typed, but far more code out of
+                        the requirements is needed.
                     </p>
                     <p>
-                        Lastly, this website is almost responsive, except for the report page, which is better to
-                        display on regular screens rather than on small devices.
+                        The next section of the report depicts the issue that does not allow
+                        running this page without using HTTP or HTTPS.
                     </p>
                 </article>
                 <!-- <hr> -->
                 <article class="report-articles-content" id="report-structure">
                     <h3>Structure</h3>
+
+                    <img src="../img/report/general-structure.png" alt="image-general-structure" id="general-structure">
+
                     <p>
-                        Globally, the website is constituted of a central storage folder, where inside are all the files
-                        needed to make it works. The main folder contains five sub-folders: docs, icons, img, sections,
-                        style, and the index.html file.
+                        As shown in the picture, the site is arranged using five primary folders and one sub-folder
+                        (report folder inside the img folder to keep the image for this report). The outsider folder has
+                        the three leading files that govern the entire site; index.html, index.js, and style.css.
                     </p>
                     <ul>
-                        <li>In the docs folder are important files that the company wants to show to give more
-                            information, like, in this case, PDF files.</li>
-                        <li>In the "icons" folder are the icons used over each page.</li>
-                        <li>All the pictures are in the "img" folder.</li>
-                        <li>The section's folder stores each site page, unlike the index.html page, which is always
-                            placed in the main folder.</li>
-                        <li>Style's folder contains all CSS files that transform a page to a specific "style".</li>
-                        <li>The index.html is the principal file that shows up at first when a site is visited.</li>
+                        <li>The "css" folder has three CSS files that style individual parts of the form page and one
+                            report.css, which styles the report page fully. Each specific CSS file name means where they
+                            are styling: style-footer, the footer, style-header, the header, style-main, the main
+                            section, and the report.css the report page.</li>
+                        <li>The "icons" folder: Contains all the icons used on the page, including in the report.</li>
+                        <li>The "img" folder: contains the site's images and the report's images in a report subfolder.
+                        </li>
+                        <li>The "js" folder: The first file, report.js, has the code to manage the report page, and the
+                            vars_html_style.js are the exported variables used to handle the dynamics to add HTML
+                            elements as needed.</li>
+                        <li>The "report" folder has the report.html file, which is this current report page.</li>
                     </ul>
-                    <p>
-                        There are seven web pages: home, Try Archery, Membership, Disciplines, Coaching, Info, and
-                        Report. Every page has a standard CSS stylesheet file and a particular one. First, there are
-                        nine CSS stylesheets, seven of which are the particular ones, one per page and with the same
-                        name as its respective page. Those are to style the "main" section of the HTML body. The two
-                        reminded CSS stylesheets are style.css and header-footer.css. Every page links the style.css,
-                        and style.css imports the others CSS stylesheets. The header-footer.css gives the standard style
-                        for the header and footer on each page.
-                    </p>
-                    <img src="../img/report/structure-img.png" alt="image-structure-folder">
-                    <img src="../img/report/structure-section-hmtl-img.png" alt="image-structure-section">
-                    <img src="../img/report/structure-css-img.png" alt="image-structure-style"
-                        id="image-structure-style">
-                    <p>
-                        The style.css file is linked on each page, then imports all the other CSS stylesheets and the
-                        font used on this website. Additionally, it adds some previous global styles.
-                    </p>
-                    <textarea class="report-text-area" readonly>
-/* Importing Ubuntu font from google fonts */
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap');
-/* Importing styles */
-@import url(../style/header-footer.css);
-@import url(../style/home.css);
-@import url(../style/tryarchery.css);
-@import url(../style/membership.css);
-@import url(../style/archerydisciplines.css);
-@import url(../style/coaching.css);
-@import url(../style/info.css);
-@import url(../style/report.css);
 
-/************************* General settings *************************/
-* {
-    padding: 0px;
-    margin: 0px;
-    font-family: 'Ubuntu', sans-serif;
-}
+                    <h4><i>index.html</i></h4>
 
-html {
-    display: flex;
-    flex-direction: column;
-    align-items: center
-}
-
-body {
-    width: min(100vw, 1920px);
-    background-color: #000000;
-}
-
-main {
-    background-color: white;
-}
                     </textarea>
                     <p>
                         Every HTML file has the same settings at the beginning of the page to add behaviour to browsers
@@ -168,19 +122,95 @@ main {
 <!-- start
 
 <!DOCTYPE html>
-<html lang="en-au">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../icon/Logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="../style/style.css">
-    <title> "Page Name" </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="icons/Globe.svg" type="image/x-icon">
+    <title>Global Adventure</title>
 </head>
+<body>
+    ---------------------- header ----------------------
+    <header>
+    </header>
+    ---------------------- main ----------------------
+    <main>
+        <div id="container-sections">
+            ---------------------- steps section ----------------------
+            <section id="steps-section">
+            </section>
+            ---------------------- from section ----------------------
+            <section id="form-section">
+            </section>
+            ---------------------- summary section ----------------------
+            <section id="summary-section">
+            </section>
+        </div>
+    </main>
+    -- footer --
+    <footer>
+    </footer>
+    --script for js--
+    <script type="module" src="index.js"></script>
+</body>
+</html>
 
 end -->
                     </textarea>
+
+                    <h4><i>style.css</i></h4>
+                    <textarea class="report-text-area" readonly>
+@import url('css/style-header.css');
+@import url('css/style-footer.css');
+@import url('css/style-main.css');
+@import url('css/report.css');
+/* Importing fonts */
+@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Indie+Flower&display=swap');
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+html {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+body {
+font-family: 'Handlee', cursive;
+color: #8600FF;
+width: min(1920px, 100vw);
+}
+
+body::before {
+content: "";
+position: fixed;
+z-index: -1;
+background-image: url('img/suitcase-travel.jpg');
+background-size: cover;
+width: 50vw;
+height: 50vw;
+right: 0px;
+bottom: 0px;
+opacity: .25;
+}
+
+h1, h2 {
+font-family: 'Indie Flower', cursive !important;
+}
+
+button {
+font-family: 'Handlee', cursive;
+}
+
+                    <textarea class="report-text-area" readonly>
+                    </textarea>
+
                     <p>
                         As the HTML flows, the CSS files follow it too, which means the written CSS code starts from
                         the top to the bottom, styling the bar menu first and then the rest of the document down to the
