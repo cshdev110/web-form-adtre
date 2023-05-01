@@ -114,9 +114,7 @@
 
                     </textarea>
                     <p>
-                        Every HTML file has the same settings at the beginning of the page to add behaviour to browsers
-                        from MS like Edge, manage the scaling and dimensions of the screen across devices, link the CSS
-                        stylesheet to the document, and add the title and the logo to the tap website.
+                        The two only HTML files for this work have the same configuration as below.
                     </p>
                     <textarea class="report-text-area" readonly>
 <!-- start
@@ -137,17 +135,6 @@
     </header>
     ---------------------- main ----------------------
     <main>
-        <div id="container-sections">
-            ---------------------- steps section ----------------------
-            <section id="steps-section">
-            </section>
-            ---------------------- from section ----------------------
-            <section id="form-section">
-            </section>
-            ---------------------- summary section ----------------------
-            <section id="summary-section">
-            </section>
-        </div>
     </main>
     -- footer --
     <footer>
@@ -161,6 +148,9 @@ end -->
                     </textarea>
 
                     <h4><i>style.css</i></h4>
+                    <p>
+                        The main CSS style imports the other CSS files and sets up global parameters.
+                    </p>
                     <textarea class="report-text-area" readonly>
 @import url('css/style-header.css');
 @import url('css/style-footer.css');
@@ -212,52 +202,68 @@ font-family: 'Handlee', cursive;
                     </textarea>
 
                     <p>
-                        As the HTML flows, the CSS files follow it too, which means the written CSS code starts from
-                        the top to the bottom, styling the bar menu first and then the rest of the document down to the
-                        last part of the footer. Each CSS file is conformed into two parts. The first is to manage the
-                        screen with a size up to 1920px, and the second is for screens up to 720px. The mentioned makes
-                        the website responsive to fit into different sorts of devices. The first part is the most
-                        extended section of the CSS files making it with the capability to allow the site to be
-                        responsive as well. The second part is the shortest and contains less code.
-                        It is easy to differentiate every section of the CSS stylesheet files, even the HTML files, as
-                        they are separated by a long comment as a label.
+                        The code of this work follows a specific order. Unlike HTML code, CSS and JavaScript are
+                        organised in a certain way. First off, CSS code tracks in the same order as the HTML is coded.
+                        Besides that, the CSS code is divided into two if needed. The first section is the main style,
+                        and the second section, if required, slightly modify the style page when the screen is less than
+                        768px. As an example, below, in "CSS Order".
                     </p>
+                    <p>
+                        T
+                    </p>
+                    <p><i>CSS Order</i></p>
                     <textarea class="report-text-area" readonly>
-/************************* main *************************/
-/************************* main > info main section *************************/
-#info-main-section {
+/* ************************* main ************************* */
+#container-sections {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    padding: 8% 0%;
 }
 
-#info-main-section>* {
-    width: min(350px, max(200px, 27vw));
-    padding: 3%;
+/* ************************* steps-section ************************* */
+#steps-section {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2% 4%;
+    background-color: #8600FF;
+
 }
 
+/* ************************* form-section ************************* */
+code remove...
 
-... removed code ...
+/* ************************* form-section > buttons left and rigth ************************* */
+code remove...
 
 
-/************************* @media *************************/
-/************************* @media *************************/
-@media screen and (max-width: 720px) {
+/* ************************* form-section > form ************************* */
+code remove...
 
-    
 
-    /************************* @media main *************************/
-    /************************* main > info main section *************************/
-    #info-main-section>* {
-        width: 90%;
+/* ************************* @media ************************* */
+/* ************************* @media ************************* */
+
+@media screen and (max-width: 768px) {
+
+    /* ************************* @media sections ************************* */
+    #container-sections {
+        flex-direction: column;
     }
+    
+    /* ************************* @media step section ************************* */
+    code remove...
 
 
-... removed code ...
+
+    /* ************************* @media form-section ************************* */
+    code remove...
 
 
+
+    /* ************************* @media form-section > buttons left and rigth ************************* */
+    code remove...
 }
+
                     </textarea>
                     <textarea class="report-text-area" readonly>
 <!--start 

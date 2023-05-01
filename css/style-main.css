@@ -536,12 +536,12 @@ input[type=date]::before {
         margin: 2% 1%;    
     }
 
-    /* ************************* form-section ************************* */
+    /* ************************* @media form-section ************************* */
     #form-section {
         flex-wrap: wrap;
     }
 
-    /* ************************* form-section > buttons left and rigth ************************* */
+    /* ************************* @media form-section > buttons left and rigth ************************* */
     .step-up-down {
         width: 50%;
         height: min(600px, 10vw);
