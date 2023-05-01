@@ -88,11 +88,6 @@
     padding: 2% 4%;
     overflow: hidden;
     position: relative;
-    font-family: 'Handlee', cursive;
-}
-
-#main-form h2 {
-    font-family: 'Indie Flower', cursive !important;
 }
 
 /* All its childrens */
@@ -144,7 +139,6 @@
     height: min(50px, 8vw);
     margin: 1%;
     background-color: #8600FF;
-    font-family: 'Handlee', cursive;
     color: #FFFFFF;
     font-size: min(1em, 4vw);
     font-weight: bold;

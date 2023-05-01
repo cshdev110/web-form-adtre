@@ -390,9 +390,9 @@ function fn_check_inputs(steps_index, sub_steps_index = 1, final_check = false) 
                     let input_birthday = new Date(elem.value);
                     
                     // A birthday must not be less than 122 years before current day. 122 because the oldest person in the world lived 122 years.
-                    if (back_100_years > input_birthday.getFullYear() || input_birthday.toLocaleString() > new Date().toLocaleString()) {
+                    if (back_100_years > input_birthday.getFullYear() || input_birthday > new Date()) {
 
-                        let wrong_birthday = `<p id="wrong-birthday">The bithday between ${back_100_years} and less than current date*</p>`;
+                        let wrong_birthday = `<p id="wrong-birthday">The bithday must be between ${back_100_years} and less than current date*</p>`;
 
                         document.querySelector('#title-personal-information').insertAdjacentHTML('afterend', wrong_birthday);
 

@@ -20,7 +20,8 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    height: min(100px, 20vw);
+    height: min(60px, 20vw);
+    text-shadow: 0px 0px 2px #000000;
 }
 
 #container-icons-media {
