@@ -61,7 +61,7 @@
 }
 
 .html-code-report {
-    background-image: url('../icon/html-icon.png');
+    background-image: url('../icons/html-icon.png');
 }
 
 .html-code-report:hover {
@@ -74,7 +74,7 @@
 }
 
 .css-code-report {
-    background-image: url('../icon/css-icon.png');
+    background-image: url('../icons/css-icon.png');
 }
 
 .css-code-report:hover {
@@ -82,6 +82,19 @@
 }
 
 .css-code-report:checked {
+    background-color: rgb(192, 191, 191);
+    filter: invert();
+}
+
+.js-code-report {
+    background-image: url('../icons/js.png');
+}
+
+.js-code-report:hover {
+    background-color: rgb(139, 139, 139) !important;
+}
+
+.js-code-report:checked {
     background-color: rgb(192, 191, 191);
     filter: invert();
 }
@@ -97,6 +110,10 @@
     color: rgb(255, 255, 255, .7);
     white-space: pre;
     outline: none;
+}
+
+.links-a {
+    color: #00F8FF;
 }
 
 /************************* main > main screen *************************/
@@ -205,7 +222,15 @@ dialog>* {
 
 /************************* main > document - Introduction *************************/
 
+/************************* main > document - Launch the site *************************/
+#report-launch-site>ul>li {
+    list-style: symbols(cyclic '\265E') inside;
+}
 
+#report-launch-site>ul>li>ul>li {
+    list-style: symbols(cyclic '\265F') inside;
+    padding-left: 10px;
+}
 /************************* main > document - structure *************************/
 #general-structure {
     float: left;
@@ -219,11 +244,17 @@ dialog>* {
     clear: both;
 }
 
+#inkscape-design {
+    float: left;
+    width: 50%;
+}
+
 #container-color-design-report {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 3%;
+    /* clear: both; */
 }
 
 #container-color-design-report p {
@@ -235,20 +266,21 @@ dialog>* {
 }
 
 #container-color-design-report p:first-child {
-    background-color: #097054;
+    background-color: #8600FF;
 }
 
 #container-color-design-report p:nth-child(2) {
-    background-color: #FFDE00;
+    background-color: #79FF00;
     color: #000000;
 }
 
 #container-color-design-report p:nth-child(3) {
-    background-color: #6599FF;
+    background-color: #FF0700;
 }
 
 #container-color-design-report p:nth-child(4) {
-    background-color: #FF9900;
+    background-color: #00F8FF;
+    color: #000000;
 }
 
 #container-color-design-report p:nth-child(5) {
@@ -260,30 +292,8 @@ dialog>* {
     color: #000000;
 }
 
-/************************* main > document - nav *************************/
-
-/* HTML */
-.html-code-report:checked ~ #html-code-nav-textarea-report {
-    display: block !important;
-}
-
-/* CSS */
-.css-code-report:checked ~ #css-code-nav-textarea-report {
-    display: block !important;
-}
-
-/************************* main > document - social media *************************/
-/* HTML */
-.html-code-report:checked ~ #html-code-social-meida-textarea-report {
-    display: block !important;
-}
-
-/* CSS */
-.css-code-report:checked ~ #css-code-social-meida-textarea-report {
-    display: block !important;
-}
-
 /************************* main > document - header *************************/
+
 /* HTML */
 .html-code-report:checked ~ #html-code-header-textarea-report {
     display: block !important;
@@ -294,86 +304,307 @@ dialog>* {
     display: block !important;
 }
 
-/************************* main > document - main *************************/
-/************************* main > document - main > home *************************/
+/************************* main > document - steps *************************/
+#report-steps-img {
+    float: left;
+    width: 15%;
+}
+
+#report-steps>p:nth-child(4) {
+    clear: both;
+}
+
 /* HTML */
-.html-code-report:checked ~ #html-code-home-textarea-report {
+.html-code-report:checked ~ #html-code-steps-textarea-report {
     display: block !important;
 }
 
 /* CSS */
-.css-code-report:checked ~ #css-code-home-textarea-report {
+.css-code-report:checked ~ #css-code-steps-textarea-report {
     display: block !important;
 }
 
-/************************* main > document - main > try-archery *************************/
+/* JS */
+.js-code-report:checked ~ #js-code-steps-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - steps 1 welcome *************************/
+#report-step-1-img {
+    float: left;
+    width: 50%;
+}
+
+/************************* main > document - steps 2.1 travellers *************************/
+#report-step-2 {
+    clear: both;
+}
+
+#report-step-2-1-img {
+    float: left;
+    width: 50%;
+}
+
+#report-step-2>p:nth-child(4) {
+    clear: both;
+}
+
 /* HTML */
-.html-code-report:checked ~ #html-code-try-archery-textarea-report {
+.html-code-report:checked ~ #html-code-step-2-1-textarea-report {
     display: block !important;
 }
 
 /* CSS */
-.css-code-report:checked ~ #css-code-try-archery-textarea-report {
+.css-code-report:checked ~ #css-code-step-2-1-textarea-report {
     display: block !important;
 }
 
-/************************* main > document - main > membership *************************/
+/* JS */
+.js-code-report:checked ~ #js-code-step-2-1-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - steps 2.2 personal information *************************/
+#report-step-2-2 {
+    clear: both;
+}
+
+#report-step-2-2-img {
+    float: left;
+    width: 50%;
+}
+
+#report-step-2-2>p:nth-child(5) {
+    clear: both;
+}
+
 /* HTML */
-.html-code-report:checked ~ #html-code-membership-textarea-report {
+.html-code-report:checked ~ #html-code-step-2-2-textarea-report {
     display: block !important;
 }
 
 /* CSS */
-.css-code-report:checked ~ #css-code-membership-textarea-report {
+.css-code-report:checked ~ #css-code-step-2-2-textarea-report {
     display: block !important;
 }
 
-/************************* main > document - main > disciplines *************************/
+/* JS */
+.js-code-report:checked ~ #js-code-step-2-2-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - steps 2.3 travel preferences *************************/
+#report-step-2-3 {
+    clear: both;
+}
+
+#report-step-2-3-img {
+    float: left;
+    width: 50%;
+}
+
+#report-step-2-3>p:nth-child(4) {
+    clear: both;
+}
+
 /* HTML */
-.html-code-report:checked ~ #html-code-disciplines-textarea-report {
+.html-code-report:checked ~ #html-code-step-2-3-textarea-report {
     display: block !important;
 }
 
 /* CSS */
-.css-code-report:checked ~ #css-code-disciplines-textarea-report {
+.css-code-report:checked ~ #css-code-step-2-3-textarea-report {
     display: block !important;
 }
 
-/************************* main > document - main > coaching *************************/
+/* JS */
+.js-code-report:checked ~ #js-code-step-2-3-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - steps 3 preference accommodation *************************/
+#report-step-3 {
+    clear: both;
+}
+
+#report-step-3-img {
+    float: left;
+    width: 50%;
+}
+
+#report-step-3>p:nth-child(4) {
+    clear: both;
+}
+
 /* HTML */
-.html-code-report:checked ~ #html-code-coaching-textarea-report {
+.html-code-report:checked ~ #html-code-step-3-textarea-report {
     display: block !important;
 }
 
 /* CSS */
-.css-code-report:checked ~ #css-code-coaching-textarea-report {
+.css-code-report:checked ~ #css-code-step-3-textarea-report {
     display: block !important;
 }
 
-/************************* main > document - main > info *************************/
+/* JS */
+.js-code-report:checked ~ #js-code-step-3-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - steps 4 preference transportation *************************/
+#report-step-4 {
+    clear: both;
+}
+
+#report-step-4-img {
+    float: left;
+    width: 50%;
+}
+
+#report-step-4>p:nth-child(4) {
+    clear: both;
+}
+
 /* HTML */
-.html-code-report:checked ~ #html-code-info-textarea-report {
+.html-code-report:checked ~ #html-code-step-4-textarea-report {
     display: block !important;
 }
 
 /* CSS */
-.css-code-report:checked ~ #css-code-info-textarea-report {
+.css-code-report:checked ~ #css-code-step-4-textarea-report {
     display: block !important;
 }
 
-/************************* main > content *************************/
-/************************* main > document - form *************************/
+/* JS */
+.js-code-report:checked ~ #js-code-step-4-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - steps 5 preference environment *************************/
+#report-step-5 {
+    clear: both;
+}
+
+#report-step-5-img {
+    float: left;
+    width: 50%;
+}
+
+#report-step-5>p:nth-child(4) {
+    clear: both;
+}
+
 /* HTML */
-.html-code-report:checked ~ #html-code-form-textarea-report {
+.html-code-report:checked ~ #html-code-step-5-textarea-report {
     display: block !important;
 }
 
 /* CSS */
-.css-code-report:checked ~ #css-code-form-textarea-report {
+.css-code-report:checked ~ #css-code-step-5-textarea-report {
+    display: block !important;
+}
+
+/* JS */
+.js-code-report:checked ~ #js-code-step-5-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - steps 6 preference destination *************************/
+#report-step-6 {
+    clear: both;
+}
+
+#report-step-6-img {
+    float: left;
+    width: 50%;
+}
+
+#report-step-6>p:nth-child(4) {
+    clear: both;
+}
+
+/* HTML */
+.html-code-report:checked ~ #html-code-step-6-textarea-report {
+    display: block !important;
+}
+
+/* CSS */
+.css-code-report:checked ~ #css-code-step-6-textarea-report {
+    display: block !important;
+}
+
+/* JS */
+.js-code-report:checked ~ #js-code-step-6-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - steps 7 tickets *************************/
+#report-step-7 {
+    clear: both;
+}
+
+#report-step-7-img {
+    float: left;
+    width: 50%;
+}
+
+#report-step-7>p:nth-child(4) {
+    clear: both;
+}
+
+/* HTML */
+.html-code-report:checked ~ #html-code-step-7-textarea-report {
+    display: block !important;
+}
+
+/* CSS */
+.css-code-report:checked ~ #css-code-step-7-textarea-report {
+    display: block !important;
+}
+
+/* JS */
+.js-code-report:checked ~ #js-code-step-7-textarea-report {
+    display: block !important;
+}
+
+/************************* main > document - summary *************************/
+#report-summary {
+    clear: both;
+}
+
+#report-summary-img {
+    float: left;
+    width: 20%;
+}
+
+#report-summary>p:nth-child(4) {
+    clear: both;
+}
+
+/* HTML */
+.html-code-report:checked ~ #html-code-summary-textarea-report {
+    display: block !important;
+}
+
+/* CSS */
+.css-code-report:checked ~ #css-code-summary-textarea-report {
     display: block !important;
 }
 
 /************************* main > document - footer *************************/
+#report-footer {
+    clear: both;
+}
+
+#report-footer-img {
+    float: left;
+    width: 60%;
+}
+
+#report-footer>p:nth-child(4) {
+    clear: both;
+}
+
 /* HTML */
 .html-code-report:checked ~ #html-code-footer-textarea-report {
     display: block !important;
@@ -383,6 +614,18 @@ dialog>* {
 .css-code-report:checked ~ #css-code-footer-textarea-report {
     display: block !important;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 /************************* @media *************************/
 /************************* @media *************************/

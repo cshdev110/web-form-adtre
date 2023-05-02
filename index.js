@@ -578,15 +578,15 @@ function fn_animation_transports_event(mode_transport) {
             break;
         case 'Air':
             document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.air);
-            fn_animation_transports('../icons/plane.png', '.8s', '1300');
+            fn_animation_transports('icons/plane.png', '.8s', '1300');
             break;
         case 'Land':
             document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.land);
-            fn_animation_transports('../icons/bus.png', '1.2s', '2000');
+            fn_animation_transports('icons/bus.png', '1.2s', '2000');
             break;
         case 'Water':
             document.querySelector('label[for="travel-mode"]').insertAdjacentHTML('afterend', html_css_vars.transport_mode_html.water);
-            fn_animation_transports('../icons/boat.png', '2.0s', '2500');
+            fn_animation_transports('icons/boat.png', '2.0s', '2500');
             break;
         default:
     }

@@ -262,7 +262,6 @@ select, input:not([type='text']) {
     grid-template-columns: auto auto;
     row-gap: 10px;
     column-gap: 2%;
-    /* font-size: min(1em, 2.5vw); */
 }
 
 .form-perperson-inputs {
@@ -294,15 +293,6 @@ select, input:not([type='text']) {
 /* ************************* form-section > form > info > travel preference ************************* */
 #container-form-info-travel-preference {
     left: 200%;
-}
-
-input[type=date]::before { 
-    content: "📅 data de partida";
-    margin-right: 5px;
-    width: 100%;
-    color: #000000;
-    font-size: min(1em, 4vw);
-    
 }
 
 #container-form-info-travel-preference>*:not(:last-child) {
@@ -458,6 +448,21 @@ input[type=date]::before {
 /* ************************* form-section > form > info > destination ************************* */
 
 /* ************************* form-section > form > info > tickets ************************* */
+#label-final-comment {
+    text-align: center;
+    width: 100%;
+}
+
+#final-comment {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 5%;
+    padding: 2%;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    resize: none;
+}
+
 
 /* ************************* summary-section ************************* */
 #summary-section {
@@ -497,22 +502,6 @@ input[type=date]::before {
     width: min(50px, 3.5vw);
     height: min(50px, 3.5vw);
 }
-
-#label-final-comment {
-    text-align: center;
-    width: 100%;
-}
-
-#final-comment {
-    width: 100%;
-    height: 100px;
-    margin-bottom: 5%;
-    padding: 2%;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    resize: none;
-}
-
 
 /* ************************* @media ************************* */
 /* ************************* @media ************************* */
