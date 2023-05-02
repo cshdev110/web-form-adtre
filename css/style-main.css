@@ -24,6 +24,8 @@
     background-color: #00000000;
     border-style: none;
     border-radius: 50px;
+    pointer-events: none;
+    filter: opacity(10%);
 }
 
 .step-to-form:hover {
@@ -45,7 +47,7 @@
 /* ************************* form-section ************************* */
 #form-section {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
     justify-content: space-between;
     width: 100%;
@@ -54,6 +56,7 @@
 
 /* ************************* form-section > buttons left and rigth ************************* */
 .step-up-down {
+    display: none;
     width: min(100px, 10vw);
     background-color: #00f8ff26;
     font-size: min(4.5em, 7vw);
@@ -78,11 +81,10 @@
 
 /* ************************* form-section > form ************************* */
 #main-form {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    /* height: 100%; */
     background-color: #79ff0026;
     color: #000000;
     padding: 2% 4%;

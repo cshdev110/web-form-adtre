@@ -42,23 +42,34 @@ header h1 {
 /* ************************* button report ************************* */
 #report {
     position: absolute;
-    top: 0px;
+    top: 50%;
     right: 0px;
+    height: 100%;
     background-color: yellow;
-    border-color: black;
-    border-bottom-left-radius: 25px;
-    padding: 1% 0.5% 1% 2%;
-    font-size: min(1rem, 3vw);
+    border: none;
+    padding: 1% 20px;
+    font-size: min(1.1rem, 4vw);
+    font-weight: bolder;
     color: black;
     cursor: pointer;
-    box-shadow: -4px 4px 9px #000000;
-    transition: transform ease 1s;
+    box-shadow: -1px 1px 4px #000000;
+    transform: translateY(-50%);
+    transition: all ease .3s;
     z-index: 10;
-
 }
 
 #report:hover {
-    background-color: #FFFF00;
-    transform: scale(1.1);
+    background-color: #000000;
+    color: white;
+    transform-origin: center;
+    transform: translateY(-50%) scaleX(1.5);
     z-index: 1;
+}
+
+#report>i {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    transform-origin: center;
+    transform: rotateZ(-90deg);
 }

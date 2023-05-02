@@ -3,6 +3,9 @@ import * as html_css_vars from "./js/vars_html_style.js";
 
 // -------------------------------------- variables --------------------------------------
 
+// cnt_form_seciton is the form element
+const cnt_form_seciton = document.querySelector('#form-section');
+
 // cnt_steps_icons contains the icons which are the steps that are on the left side of the screen
 const cnt_steps_icons = document.querySelectorAll('.step-to-form');
 let steps_arr_index = 0;
@@ -77,23 +80,6 @@ let anima_transport_inter_resize = null;
 
 // -------------------------------------- function to initialise --------------------------------------
 function fn_start() {
-    // Deactivating step icons until the start button is clicked
-    cnt_steps_icons.forEach(el => {
-        el.style.pointerEvents = 'none';
-        el.style.filter = 'opacity(10%)';
-    });
-
-    // Hidding the container-form and the step up/down buttons after button start is clicked
-    let btn_step_up_down = document.querySelectorAll('.step-up-down');
-    let section_form_seciton = document.querySelector('#form-section');
-
-    btn_step_up_down.forEach(el => el.style.display = 'none');
-    cnt_containers_form.style.display = 'none';
-
-    section_form_seciton.style.flexDirection = 'column';
-
-    cnt_radio_btns_sub_form.children[0].checked = true;
-
     // Creating and styling the container for the start button at the beginnig
     // After clicking on that button, welcome message will be displayed and the start container will be removed.
     document.querySelector('#form-section').insertAdjacentHTML('beforeend', html_css_vars.button_start);
@@ -116,18 +102,22 @@ function fn_start() {
     });
 
 ////// for the sake of the test ///////////////////////////////////////////////////////
-    // cnt_btn_start.querySelector('#button-start__button').addEventListener('mouseup', () => {
-    cnt_btn_start.querySelector('#button-start__button').addEventListener('click', () => {
+    cnt_btn_start.querySelector('#button-start__button').addEventListener('mouseup', () => {
+    // cnt_btn_start.querySelector('#button-start__button').addEventListener('click', () => {
         cnt_btn_start.style.display = 'none';
 
-        btn_step_up_down.forEach((el) => el.style.display = 'block');
+        // btn_step_up_down.forEach((el) => el.style.display = 'block');
+        btn_step_up_normal.style.display = 'block';
+        btn_step_down_normal.style.display = 'block';
+
         cnt_containers_form.style.display = 'flex';
-        section_form_seciton.style.flexDirection = 'row';
+        cnt_form_seciton.style.flexDirection = 'row';
 
         // Activating the first step icon after the start button is clicked
         cnt_steps_icons.forEach((el, idx) => {
-            if (idx === 0)
+            if (idx === 0) {
                 el.style.pointerEvents = 'auto';
+            }
             el.style.filter = 'opacity(100%)';
         });
 
@@ -148,7 +138,7 @@ function fn_start() {
     });
 
 ////// for the sake of the test ///////////////////////////////////////////////////////
-    cnt_btn_start.querySelector('#button-start__button').click();
+    // cnt_btn_start.querySelector('#button-start__button').click();
 }
 
 // ************************************** main functions **************************************
@@ -239,7 +229,7 @@ function fn_container_steps_manager_control(step_selected, step_index) {
         }   
     }
     // enable next step
-    if (cnt_steps_icons[step_selected].style.pointerEvents === 'none') {
+    if (window.getComputedStyle(cnt_steps_icons[step_selected]).pointerEvents === 'none') {
         cnt_steps_icons[step_selected].style.pointerEvents = 'auto';
     }
     
@@ -879,7 +869,7 @@ cnt_budget_min_max.forEach(budget_ele => {
     });
 });
 
-// format the currency in the budget input to dollar.
+// format the currency in the4 budget input to dollar.
 // Also, if the min budget is greater than the max budget, the max budget is increased by 1
 // and opposite if the max budget is less than the min budget
 cnt_budget_min_max.forEach((budget_ele, idx) => {
